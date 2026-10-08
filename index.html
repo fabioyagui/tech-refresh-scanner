@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.9</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.14</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -130,16 +130,26 @@ body.dialog-open{overflow:hidden}
 #adapterDialog .ad-result{border:1px solid #c8d7eb;border-left:5px solid #4e6cd6;background:#fff;padding:16px 17px;border-radius:13px;margin:12px 0}#adapterDialog .ad-result.linked{border-left-color:#07966e}#adapterDialog .ad-result.conflict,#adapterDialog .ad-result.incomplete{border-left-color:#bf324f}#adapterDialog .ad-status{display:inline-block;padding:4px 8px;background:#eaf0ff;border-radius:6px;font-size:11px;font-weight:800;margin-bottom:8px}#adapterDialog .linked .ad-status{background:#dcf7e9;color:#076048}#adapterDialog .conflict .ad-status,#adapterDialog .incomplete .ad-status{background:#ffe1e9;color:#9b2340}#adapterDialog .ad-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:13px;margin-top:11px}#adapterDialog .ad-grid b{display:block;font-size:19px;overflow-wrap:anywhere}#adapterDialog .ad-history{margin-top:13px;font-size:12px}#adapterDialog .ad-history summary{cursor:pointer;font-weight:700;color:#315078}#adapterDialog .ad-event{border-top:1px solid #dce5f0;padding:10px 0;margin-top:7px;overflow-wrap:anywhere}#adapterDialog .ad-count{font-size:12px;color:#506780;margin-top:14px}
 .adapter-handover{border:1px solid #8ad6b6;background:#e7faef;color:#064f3f;border-radius:13px;padding:13px 15px;margin-top:13px}.adapter-handover b{display:block;font-size:16px;overflow-wrap:anywhere}.adapter-handover .tools{margin-top:9px}.adapter-handover.pending{border-color:#dcbd6e;background:#fff6de;color:#6a4b13}.adapter-chip{border:1px solid #50d4af;border-radius:9px;padding:7px 9px;background:rgba(0,83,67,.85);color:#edfff5;font:700 11px ui-monospace,monospace;overflow-wrap:anywhere}.adapter-chip.pending{background:rgba(96,66,10,.9);border-color:#e6c471}.adapter-chip button{background:#fff;border:0;border-radius:6px;color:#164b3c;font-size:11px;font-weight:800;padding:5px 8px;float:right;margin-left:6px}.workspace-nav .nav-adapter{font:700 13px system-ui;color:#175e51;background:#e0f6ed;border:1px solid #aed6c6;border-radius:10px;padding:9px 13px}.workspace-nav{flex-wrap:wrap}
 /* 3.9.10: linear handover in one camera surface + automatic adapter reader + manual user/PC fallback. */
-.camera .adapter-chip.linear-adapter{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;padding:8px 9px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;background:rgba(0,83,67,.92);border-color:#75e1bd;min-height:54px}
+.camera .adapter-chip.linear-adapter{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;padding:9px 10px;display:grid;grid-template-columns:minmax(190px,1fr) minmax(0,auto);gap:10px;align-items:center;background:rgba(0,83,67,.92);border-color:#75e1bd;min-height:54px;min-width:0}
 .camera .adapter-chip.linear-adapter.pending{background:rgba(111,76,12,.94);border-color:#ffd978}
-.linear-adapter .adapter-copy{min-width:0;display:grid;gap:2px}
-.linear-adapter .adapter-copy b{font-size:12px;line-height:1.25;color:#fff}
-.linear-adapter .adapter-copy span{font:10px/1.3 ui-monospace,monospace;color:#e8fff7;overflow-wrap:anywhere}
+.linear-adapter .adapter-copy{min-width:0;display:grid;gap:3px}
+.linear-adapter .adapter-copy b{font-size:13px;line-height:1.25;color:#fff;overflow-wrap:normal;word-break:normal}
+.linear-adapter .adapter-copy span{font:11px/1.35 system-ui,-apple-system,'Segoe UI',sans-serif;color:#e8fff7;overflow-wrap:break-word;word-break:normal}
 .linear-adapter.pending .adapter-copy span{color:#fff3c7}
-.linear-adapter .adapter-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
-.camera .linear-adapter button{float:none;margin:0;min-height:36px;padding:7px 9px;font-size:11px;border-radius:8px}
+.linear-adapter .adapter-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;min-width:0;max-width:100%}
+.camera .linear-adapter button{float:none;margin:0;min-height:38px;padding:8px 10px;font-size:11px;line-height:1.2;border-radius:8px;white-space:normal;text-align:center}
 .camera .linear-adapter .adapter-primary{background:#fff;color:#075744}
 .camera .linear-adapter .adapter-secondary{background:#ffffff17;color:#fff;border:1px solid #ffffff66}
+@media(max-width:640px){
+ .camera .adapter-chip.linear-adapter{grid-template-columns:minmax(0,1fr);align-items:stretch;gap:10px;padding:12px;border-radius:12px}
+ .linear-adapter .adapter-copy{padding:0 2px;gap:4px}
+ .linear-adapter .adapter-copy b{font-size:16px;line-height:1.22}
+ .linear-adapter .adapter-copy span{font-size:12px;line-height:1.38}
+ .linear-adapter .adapter-actions{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);width:100%;gap:8px;justify-content:stretch}
+ .linear-adapter .adapter-actions button:only-child{grid-column:1/-1}
+ .camera .linear-adapter button{width:100%;min-width:0;min-height:44px;padding:9px 8px;font-size:12px}
+}
+@media(max-width:360px){.linear-adapter .adapter-actions{grid-template-columns:1fr}}
 .camera-manual-fallback{width:100%;border:1px dashed #a8c0e8;background:rgba(235,243,255,.96);color:#1d426f;border-radius:10px;padding:9px 12px;font:750 12px/1.25 system-ui,-apple-system,'Segoe UI',sans-serif;cursor:pointer;text-align:center;margin:0 0 8px}
 .camera-manual-fallback:hover{background:#fff}.camera-manual-fallback:focus-visible{outline:3px solid #82a7ff;outline-offset:2px}
 #adapterDialog .ad-capture-hint{margin:0 0 9px;padding:9px 11px;border-radius:10px;background:#def8ed;border:1px solid #80d5b7;color:#075a46;font-size:12px;font-weight:700}
@@ -2451,9 +2461,9 @@ function createScannerCore(L, W, P) {
  function sessionBundle(s,sid=s.activeSessionId){
   const b=session(s,sid);if(!b)throw new Error('Choose a session.');const rows=sessionRows(s,sid);if(!rows.length)throw new Error('This session has no saved user records.');
   const bad=conflicts(s);if(rows.some(t=>t.kind==='delivery'&&bad.some(c=>norm(c.device.asset)===norm(t.device.asset)||norm(c.device.serial)===norm(t.device.serial))))throw new Error('This session contains conflicting historical handovers. Export a full backup for Admin review; do not import it as normal deliveries.');
-  return {type:'trefresh-user-transactions',v:rows.some(t=>t.returnOverride)?5:rows.some(t=>t.stockRegistration)?4:rows.some(t=>t.shipment)?3:2,build:'2026.10.08-r3.9.13',bundleId:id(),exportedAt:now(),scope:'session',session:{id:b.id,label:b.label,date:b.date,period:b.period},records:clone(rows)};
+  return {type:'trefresh-user-transactions',v:rows.some(t=>t.returnOverride)?5:rows.some(t=>t.stockRegistration)?4:rows.some(t=>t.shipment)?3:2,build:'2026.10.08-r3.9.14',bundleId:id(),exportedAt:now(),scope:'session',session:{id:b.id,label:b.label,date:b.date,period:b.period},records:clone(rows)};
  }
- function columnBundle(s,cid=s.activeId){const b=column(s,cid);if(!b)throw new Error('Choose a column.');const rows=columnRows(s,cid);if(!rows.length)throw new Error('No PCs in this column.');return {type:'trefresh-stock-scan',v:1,build:'2026.10.08-r3.9.13',bundleId:id(),exportedAt:now(),scope:'box',locationKind:'column',column:{id:b.id,label:b.label},box:{id:b.id,label:b.label,closedAt:b.closedAt||'',warrantyDefault:b.warrantyDefault?.warr||''},records:clone(rows.map(r=>({...r,box:b.label})))};}
+ function columnBundle(s,cid=s.activeId){const b=column(s,cid);if(!b)throw new Error('Choose a column.');const rows=columnRows(s,cid);if(!rows.length)throw new Error('No PCs in this column.');return {type:'trefresh-stock-scan',v:1,build:'2026.10.08-r3.9.14',bundleId:id(),exportedAt:now(),scope:'box',locationKind:'column',column:{id:b.id,label:b.label},box:{id:b.id,label:b.label,closedAt:b.closedAt||'',warrantyDefault:b.warrantyDefault?.warr||''},records:clone(rows.map(r=>({...r,box:b.label})))};}
  function referenceImport(s,p){
   p=ShipmentPrivacy.copy(p);
   if(p?.type!=='trefresh-day-tasks'||!Array.isArray(p.stock)||!p.projectId||typeof p.demo!=='boolean'||!stamp(p.exportedAt))throw new Error('Choose a Send plan JSON from Admin, containing project ID, stock and export time. Intake files belong in Admin first.');
@@ -2729,7 +2739,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.08-r3.9.13';
+const BUILD='build 2026.10.08-r3.9.14';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -2868,7 +2878,7 @@ function renderAdapterCapture(){
  if(receipt){
   chip.innerHTML=`<div class="adapter-copy"><b>✓ AC adapter saved with this handover</b><span>${esc(q||('Exception · '+skipped))}</span></div>`;
  }else if(pending&&!registered){
-  chip.innerHTML=`<div class="adapter-copy"><b>3 · PC read ✓ · register it and continue</b><span>This PC is not in available stock. One tap confirms registration on completion and opens the adapter reader.</span></div><div class="adapter-actions"><button type="button" class="adapter-primary" data-action="adapter-register-read">Register + scan adapter →</button><button type="button" class="adapter-secondary" data-action="adapter-register-skip">Register + no QR</button></div>`;
+  chip.innerHTML=`<div class="adapter-copy"><b>3 · PC read ✓ · register this PC</b><span>Not in stock. Registration is saved only after the handover / shipment is completed.</span></div><div class="adapter-actions"><button type="button" class="adapter-primary" data-action="adapter-register-read">Register + scan adapter →</button><button type="button" class="adapter-secondary" data-action="adapter-register-skip">Register without QR</button></div>`;
  }else if(pending){
   chip.innerHTML=`<div class="adapter-copy"><b>3 · PC read ✓ · now scan the AC adapter</b><span>Tap once. The adapter camera opens automatically and returns here after confirmation.</span></div><div class="adapter-actions"><button type="button" class="adapter-primary" data-action="adapter-read">Scan AC adapter →</button><button type="button" class="adapter-secondary" data-action="adapter-skip">No QR / exception</button></div>`;
  }else{
@@ -2885,7 +2895,7 @@ function stockRegistrationChecked(){return !!stockRegistrationConsent&&stockRegi
 function captureAvailability(){
  const d=currentDevice();if(!d||!recipient)return {ok:false,code:'reading',message:'Read the user and PC first.'};
  const a=SC.availability(S,d,recipient);
- if(a.needsStockRegistration){if(!stockRegistrationChecked())return {...a,ok:false,code:'stock-registration',message:'PC not in stock · use Register + scan adapter in this camera panel. Registration is saved only with the completed handover / shipment.'};
+ if(a.needsStockRegistration){if(!stockRegistrationChecked())return {...a,ok:false,code:'stock-registration',message:'PC not in stock · continue with registration below. It is saved only when the handover / shipment is completed.'};
   return {...a,ok:true,code:'register-on-completion',message:'Stock registration confirmed · saved only with the completed handover / shipment'};}
  return a;
 }
