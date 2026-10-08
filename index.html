@@ -186,7 +186,7 @@ function classify(raw){
  if(m=s.match(/^(?:\(1S\)|1S)([A-Z0-9]{10})(PF[A-Z0-9]{6,8})$/))return {kind:'combined',serial:m[2],part:m[1]};
  if(m=s.match(/^(?:\(31P\)|31P)([A-Z0-9]{10})$/))return {kind:'part',value:m[1]};
  if(m=s.match(/^(?:\(S\)(?:SN:)?|S)?(PF[A-Z0-9]{6,8})$/))return {kind:'serial',value:m[1],manufacturer:'Lenovo'};
- if(/^5CG[A-Z0-9]{7}$/.test(s))return {kind:'serial',value:s,manufacturer:'HP'};
+ if(/^5C[DG][A-Z0-9]{7}$/.test(s))return {kind:'serial',value:s,manufacturer:'HP'};
  if(/^\d{2}L\d{5}$/.test(s))return {kind:'asset',value:s,manufacturer:'Lenovo'};
  if(/^\d{2}H\d{5}$/.test(s))return {kind:'asset',value:s,manufacturer:'HP'};
  const w=warranty(s);if(w.warr)return {kind:'warranty',...w};
@@ -203,7 +203,7 @@ function analyze(input,workflow='auto'){
  if(assets.size>1||serials.size>1)return {...detail,ok:false,conflict:true,message:'More than one device identity is visible. Show one complete device label at a time.'};
  if(dates.size>1)return {...detail,ok:false,conflict:true,message:'Different warranty dates are visible. Nothing saved; show one device label.'};
  const asset=[...assets][0]||'',serial=[...serials][0]||'';
- const manufacturer=serial.startsWith('PF')?'Lenovo':serial.startsWith('5CG')?'HP':asset.includes('L')?'Lenovo':asset.includes('H')?'HP':'';
+ const manufacturer=serial.startsWith('PF')?'Lenovo':/^5C[DG]/.test(serial)?'HP':asset.includes('L')?'Lenovo':asset.includes('H')?'HP':'';
  const kind=manufacturer==='Lenovo'?'stock':manufacturer==='HP'?'return':'';
  if(workflow!=='auto'&&kind&&workflow!==kind)return {...detail,ok:false,wrongWorkflow:true,message:`${manufacturer} label detected. Switch to ${kind==='stock'?'Lenovo stock':'HP return'}. Nothing saved.`};
  if(asset&&serial&&classify(asset).manufacturer!==classify(serial).manufacturer)return {...detail,ok:false,conflict:true,message:'Asset tag and serial belong to different manufacturers. Nothing saved.'};
@@ -2451,9 +2451,9 @@ function createScannerCore(L, W, P) {
  function sessionBundle(s,sid=s.activeSessionId){
   const b=session(s,sid);if(!b)throw new Error('Choose a session.');const rows=sessionRows(s,sid);if(!rows.length)throw new Error('This session has no saved user records.');
   const bad=conflicts(s);if(rows.some(t=>t.kind==='delivery'&&bad.some(c=>norm(c.device.asset)===norm(t.device.asset)||norm(c.device.serial)===norm(t.device.serial))))throw new Error('This session contains conflicting historical handovers. Export a full backup for Admin review; do not import it as normal deliveries.');
-  return {type:'trefresh-user-transactions',v:rows.some(t=>t.returnOverride)?5:rows.some(t=>t.stockRegistration)?4:rows.some(t=>t.shipment)?3:2,build:'2026.10.07-r3.9.12',bundleId:id(),exportedAt:now(),scope:'session',session:{id:b.id,label:b.label,date:b.date,period:b.period},records:clone(rows)};
+  return {type:'trefresh-user-transactions',v:rows.some(t=>t.returnOverride)?5:rows.some(t=>t.stockRegistration)?4:rows.some(t=>t.shipment)?3:2,build:'2026.10.08-r3.9.13',bundleId:id(),exportedAt:now(),scope:'session',session:{id:b.id,label:b.label,date:b.date,period:b.period},records:clone(rows)};
  }
- function columnBundle(s,cid=s.activeId){const b=column(s,cid);if(!b)throw new Error('Choose a column.');const rows=columnRows(s,cid);if(!rows.length)throw new Error('No PCs in this column.');return {type:'trefresh-stock-scan',v:1,build:'2026.10.07-r3.9.12',bundleId:id(),exportedAt:now(),scope:'box',locationKind:'column',column:{id:b.id,label:b.label},box:{id:b.id,label:b.label,closedAt:b.closedAt||'',warrantyDefault:b.warrantyDefault?.warr||''},records:clone(rows.map(r=>({...r,box:b.label})))};}
+ function columnBundle(s,cid=s.activeId){const b=column(s,cid);if(!b)throw new Error('Choose a column.');const rows=columnRows(s,cid);if(!rows.length)throw new Error('No PCs in this column.');return {type:'trefresh-stock-scan',v:1,build:'2026.10.08-r3.9.13',bundleId:id(),exportedAt:now(),scope:'box',locationKind:'column',column:{id:b.id,label:b.label},box:{id:b.id,label:b.label,closedAt:b.closedAt||'',warrantyDefault:b.warrantyDefault?.warr||''},records:clone(rows.map(r=>({...r,box:b.label})))};}
  function referenceImport(s,p){
   p=ShipmentPrivacy.copy(p);
   if(p?.type!=='trefresh-day-tasks'||!Array.isArray(p.stock)||!p.projectId||typeof p.demo!=='boolean'||!stamp(p.exportedAt))throw new Error('Choose a Send plan JSON from Admin, containing project ID, stock and export time. Intake files belong in Admin first.');
@@ -2729,7 +2729,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.07-r3.9.12';
+const BUILD='build 2026.10.08-r3.9.13';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
