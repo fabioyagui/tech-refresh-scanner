@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.15</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.16</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -222,6 +222,32 @@ body.dialog-open{overflow:hidden}
 .sx-empty{padding:18px;text-align:center;color:var(--muted);font-size:12px}
 .sx-foot{margin-top:10px}.sx-link{border:0;background:none;color:var(--flow);text-decoration:underline;padding:0;font-size:12px}
 @media(min-width:700px){.sx-row{grid-template-columns:50px 1fr 1fr 70px 1fr}.sx-col{grid-column:auto;margin:0;font-size:11px}}
+/* r3.9.16 */
+.sx-flash.warn{background:#b46a00f2;border-color:#ffd27a}
+.sx-flash.bad{background:#a3162df5;border-color:#ffb3bf}
+.sx-flash.good{background:#05845ef5;border-color:#8af2c9}
+.sx-count{position:relative;border:1px solid #a9b8ff;color:#fff;cursor:pointer;font:inherit}
+.sx-count i{font:700 13px ui-monospace,monospace;font-style:normal;color:#dfe5ff;margin-top:-2px}
+.sx-bar{display:block;width:100%;height:4px;border-radius:3px;background:#ffffff33;margin-top:3px;overflow:hidden}.sx-bar>span{display:block;height:100%;background:#8af2c9;transition:width .3s}
+.sx-hud.done .sx-count{background:#049a6e;border-color:#8af2c9}
+.sx-hud.over .sx-count{background:#b46a00;border-color:#ffd27a}
+.sx-hud-btns{display:grid;gap:4px;flex-shrink:0}
+.sx-mini{min-width:54px}
+.sx-mini.danger{background:#a3162dcc;border-color:#ffb3bf}
+.camera.sx-ok{box-shadow:0 0 0 4px #2fe3a2,0 10px 26px #102b412a}
+.sx-del{background:#3b1320f5;border-color:#ff9fb0}.sx-del .sx-primary{color:#7d1f30}
+.sx-row{grid-template-columns:44px minmax(0,1fr) minmax(0,1fr) 40px 34px}
+.sx-x{width:30px;height:30px;border-radius:8px;border:1px solid #efc5cc;background:#fff4f5;color:#a62638;font-weight:800;padding:0}
+.sx-col{grid-column:2/-1}
+.sx-row.confirm{grid-template-columns:44px 1fr;background:#fff1f3}
+.sx-confirm-text{font-size:12px}.sx-confirm-btns{grid-column:1/-1;display:flex;gap:6px;justify-content:flex-end}
+.sx-missed{margin-top:12px;padding:10px 12px;border-radius:12px;background:#fdecef;border:2px solid #e78a9a;color:#7d1f30;font-size:12px;display:grid;gap:5px}
+.sx-mrow{display:grid;grid-template-columns:1fr 1fr 44px 28px;gap:6px;align-items:center;background:#fff;border-radius:8px;padding:6px 8px}
+.sx-mrow button{border:0;background:#f6d5db;color:#7d1f30;border-radius:6px;height:24px}
+.sx-missed small{color:#9b4a58}
+.sx-countbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}.sx-countbtns{display:flex;gap:6px}
+.sx-target-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.sx-target-grid .btn{min-height:48px;font-size:18px;font-weight:800}
+@media(min-width:700px){.sx-row{grid-template-columns:50px 1fr 1fr 60px minmax(0,1fr) 34px}.sx-row .sx-col{grid-column:5;grid-row:1}.sx-row .sx-x{grid-column:6;grid-row:1}}
 
 </style></head><body><div id="app"></div><script>/* Shared label validation, independent of camera and dashboards. */
 function createLabelCore(){
@@ -2794,7 +2820,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.09-r3.9.15';
+const BUILD='build 2026.10.09-r3.9.16';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -3346,7 +3372,7 @@ async function acceptBatch(raw,source='camera'){
    lastStock=result.record;completionVisible=true;render();
    if(navigator.vibrate)navigator.vibrate(60);
    function advance(){if(epoch!==captureEpoch)return;if(photoBusy||cameraMinimized||!$('modal').hidden){completionTimer=setTimeout(advance,250);return;}resetCapture(true);render();}
-   completionTimer=setTimeout(advance,1300);return result;
+   completionTimer=setTimeout(advance,700);return result;
   }finally{ingesting=false;}
  }
  return a;
@@ -3776,27 +3802,33 @@ document.addEventListener('input',e=>{if(['shipmentOutbound','shipmentInbound'].
 window.SN={cancelCapture,nextUser,ensureSession,selectAttendanceSession,createAttendanceSession,stockAdmissionCore:StockAdmissionCore,stockRegistrationChecked,captureAvailability,shipmentCore:ShipmentCore,applyShipmentDetails,getShipmentDraft:()=>clone(shipmentDraft),stockImportCore:StockImportCore,core:SC,managementCore:ManagementCore,minimizeCamera,expandCamera,openManager,navigationInfo:()=>({minimized:cameraMinimized,resumeAfterExpand,running,starting,photoBusy}),labelCore:LabelCore,warrantyPolicy:WarrantyPolicy,protocol:TRP,qr:TRQR,qrFromCanvas,build:BUILD,getState:()=>clone(S),getCapture:()=>clone(analysis()),getUserSession:()=>({user:recipient?clone(recipient):null,device:device?clone(device):null,complete:!!receipt}),chooseWorkflow,acceptUserQR:readUser,acceptBatch,confirmUserRecord:completeRecord,scanFile,decodeCanvas,stopCamera,visibleSourceRect,prepareExport,readiness,retryStorage,commit,render,referenceImport:async p=>{const r=await commit(s=>SC.referenceImport(s,p));render();return r;},previewAdminCorrections:p=>SC.previewAdminCorrections(S,p),applyAdminCorrections:async p=>{const r=await commit(s=>SC.applyAdminCorrections(s,p));render();return r;},sessionBundle:()=>SC.sessionBundle(S),columnBundle:()=>SC.columnBundle(S),userTransactionBundle:()=>SC.sessionBundle(S),newSession:async(...a)=>createAttendanceSession(...a),clearQRSession:()=>{resetCapture(false);render();},rereadField,storageInfo:()=>({loaded,saving,error:storageError,externalDirty,revision:diskRevision}),testing:{failNextWrites:v=>{testWriteFailure=v;}}};
 const adapterUI=createAdapterUI({roleLabel:'Scanner',manage:false,today:TRP.day,events:()=>{if(!loaded)throw new Error('Wait for the scanner workspace to open.');return SC.adapterEvents(S);},pause:async()=>{if(!loaded||photoBusy||saving||ingesting)throw new Error('Wait for reading / saving to finish.');await minimizeCamera();},referenceNote:()=>S.reference?.adapterReferenceAt?'Local saved handovers + Admin adapter reference exported '+fmt(S.reference.adapterReferenceAt):'Local saved handovers only. No adapter-aware Admin reference imported yet.',error,afterClose:()=>{resumeAfterExpand=false;cameraMinimized=false;renderCapture();},afterCapture:async()=>{resumeAfterExpand=false;await expandCamera();renderCapture();requestAnimationFrame(()=>{const target=$('cameraConfirm')&&!$('cameraConfirm').hidden?$('cameraConfirm'):$('cameraAdapter');target?.scrollIntoView({block:'center',behavior:'smooth'});});}});
 window.SN.adapterCore=AdapterCore;window.SN.adapterUI=adapterUI;window.SN.openAdapterCapture=openAdapterCapture;window.SN.getAdapterCapture=()=>clone(adapterDraft);window.SN.applyAdapterCapture=applyAdapterCapture;
-/* r3.9.15 — Stock intake assist. Presentation + frame filtering only.
-   - Neighbour boxes: codes that belong to an already registered PC are ignored when another, new label is in the same frame;
-     when two new labels are visible, only the label nearest the centre of the frame is used.
-   - Pair check: if asset and serial were never seen together in one frame, the camera asks before saving.
-   - Conflicts in Stock reset automatically after a short countdown (nothing is saved at that point) or with one tap.
-   - Batch counter, in-camera duplicate warning and the list of PCs scanned in this batch / today / column.
-   The stock record format, exports and Admin import are unchanged. Only UI preferences use localStorage. */
-const SX={pairs:new Set(),pending:null,approved:'',dropped:[],droppedAt:0,dropStreak:0,blockDeadline:0,blockTick:null,flashTimer:null,tab:'batch',query:'',showAll:false,sig:'',lastSavedId:'',hintAt:0,hint:''};
-const SX_KEY='tr-scan-stock-assist-v1';
+/* r3.9.16 — Stock intake assist (UI + frame filtering; record format, exports and Admin import unchanged).
+   - Box switch rule ("one label" layout, default): fields of one box are only combined while that box stays in view.
+     When a different box appears and the unfinished box has not been seen for ~0.9 s, the unfinished reading is dropped,
+     never merged, and a red "PREVIOUS BOX NOT SAVED" warning names the box to go back to.
+   - Neighbour boxes: labels of already registered PCs are ignored; with two new labels the one nearest the centre wins.
+   - "Separate stickers" layout keeps cross-frame reading and asks "Same box?" before saving.
+   - Counter: Count (reset to 0 any time) / Column / Today, optional target (e.g. 20 per column).
+   - Scanned list with one-tap delete of a wrong scan (same safety rules as Manage → cleanup: unexported local intake only).
+   Only UI preferences and the "not saved" reminders use localStorage. */
+const SX={pairs:new Set(),pending:null,approved:'',seen:new Map(),seenN:new Map(),dropped:[],droppedAt:0,blockDeadline:0,blockTick:null,flashTimer:null,tab:'count',query:'',showAll:false,sig:'',lastSavedId:'',lastSavedAt:0,hintAt:0,hint:'',confirmDel:'',undoStart:null,undoUntil:0,okUntil:0,heldFields:''};
+const SX_KEY='tr-scan-stock-assist-v1',SWITCH_MS=900;
 function sxPref(){try{return JSON.parse(localStorage.getItem(SX_KEY)||'{}')||{};}catch{return {};}}
 function sxSetPref(p){try{localStorage.setItem(SX_KEY,JSON.stringify({...sxPref(),...p}));}catch{}}
+const sxLayout=()=>sxPref().pairCheck==='off'||sxPref().layout==='apart'?'apart':'same';
 const sxJstDay=d=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo'}).format(d?new Date(d):new Date());
 const sxTime=d=>new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date(d));
-function sxBatchStart(){const p=sxPref();return p.batchStart||new Date(sxJstDay()+'T00:00:00+09:00').toISOString();}
+const sxMidnight=()=>new Date(sxJstDay()+'T00:00:00+09:00').toISOString();
+function sxCountStart(){const p=sxPref(),s=p.countStart||p.batchStart||'';return s&&sxJstDay(s)===sxJstDay()?s:(s&&p.keepOld?s:sxMidnight());}
+function sxMode(){const m=sxPref().mode;return ['count','column','day'].includes(m)?m:'count';}
 function sxStock(){return S.records.filter(r=>r.kind==='stock').sort((a,b)=>String(a.scannedAt).localeCompare(String(b.scannedAt)));}
 function sxSets(){
- const all=sxStock(),start=sxBatchStart(),today=sxJstDay(),col=S.activeId;
- const batch=all.filter(r=>String(r.scannedAt)>=start),day=all.filter(r=>r.scannedAt&&sxJstDay(r.scannedAt)===today),column=all.filter(r=>r.boxId===col);
- return {all,batch,day,column,start};
+ const all=sxStock(),start=sxCountStart(),today=sxJstDay(),col=S.activeId;
+ return {all,start,count:all.filter(r=>String(r.scannedAt)>=start),day:all.filter(r=>r.scannedAt&&sxJstDay(r.scannedAt)===today),column:all.filter(r=>r.boxId===col)};
 }
-function sxSeq(r,sets){const i=sets.batch.indexOf(r);return i>=0?i+1:0;}
+const sxList=(sets,k)=>k==='day'?sets.day:k==='column'?sets.column:sets.count;
+function sxSeq(r,list){const i=list.findIndex(x=>x.id===r.id);return i>=0?i+1:0;}
+const sxModeLabel=k=>({count:'COUNT',column:'COLUMN',day:'TODAY'}[k]);
 
 /* ---------- frame geometry + filtering ---------- */
 function sxAnnotate(list,canvas){
@@ -3809,102 +3841,138 @@ function sxAnnotate(list,canvas){
  });
 }
 function sxInfo(c){const t=codeString(c),k=LabelCore.classify(t);const kind=k.kind==='combined'?'serial':k.kind;const value=k.kind==='combined'?k.serial:k.value;return {c,t,kind,value,part:k.kind==='combined'?k.part:k.kind==='part'?k.value:'',warr:k.kind==='warranty'?k.warr:'',geo:Number.isFinite(c?.cx),cx:c?.cx,cy:c?.cy};}
+const sxIsId=x=>x.kind==='asset'||x.kind==='serial';
 function sxFilter(raw){
  const items=raw.map(sxInfo).filter(x=>x.kind!=='ignored');
  if(!items.length)return {codes:raw,dropped:[]};
  const known=new Map();for(const r of S.records)if(r.kind==='stock'){known.set('asset:'+r.asset,r);known.set('serial:'+r.serial,r);}
  const held=analysis().record||{},holding=CAP.hasData();
- const isKnown=x=>(x.kind==='asset'||x.kind==='serial')&&known.has(x.kind+':'+x.value);
- const ident=items.filter(x=>x.kind==='asset'||x.kind==='serial');
- const fresh=ident.filter(x=>!isKnown(x));
+ const isKnown=x=>sxIsId(x)&&known.has(x.kind+':'+x.value);
+ const ident=items.filter(sxIsId),fresh=ident.filter(x=>!isKnown(x));
  let keep=items,dropped=[];
- // 1 · labels of PCs that are already registered: ignore them while a new label is visible or being captured.
  if(fresh.length||holding){
   const drop=ident.filter(x=>isKnown(x)&&!(holding&&held[x.kind]===x.value));
-  if(drop.length){const recs=new Set(drop.map(x=>known.get(x.kind+':'+x.value)));dropped=[...recs];keep=items.filter(x=>!drop.includes(x));}
+  if(drop.length){dropped=[...new Set(drop.map(x=>known.get(x.kind+':'+x.value)))];keep=items.filter(x=>!drop.includes(x));}
  }
- // 2 · two new labels in one frame: keep only the one nearest the centre (or the one already being captured).
- const assets=[...new Set(keep.filter(x=>x.kind==='asset').map(x=>x.value))],serials=[...new Set(keep.filter(x=>x.kind==='serial').map(x=>x.value))],parts=[...new Set(keep.filter(x=>x.part).map(x=>x.part))];
- if((assets.length>1||serials.length>1||parts.length>1)&&keep.every(x=>x.geo)){
-  const id2=keep.filter(x=>x.kind==='asset'||x.kind==='serial');
-  const d=(a,b)=>Math.hypot(a.cx-b.cx,a.cy-b.cy);
-  let anchor=id2.find(x=>holding&&held[x.kind]===x.value)||id2.slice().sort((a,b)=>d(a,{cx:.5,cy:.5})-d(b,{cx:.5,cy:.5}))[0];
+ const assets=new Set(keep.filter(x=>x.kind==='asset').map(x=>x.value)),serials=new Set(keep.filter(x=>x.kind==='serial').map(x=>x.value)),parts=new Set(keep.filter(x=>x.part).map(x=>x.part));
+ if((assets.size>1||serials.size>1||parts.size>1)&&keep.every(x=>x.geo)){
+  const id2=keep.filter(sxIsId),d=(a,b)=>Math.hypot(a.cx-b.cx,a.cy-b.cy);
+  const anchor=id2.find(x=>holding&&held[x.kind]===x.value)||id2.slice().sort((a,b)=>d(a,{cx:.5,cy:.5})-d(b,{cx:.5,cy:.5}))[0];
   if(anchor){
-   const pick=(arr)=>{if(arr.length<=1)return arr;const s=arr.slice().sort((a,b)=>d(a,anchor)-d(b,anchor));return d(s[1],anchor)>d(s[0],anchor)*1.5+.03?[s[0]]:[];};
+   const pick=arr=>{if(arr.length<=1)return arr;const s=arr.slice().sort((a,b)=>d(a,anchor)-d(b,anchor));return d(s[1],anchor)>d(s[0],anchor)*1.5+.03?[s[0]]:[];};
    const byValue=(list,f)=>{const m=new Map();for(const x of list){const v=f(x);if(!m.has(v)||d(x,anchor)<d(m.get(v),anchor))m.set(v,x);}return [...m.values()];};
    const out=[];
-   for(const kind of ['asset','serial']){const list=byValue(keep.filter(x=>x.kind===kind),x=>x.value);if(anchor.kind===kind){out.push(...keep.filter(x=>x.kind===kind&&x.value===anchor.value));}else{const p=pick(list);out.push(...keep.filter(x=>x.kind===kind&&p.some(y=>y.value===x.value)));}}
-   const partList=byValue(keep.filter(x=>x.kind==='part'),x=>x.part),pp=pick(partList);out.push(...keep.filter(x=>x.kind==='part'&&pp.some(y=>y.part===x.part)));
-   const warrList=byValue(keep.filter(x=>x.kind==='warranty'),x=>x.warr),pw=pick(warrList);out.push(...keep.filter(x=>x.kind==='warranty'&&pw.some(y=>y.warr===x.warr)));
+   for(const kind of ['asset','serial']){if(anchor.kind===kind)out.push(...keep.filter(x=>x.kind===kind&&x.value===anchor.value));else{const p=pick(byValue(keep.filter(x=>x.kind===kind),x=>x.value));out.push(...keep.filter(x=>x.kind===kind&&p.some(y=>y.value===x.value)));}}
+   const pp=pick(byValue(keep.filter(x=>x.kind==='part'),x=>x.part));out.push(...keep.filter(x=>x.kind==='part'&&pp.some(y=>y.part===x.part)));
+   const pw=pick(byValue(keep.filter(x=>x.kind==='warranty'),x=>x.warr));out.push(...keep.filter(x=>x.kind==='warranty'&&pw.some(y=>y.warr===x.warr)));
    keep=out;
   }
  }
  return {codes:keep.map(x=>x.c),dropped};
 }
+
+/* ---------- not-saved reminders ---------- */
+function sxMissedList(){const reg=new Set();for(const r of S.records)if(r.kind==='stock'){reg.add(r.asset);reg.add(r.serial);}return (sxPref().missed||[]).filter(m=>!(m.asset&&reg.has(m.asset))&&!(m.serial&&reg.has(m.serial)));}
+function sxAddMissed(r){
+ const m={asset:r.asset||'',serial:r.serial||'',part:r.part||'',at:new Date().toISOString(),col:SC.column(S)?.label||''};
+ const list=sxMissedList().filter(x=>!(m.asset&&x.asset===m.asset)&&!(m.serial&&x.serial===m.serial));list.push(m);sxSetPref({missed:list.slice(-30)});SX.sig='';
+ const miss=['asset','serial','part'].filter(f=>!r[f]).map(f=>({asset:'asset tag',serial:'serial',part:'part number'}[f]));
+ sxFlash('bad',`<strong>✗ PREVIOUS BOX NOT SAVED</strong><b class="mono">${esc(m.asset||m.serial)}</b><small>${esc(miss.join(' + '))} not read · go back to this box</small><small>It is listed under “Not saved” below the camera.</small>`,4200);
+ if(navigator.vibrate)navigator.vibrate([250,80,250]);sxBeep('bad');
+}
+
+/* ---------- acceptBatch wrapper ---------- */
 const sxBaseAccept=acceptBatch;
 acceptBatch=async function(raw,source='camera'){
  if(workflow!=='stock'||!['camera','photo'].includes(source)||!Array.isArray(raw)||!loaded||receipt||completionVisible||saving||ingesting)return sxBaseAccept(raw,source);
- const f=sxFilter(raw);
- if(f.dropped.length){SX.dropped=f.dropped;SX.droppedAt=Date.now();if(CAP.hasData())SX.dropStreak++;}
+ const f=sxFilter(raw),now=Date.now();
+ if(f.dropped.length){SX.dropped=f.dropped;SX.droppedAt=now;}
+ let ids=f.codes.map(sxInfo).filter(sxIsId);
+ // Box switch rule (one-label layout): never combine fields from two boxes.
+ if(sxLayout()==='same'&&source==='camera'&&CAP.hasData()&&ids.length&&!analysis().blocked){
+  const held=analysis().record||{},overlap=ids.some(x=>held[x.kind]===x.value);
+  if(!overlap){
+   const vals=[held.asset,held.serial].filter(Boolean),last=Math.max(0,...vals.map(v=>SX.seen.get(v)||0)),solid=vals.some(v=>(SX.seenN.get(v)||0)>=3)||(held.part&&vals.length);
+   if(vals.length&&now-last<SWITCH_MS)return {ignored:true,switching:true};
+   if(vals.length&&solid)sxAddMissed(held);
+   resetCapture(true);
+  }
+ }
+ for(const x of ids){SX.seen.set(x.value,now);SX.seenN.set(x.value,(SX.seenN.get(x.value)||0)+1);}
  const a=LabelCore.analyze(f.codes,'stock'),r=a.record||{};
  if(!a.conflict&&r.asset&&r.serial)SX.pairs.add(r.asset+'|'+r.serial);
- // Duplicate warning in the camera (the original bottom toast is kept quiet).
- const ids=f.codes.map(sxInfo).filter(x=>x.kind==='asset'||x.kind==='serial');
- if(!CAP.hasData()&&ids.length){const recs=new Set(S.records.filter(x=>x.kind==='stock'&&ids.some(i=>x[i.kind]===i.value)));const allKnown=ids.every(i=>S.records.some(x=>x.kind==='stock'&&x[i.kind]===i.value));if(allKnown&&recs.size>1){sxHint('Registered boxes in view · point at the next new box');return {ignored:true,duplicate:true};}}
+ if(!CAP.hasData()&&ids.length){
+  const recs=new Set(S.records.filter(x=>x.kind==='stock'&&ids.some(i=>x[i.kind]===i.value)));
+  if(ids.every(i=>S.records.some(x=>x.kind==='stock'&&x[i.kind]===i.value))&&recs.size>1){sxHint('Registered boxes in view · point at the next new box');return {ignored:true,duplicate:true};}
+ }
  let dup=null;if(!CAP.hasData()&&ids.length){const recs=S.records.filter(x=>x.kind==='stock'&&ids.some(i=>x[i.kind]===i.value));if(recs.length===1&&ids.every(i=>recs[0][i.kind]===i.value))dup=recs[0];}
  if(dup)ignoredStockAt=Date.now();
+ const before=['asset','serial','part'].filter(k=>(analysis().record||{})[k]).length;
  const res=await sxBaseAccept(f.codes,source);
  if(dup&&res?.duplicate)sxDuplicate(dup);
+ else if(!completionVisible&&CAP.hasData()){const after=['asset','serial','part'].filter(k=>(analysis().record||{})[k]).length;if(after>before)sxBeep('tick');}
  return res;
 };
 function stockPairHold(a,source){
- if(source==='manual'||sxPref().pairCheck==='off')return false;
+ if(source==='manual'||sxLayout()==='same')return false;
  const r=a.record||{},key=r.asset+'|'+r.serial;
  if(SX.pairs.has(key)||SX.approved===key){SX.approved='';SX.pending=null;return false;}
  SX.pending={key,asset:r.asset,serial:r.serial,part:r.part,source};renderCapture();return true;
 }
 
-/* ---------- camera overlays ---------- */
+/* ---------- feedback ---------- */
 let sxAudio=null;
-function sxBeep(kind){try{sxAudio=sxAudio||new (window.AudioContext||window.webkitAudioContext)();const t=sxAudio.currentTime;const tones=kind==='dup'?[[330,0],[247,.16]]:[[880,0]];for(const [f,dt] of tones){const o=sxAudio.createOscillator(),g=sxAudio.createGain();o.frequency.value=f;o.type='square';g.gain.setValueAtTime(.0001,t+dt);g.gain.exponentialRampToValueAtTime(.12,t+dt+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dt+.14);o.connect(g).connect(sxAudio.destination);o.start(t+dt);o.stop(t+dt+.16);}}catch{}}
+function sxBeep(kind){try{sxAudio=sxAudio||new (window.AudioContext||window.webkitAudioContext)();const t=sxAudio.currentTime;const tones={dup:[[330,0,.14],[247,.16,.14]],bad:[[196,0,.3],[147,.32,.35]],ok:[[880,0,.09],[1320,.1,.12]],tick:[[1500,0,.03]],goal:[[880,0,.1],[1100,.12,.1],[1320,.24,.18]]}[kind]||[[880,0,.1]];for(const [f,dt,len] of tones){const o=sxAudio.createOscillator(),g=sxAudio.createGain();o.frequency.value=f;o.type='square';g.gain.setValueAtTime(.0001,t+dt);g.gain.exponentialRampToValueAtTime(kind==='tick'?.05:.12,t+dt+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dt+len);o.connect(g).connect(sxAudio.destination);o.start(t+dt);o.stop(t+dt+len+.02);}}catch{}}
+function sxFlash(tone,html,ms=3200){const el=$('sxFlash');if(!el)return;el.className='sx-flash '+tone;el.innerHTML=html;el.hidden=false;clearTimeout(SX.flashTimer);SX.flashTimer=setTimeout(()=>{el.hidden=true;},ms);}
 function sxDuplicate(rec){
- const sets=sxSets(),recent=rec.id===SX.lastSavedId&&Date.now()-Date.parse(rec.scannedAt)<20000;
- if(recent){sxHint('Previous box (#'+(sxSeq(rec,sets)||'–')+') · move to the next one');return;}
- const el=$('sxFlash');if(!el)return;const seq=sxSeq(rec,sets),col=SC.column(S,rec.boxId)?.label||rec.box||'stock';
- el.innerHTML=`<strong>⚠ ALREADY REGISTERED</strong><b class="mono">${esc(rec.asset)}</b><span class="mono">${esc(rec.serial)}</span><small>${seq?'Batch #'+seq+' · ':''}${esc(col)} · ${rec.scannedAt?esc(sxJstDay(rec.scannedAt)===sxJstDay()?sxTime(rec.scannedAt):sxJstDay(rec.scannedAt)):''}</small><small>Not counted again · show the next box</small>`;
- el.hidden=false;clearTimeout(SX.flashTimer);SX.flashTimer=setTimeout(()=>{el.hidden=true;},3200);
+ const sets=sxSets(),list=sxList(sets,sxMode()),seq=sxSeq(rec,list);
+ if(rec.id===SX.lastSavedId&&Date.now()-SX.lastSavedAt<25000){sxHint('Previous box (#'+(seq||'–')+') · move to the next one');return;}
+ const col=SC.column(S,rec.boxId)?.label||rec.box||'stock';
+ sxFlash('warn',`<strong>⚠ ALREADY REGISTERED</strong><b class="mono">${esc(rec.asset)}</b><span class="mono">${esc(rec.serial)}</span><small>${seq?sxModeLabel(sxMode())+' #'+seq+' · ':''}${esc(col)} · ${rec.scannedAt?esc(sxJstDay(rec.scannedAt)===sxJstDay()?sxTime(rec.scannedAt):sxJstDay(rec.scannedAt)):''}</small><small>Not counted again · show the next box</small>`);
  if(navigator.vibrate)navigator.vibrate([90,60,90]);sxBeep('dup');
 }
 function sxHint(t){SX.hint=t;SX.hintAt=Date.now();sxRenderHud();}
+
+/* ---------- markup ---------- */
 function sxEnsure(){
  const cam=$('camera');if(!cam)return false;
- if(!$('sxHud')){cam.insertAdjacentHTML('beforeend',`<div id="sxHud" class="sx-hud" hidden><div class="sx-count"><small>BATCH</small><b id="sxBatchN">0</b></div><div class="sx-meta"><span id="sxMeta"></span><span id="sxLast" class="mono"></span><span id="sxHint" class="sx-hint"></span></div><button type="button" class="sx-mini" data-sx="list">List</button></div>
+ if(!$('sxHud')){cam.insertAdjacentHTML('beforeend',`<div id="sxHud" class="sx-hud" hidden><button type="button" class="sx-count" data-sx="mode" title="Change counter: Count / Column / Today"><small id="sxModeLbl">COUNT ▾</small><b id="sxN">0</b><i id="sxTarget"></i><span class="sx-bar"><span id="sxBarFill"></span></span></button><div class="sx-meta"><span id="sxMeta"></span><span id="sxLast" class="mono"></span><span id="sxHint" class="sx-hint"></span></div><div class="sx-hud-btns"><button type="button" class="sx-mini" id="sxZero" data-sx="zero" title="Restart the count at 0">0↺</button><button type="button" class="sx-mini danger" id="sxUndoLast" data-sx="del-last" hidden title="Delete the last saved scan">✕ Last</button></div></div>
  <div id="sxFlash" class="sx-flash" hidden role="alert"></div>
  <div id="sxAlert" class="sx-alert" hidden role="alert"><strong>⚠ <span id="sxAlertTitle">Two labels read</span></strong><p id="sxAlertText"></p><div class="sx-actions"><button type="button" class="sx-primary" data-sx="rescan">↻ Read again now</button><button type="button" class="sx-secondary" data-sx="details">Details</button></div><small id="sxAlertCount"></small></div>
- <div id="sxPair" class="sx-alert sx-pair" hidden role="alertdialog"><strong>Same box?</strong><p>Asset and serial were read in different frames. Check they are on the same box before saving.</p><div class="sx-pairvals"><span><small>ASSET</small><b class="mono" id="sxPairAsset"></b></span><span><small>SERIAL</small><b class="mono" id="sxPairSerial"></b></span></div><div class="sx-actions"><button type="button" class="sx-primary" data-sx="pair-save">✓ Same box · save</button><button type="button" class="sx-secondary" data-sx="rescan">↻ Read again</button></div><label class="sx-check"><input type="checkbox" data-sx-change="pair-off"> Don't ask on this device (labels always far apart)</label></div>`);}
- if(!$('sxPanel')){cam.insertAdjacentHTML('afterend',`<section class="card sx-panel" id="sxPanel" hidden><div class="sx-panel-head"><div><span class="kicker">STOCK INTAKE · SCANNED</span><h2 id="sxPanelTitle">This batch</h2></div><div class="sx-big"><b id="sxPanelN">0</b><small id="sxPanelSub"></small></div></div>
- <div class="sx-tabs" role="tablist">${[['batch','This batch'],['day','Today'],['column','This column']].map(([k,l])=>`<button type="button" role="tab" data-sx="tab" data-tab="${k}">${l} <span id="sxTab-${k}" class="pill"></span></button>`).join('')}</div>
- <div class="sx-tools"><input id="sxSearch" type="search" placeholder="Filter asset / serial…" aria-label="Filter scanned PCs" autocomplete="off"><button type="button" class="btn small" data-sx="copy">Copy list</button><button type="button" class="btn small" data-sx="new-batch">New batch</button></div>
- <p class="small muted" id="sxBatchInfo"></p><div id="sxGaps" class="sx-gaps" hidden></div><div id="sxList" class="sx-list"></div><button type="button" class="btn small wide" id="sxMore" data-sx="more" hidden>Show all</button>
- <p class="small muted sx-foot">Pair check: <b id="sxPairMode"></b> · <button type="button" class="sx-link" data-sx="pair-toggle">change</button></p></section>`);}
+ <div id="sxPair" class="sx-alert sx-pair" hidden role="alertdialog"><strong>Same box?</strong><p>Asset and serial were read in different frames. Check they are on the same box before saving.</p><div class="sx-pairvals"><span><small>ASSET</small><b class="mono" id="sxPairAsset"></b></span><span><small>SERIAL</small><b class="mono" id="sxPairSerial"></b></span></div><div class="sx-actions"><button type="button" class="sx-primary" data-sx="pair-save">✓ Same box · save</button><button type="button" class="sx-secondary" data-sx="rescan">↻ Read again</button></div></div>
+ <div id="sxDel" class="sx-alert sx-del" hidden role="alertdialog"><strong>Delete this scan?</strong><div class="sx-pairvals"><span><small>ASSET</small><b class="mono" id="sxDelAsset"></b></span><span><small>SERIAL</small><b class="mono" id="sxDelSerial"></b></span></div><p id="sxDelInfo"></p><div class="sx-actions"><button type="button" class="sx-primary" data-sx="del-yes">✕ Delete · read again</button><button type="button" class="sx-secondary" data-sx="del-no">Keep</button></div></div>`);}
+ if(!$('sxPanel')){cam.insertAdjacentHTML('afterend',`<section class="card sx-panel" id="sxPanel" hidden><div class="sx-panel-head"><div><span class="kicker">STOCK INTAKE · SCANNED</span><h2 id="sxPanelTitle">Count</h2></div><div class="sx-big"><b id="sxPanelN">0</b><small id="sxPanelSub"></small></div></div>
+ <div id="sxMissed" class="sx-missed" hidden></div>
+ <div class="sx-tabs" role="tablist">${[['count','Count'],['column','Column'],['day','Today']].map(([k,l])=>`<button type="button" role="tab" data-sx="tab" data-tab="${k}">${l} <span id="sxTab-${k}" class="pill"></span></button>`).join('')}</div>
+ <div class="sx-tools"><input id="sxSearch" type="search" placeholder="Filter asset / serial…" aria-label="Filter scanned PCs" autocomplete="off"><button type="button" class="btn small" data-sx="copy">Copy</button></div>
+ <div class="sx-countbar"><span id="sxBatchInfo" class="small muted"></span><span class="sx-countbtns"><button type="button" class="btn small" data-sx="target">Target <b id="sxTargetLbl"></b></button><button type="button" class="btn small" data-sx="zero">Count 0↺</button></span></div>
+ <div id="sxGaps" class="sx-gaps" hidden></div><div id="sxList" class="sx-list"></div><button type="button" class="btn small wide" id="sxMore" data-sx="more" hidden>Show all</button>
+ <p class="small muted sx-foot">Label layout: <b id="sxPairMode"></b> · <button type="button" class="sx-link" data-sx="pair-toggle">change</button></p></section>`);}
  return true;
 }
+
+/* ---------- render ---------- */
 function sxRenderHud(){
  const hud=$('sxHud');if(!hud)return;const on=workflow==='stock'&&!cameraMinimized;hud.hidden=!on;if(!on)return;
- const sets=sxSets(),last=sets.all.at(-1),col=SC.column(S);
- $('sxBatchN').textContent=sets.batch.length;
- $('sxMeta').textContent=(col?col.label+': '+sets.column.length+' · ':'')+'Today: '+sets.day.length;
- $('sxLast').textContent=last&&String(last.scannedAt)>=sets.start?`Last #${sets.batch.length} · ${last.asset}`:'';
+ const sets=sxSets(),mode=sxMode(),list=sxList(sets,mode),last=sets.all.at(-1),col=SC.column(S),target=+sxPref().target||0;
+ $('sxModeLbl').textContent=sxModeLabel(mode)+' ▾';$('sxN').textContent=list.length;
+ $('sxTarget').textContent=target?'/'+target:'';$('sxBarFill').style.width=target?Math.min(100,list.length/target*100)+'%':'0';hud.querySelector('.sx-bar').hidden=!target;
+ hud.classList.toggle('done',!!target&&list.length===target);hud.classList.toggle('over',!!target&&list.length>target);
+ const other=[mode!=='count'?'Count '+sets.count.length:'',mode!=='column'&&col?col.label+' '+sets.column.length:'',mode!=='day'?'Today '+sets.day.length:''].filter(Boolean);
+ $('sxMeta').textContent=other.join(' · ');
+ const lastSeq=last?sxSeq(last,list):0;$('sxLast').textContent=last&&lastSeq?`Last #${lastSeq} · ${last.asset}`:'';
  const h=Date.now()-SX.hintAt<4000?SX.hint:(Date.now()-SX.droppedAt<1500&&SX.dropped.length?'Ignoring registered neighbour '+SX.dropped.map(r=>r.asset).slice(0,2).join(', '):'');
  $('sxHint').textContent=h;$('sxHint').hidden=!h;
- hud.classList.toggle('bump',SX.bumpUntil>Date.now());
+ const undo=SX.undoStart&&Date.now()<SX.undoUntil;$('sxZero').textContent=undo?'↶ Undo':'0↺';$('sxZero').dataset.sx=undo?'zero-undo':'zero';
+ const canUndoLast=SX.lastSavedId&&Date.now()-SX.lastSavedAt<60000&&S.records.some(r=>r.id===SX.lastSavedId);$('sxUndoLast').hidden=!canUndoLast;
+ hud.classList.toggle('bump',SX.okUntil>Date.now());
 }
 function sxRenderAlerts(){
- const al=$('sxAlert'),pr=$('sxPair');if(!al||!pr)return;
+ const al=$('sxAlert'),pr=$('sxPair'),dl=$('sxDel');if(!al||!pr||!dl)return;
  const a=analysis(),stock=workflow==='stock'&&!cameraMinimized&&!receipt&&!completionVisible;
  const blocked=stock&&a.blocked;
  if(blocked){
-  if(!SX.blockDeadline)SX.blockDeadline=Date.now()+3500;
+  if(!SX.blockDeadline)SX.blockDeadline=Date.now()+2500;
   const left=Math.max(0,Math.ceil((SX.blockDeadline-Date.now())/1000));
   const twoIds=/more than one device|different (asset|serial)|combined with another/i.test(a.message||'');
   $('sxAlertTitle').textContent=twoIds?'Two boxes in view':'Label not accepted';
@@ -3916,7 +3984,10 @@ function sxRenderAlerts(){
  if(blocked||!stock)SX.pending=null;
  const p=SX.pending&&stock&&!a.blocked?SX.pending:null;pr.hidden=!p;
  if(p){$('sxPairAsset').textContent=p.asset;$('sxPairSerial').textContent=p.serial;}
- $('camera')?.classList.toggle('sx-busy',blocked||!!p);
+ const del=SX.confirmDel&&workflow==='stock'&&!cameraMinimized?S.records.find(r=>r.id===SX.confirmDel):null;dl.hidden=!del;
+ if(del){$('sxDelAsset').textContent=del.asset;$('sxDelSerial').textContent=del.serial;const list=sxList(sxSets(),sxMode()),seq=sxSeq(del,list);$('sxDelInfo').textContent=(seq?sxModeLabel(sxMode())+' #'+seq+' · ':'')+(SC.column(S,del.boxId)?.label||del.box||'')+' · '+(del.scannedAt?sxTime(del.scannedAt):'')+'. The counter goes back by one.';}
+ $('camera')?.classList.toggle('sx-busy',blocked||!!p||!!del);
+ $('camera')?.classList.toggle('sx-ok',SX.okUntil>Date.now());
 }
 function sxBlockTick(){
  const a=analysis();if(workflow!=='stock'||!a.blocked){sxRenderAlerts();return;}
@@ -3924,39 +3995,55 @@ function sxBlockTick(){
  if(Date.now()>=SX.blockDeadline){sxRescan(true);return;}
  sxRenderAlerts();
 }
-function sxRescan(auto=false){
- if(saving||ingesting)return;resetCapture(true);render();
- sxHint(auto?'Conflict cleared automatically · read one box':'Cleared · read one box');
-}
+function sxRescan(auto=false){if(saving||ingesting)return;resetCapture(true);render();sxHint(auto?'Conflict cleared automatically · read one box':'Cleared · read one box');}
 function sxRenderPanel(force=false){
  const panel=$('sxPanel');if(!panel)return;const on=workflow==='stock';panel.hidden=!on;if(!on)return;
- const sets=sxSets(),list=SX.tab==='day'?sets.day:SX.tab==='column'?sets.column:sets.batch,q=SX.query.trim().toUpperCase();
- const sig=[sets.all.length,sets.all.at(-1)?.id,SX.tab,q,SX.showAll,sets.start,S.activeId,sxPref().pairCheck].join('|');
+ const sets=sxSets(),list=sxList(sets,SX.tab),q=SX.query.trim().toUpperCase(),missed=sxMissedList(),target=+sxPref().target||0;
+ const sig=[sets.all.length,sets.all.at(-1)?.id,SX.tab,q,SX.showAll,sets.start,S.activeId,sxLayout(),SX.confirmDel,target,missed.length].join('|');
  if(!force&&sig===SX.sig)return;SX.sig=sig;
  const col=SC.column(S);
- $('sxPanelTitle').textContent=SX.tab==='day'?'Today':SX.tab==='column'?(col?col.label:'This column'):'This batch';
- $('sxPanelN').textContent=list.length;$('sxPanelSub').textContent='PCs';
- for(const k of ['batch','day','column']){$('sxTab-'+k).textContent=(k==='day'?sets.day:k==='column'?sets.column:sets.batch).length;panel.querySelector(`[data-tab="${k}"]`).setAttribute('aria-selected',String(SX.tab===k));}
- $('sxBatchInfo').textContent=SX.tab==='batch'?'Batch started '+(sxJstDay(sets.start)===sxJstDay()?'today '+sxTime(sets.start).slice(0,5):sxJstDay(sets.start)+' '+sxTime(sets.start).slice(0,5))+' JST · numbering #1… follows scan order.':SX.tab==='day'?'Everything registered on this scanner today (JST), all columns.':'All PCs registered in the selected column.';
- // Possible skipped boxes: asset tags are usually consecutive inside a delivery.
+ $('sxPanelTitle').textContent=SX.tab==='day'?'Today':SX.tab==='column'?(col?col.label:'This column'):'Count';
+ $('sxPanelN').textContent=list.length+(SX.tab===sxMode()&&target?'/'+target:'');$('sxPanelSub').textContent='PCs';
+ for(const k of ['count','column','day']){$('sxTab-'+k).textContent=sxList(sets,k).length;panel.querySelector(`[data-tab="${k}"]`).setAttribute('aria-selected',String(SX.tab===k));}
+ $('sxBatchInfo').textContent=SX.tab==='count'?'Since '+(sxJstDay(sets.start)===sxJstDay()?sxTime(sets.start).slice(0,5)+' today':sxJstDay(sets.start)):SX.tab==='day'?'All columns, today (JST)':'Selected column, all days';
+ $('sxTargetLbl').textContent=target?target:'off';
+ $('sxMissed').hidden=!missed.length;
+ $('sxMissed').innerHTML=missed.length?`<b>✗ Not saved — go back to ${missed.length===1?'this box':'these boxes'}</b>${missed.slice().reverse().map(m=>`<div class="sx-mrow"><span class="mono">${esc(m.asset||'—')}</span><span class="mono">${esc(m.serial||'serial ?')}</span><small>${esc(sxTime(m.at).slice(0,5))}</small><button type="button" data-sx="miss-x" data-k="${esc(m.asset||m.serial)}" aria-label="Dismiss">✕</button></div>`).join('')}<small>Disappears automatically once the box is registered.</small>`:'';
  const gaps=[];{const by=new Map();for(const r of list){const m=/^(\d{2}L)(\d{5})$/.exec(r.asset||'');if(m){if(!by.has(m[1]))by.set(m[1],[]);by.get(m[1]).push(+m[2]);}}
   const reg=new Set(sets.all.map(r=>r.asset));for(const [p,nums] of by){nums.sort((a,b)=>a-b);for(let i=1;i<nums.length;i++){const diff=nums[i]-nums[i-1];if(diff>1&&diff<=6)for(let n=nums[i-1]+1;n<nums[i];n++){const a=p+String(n).padStart(5,'0');if(!reg.has(a))gaps.push(a);}}}}
  $('sxGaps').hidden=!gaps.length||list.length<3;$('sxGaps').innerHTML=gaps.length?`<b>Possible skipped box${gaps.length>1?'es':''}:</b> <span class="mono">${gaps.slice(0,12).map(esc).join(', ')}</span>${gaps.length>12?' …':''}<small>Asset numbers missing between consecutive scans. Ignore if those tags were never in this delivery.</small>`:'';
- const rows=list.map(r=>({r,seq:sxSeq(r,sets)})).reverse().filter(x=>!q||[x.r.asset,x.r.serial,x.r.part].some(v=>String(v||'').toUpperCase().includes(q)));
+ const rows=list.map((r,i)=>({r,seq:i+1})).reverse().filter(x=>!q||[x.r.asset,x.r.serial,x.r.part].some(v=>String(v||'').toUpperCase().includes(q)));
  const shown=SX.showAll?rows:rows.slice(0,40);
- $('sxList').innerHTML=shown.map(({r,seq})=>`<div class="sx-row ${r.id===SX.lastSavedId?'new':''}"><span class="sx-seq">${seq?'#'+seq:'—'}</span><span class="mono sx-asset">${esc(r.asset)}</span><span class="mono sx-serial">${esc(r.serial)}</span><span class="sx-when">${r.scannedAt?esc(sxJstDay(r.scannedAt)===sxJstDay()?sxTime(r.scannedAt).slice(0,5):sxJstDay(r.scannedAt).slice(5)):''}</span><span class="sx-col">${esc(SC.column(S,r.boxId)?.label||r.box||'')}</span></div>`).join('')||`<div class="sx-empty">${q?'No match in this list.':'Nothing scanned yet in this view.'}</div>`;
+ $('sxList').innerHTML=shown.map(({r,seq})=>SX.confirmDel===r.id?`<div class="sx-row confirm"><span class="sx-seq">#${seq}</span><span class="sx-confirm-text">Delete <b class="mono">${esc(r.asset)}</b>? It will not be counted.</span><span class="sx-confirm-btns"><button type="button" class="btn small danger" data-sx="del-yes">Delete</button><button type="button" class="btn small" data-sx="del-no">Keep</button></span></div>`:`<div class="sx-row ${r.id===SX.lastSavedId?'new':''}"><span class="sx-seq">#${seq}</span><span class="mono sx-asset">${esc(r.asset)}</span><span class="mono sx-serial">${esc(r.serial)}</span><span class="sx-when">${r.scannedAt?esc(sxJstDay(r.scannedAt)===sxJstDay()?sxTime(r.scannedAt).slice(0,5):sxJstDay(r.scannedAt).slice(5)):''}</span><button type="button" class="sx-x" data-sx="del" data-id="${esc(r.id)}" aria-label="Delete ${esc(r.asset)}" title="Delete this scan">✕</button><span class="sx-col">${esc(SC.column(S,r.boxId)?.label||r.box||'')}</span></div>`).join('')||`<div class="sx-empty">${q?'No match in this list.':'Nothing scanned yet in this view.'}</div>`;
  $('sxMore').hidden=SX.showAll||rows.length<=40;$('sxMore').textContent='Show all '+rows.length;
- $('sxPairMode').textContent=sxPref().pairCheck==='off'?'off (saves as soon as asset + serial + part are read)':'on (asks when asset & serial were not in one frame)';
+ $('sxPairMode').textContent=sxLayout()==='same'?'asset + serial on ONE label (box switch protection on)':'separate stickers (asks “Same box?”)';
 }
 function sxCopy(){
- const sets=sxSets(),list=SX.tab==='day'?sets.day:SX.tab==='column'?sets.column:sets.batch;
- const text=['#\tAsset\tSerial\tPart\tColumn\tScanned (JST)',...list.map(r=>[sxSeq(r,sets)||'',r.asset,r.serial,r.part||'',SC.column(S,r.boxId)?.label||r.box||'',r.scannedAt?sxJstDay(r.scannedAt)+' '+sxTime(r.scannedAt):''].join('\t'))].join('\n');
+ const list=sxList(sxSets(),SX.tab);
+ const text=['#\tAsset\tSerial\tPart\tColumn\tScanned (JST)',...list.map((r,i)=>[i+1,r.asset,r.serial,r.part||'',SC.column(S,r.boxId)?.label||r.box||'',r.scannedAt?sxJstDay(r.scannedAt)+' '+sxTime(r.scannedAt):''].join('\t'))].join('\n');
  (navigator.clipboard?.writeText(text)||Promise.reject()).then(()=>toast(list.length+' row(s) copied · paste into Excel')).catch(()=>modal('Copy list',`<textarea rows="12" readonly>${esc(text)}</textarea>`));
+}
+function sxAskDelete(id){
+ const chk=ManagementCore.inspect(S,'stock',id);
+ if(!chk.ok){SX.confirmDel='';toast('Cannot delete '+chk.label+': '+chk.reason,true);sxRenderPanel(true);return;}
+ SX.confirmDel=id;sxRenderPanel(true);sxRenderAlerts();
+}
+async function sxDelete(){
+ const id=SX.confirmDel;if(!id)return;if(saving||ingesting)throw new Error('Wait for the current save.');
+ const r=S.records.find(x=>x.id===id);
+ await commit(s=>ManagementCore.remove(s,'stock',[id],{reason:'Wrong stock scan deleted from the scanned list',confirmed:true}));
+ if(lastStock?.id===id){lastStock=null;if(completionVisible)resetCapture(true);}
+ if(SX.lastSavedId===id)SX.lastSavedId='';
+ SX.confirmDel='';SX.sig='';render();toast('Deleted '+(r?.asset||'scan')+' · read that box again');sxHint('Deleted '+(r?.asset||'')+' · read the box again');
+}
+function sxTargetModal(){
+ const t=+sxPref().target||0;
+ modal('Counter target',`<p class="small muted">Shows progress like 7/20 on the camera, a sound at the target and an orange warning above it. Applies to the counter currently shown (${sxModeLabel(sxMode())}).</p><div class="sx-target-grid">${[10,14,16,20,24,30].map(n=>`<button type="button" class="btn ${n===t?'primary':''}" data-sx="target-set" data-n="${n}">${n}</button>`).join('')}</div><div class="row" style="gap:8px;margin-top:10px;align-items:center"><input id="sxTargetInput" type="number" min="1" max="999" placeholder="Other" style="flex:1" value="${t&&![10,14,16,20,24,30].includes(t)?t:''}"><button type="button" class="btn" data-sx="target-custom">Set</button></div>`,`<button type="button" class="btn" data-sx="target-set" data-n="0">No target</button><button type="button" class="btn" data-action="close-modal">Close</button>`);
 }
 
 /* ---------- hooks ---------- */
 const sxBaseReset=resetCapture;
-resetCapture=function(...args){SX.pairs.clear();SX.pending=null;SX.approved='';SX.dropStreak=0;SX.blockDeadline=0;SX.autoPaused=false;return sxBaseReset.apply(this,args);};
+resetCapture=function(...args){SX.pairs.clear();SX.pending=null;SX.approved='';SX.blockDeadline=0;SX.autoPaused=false;SX.seen.clear();SX.seenN.clear();return sxBaseReset.apply(this,args);};
 const sxBaseRenderCapture=renderCapture;
 renderCapture=function(...args){
  const out=sxBaseRenderCapture.apply(this,args);
@@ -3964,8 +4051,14 @@ renderCapture=function(...args){
   if(!sxEnsure())return out;
   if(workflow==='stock'){
    if($('captureTools')&&analysis().blocked&&!receipt&&!completionVisible)$('captureTools').hidden=false;
-   if(completionVisible&&lastStock&&lastStock.id!==SX.lastSavedId){SX.lastSavedId=lastStock.id;SX.bumpUntil=Date.now()+1200;sxBeep('ok');}
-   if(completionVisible&&lastStock){const sets=sxSets(),seq=sxSeq(sets.all.find(r=>r.id===lastStock.id)||lastStock,sets);const cc=$('cameraComplete');if(cc)cc.innerHTML=`<strong>✓ #${seq||'–'} saved</strong><span class="mono">${esc(lastStock.asset)} · ${esc(lastStock.serial)}</span><span>Next box automatically</span>`;}
+   if(completionVisible&&lastStock&&lastStock.id!==SX.lastSavedId){
+    SX.lastSavedId=lastStock.id;SX.lastSavedAt=Date.now();SX.okUntil=Date.now()+900;
+    const list=sxList(sxSets(),sxMode()),target=+sxPref().target||0;
+    if(target&&list.length===target){sxBeep('goal');sxFlash('good',`<strong>✓ ${list.length}/${target} complete</strong><small>${esc(sxModeLabel(sxMode()))} reached the target · tap 0↺ for the next one</small>`,3000);}
+    else if(target&&list.length>target){sxBeep('dup');sxFlash('warn',`<strong>⚠ ${list.length}/${target}</strong><small>More boxes than the target · check this column</small>`,3000);}
+    else sxBeep('ok');
+   }
+   if(completionVisible&&lastStock){const list=sxList(sxSets(),sxMode()),seq=sxSeq(lastStock,list),t=+sxPref().target||0;const cc=$('cameraComplete');if(cc)cc.innerHTML=`<strong>✓ #${seq||'–'}${t?' / '+t:''} saved</strong><span class="mono">${esc(lastStock.asset)} · ${esc(lastStock.serial)}</span>`;}
   }
   sxRenderHud();sxRenderAlerts();sxRenderPanel();
  }catch(e){console.warn('stock assist',e);}
@@ -3981,18 +4074,26 @@ document.addEventListener('click',async e=>{
    case 'details':SX.autoPaused=true;sxRenderAlerts();modal('Why this label was not accepted',`<div class="notice bad">${esc(analysis().message||'')}</div><p class="small muted">Nothing has been saved for this reading. Auto-reset is paused while you check.</p>`,`<button type="button" class="btn primary" data-sx="rescan-close">↻ Read again</button>`);break;
    case 'rescan-close':closeModal();sxRescan(false);break;
    case 'pair-save':{if(!SX.pending)break;SX.approved=SX.pending.key;const src=SX.pending.source||'camera';SX.pending=null;await acceptBatch([],src==='photo'?'photo':'camera');render();break;}
-   case 'pair-toggle':sxSetPref({pairCheck:sxPref().pairCheck==='off'?'on':'off'});SX.sig='';sxRenderPanel(true);toast('Pair check '+(sxPref().pairCheck==='off'?'off':'on')+' on this device.');break;
-   case 'tab':SX.tab=b.dataset.tab;SX.showAll=false;sxRenderPanel(true);break;
+   case 'pair-toggle':{const next=sxLayout()==='same'?'apart':'same';sxSetPref({layout:next,pairCheck:next==='apart'?'off':'on'});SX.sig='';sxRenderPanel(true);toast(next==='same'?'One label: boxes are never combined across a box switch.':'Separate stickers: fields combine across frames; you confirm “Same box?”.');break;}
+   case 'tab':SX.tab=b.dataset.tab;SX.showAll=false;SX.confirmDel='';sxRenderPanel(true);break;
    case 'more':SX.showAll=true;sxRenderPanel(true);break;
    case 'copy':sxCopy();break;
-   case 'list':$('sxPanel')?.scrollIntoView({block:'start',behavior:'smooth'});break;
-   case 'new-batch':{const n=sxSets().batch.length;if(n&&!confirm('Start a new batch? The counter restarts at #1. The '+n+' PC(s) already scanned stay saved and still appear under Today / This column.'))break;sxSetPref({batchStart:new Date().toISOString()});SX.tab='batch';sxRenderHud();sxRenderPanel(true);toast('New batch started · counter at 0');break;}
+   case 'mode':{const order=['count','column','day'],next=order[(order.indexOf(sxMode())+1)%3];sxSetPref({mode:next});SX.tab=next;SX.sig='';sxRenderHud();sxRenderPanel(true);sxHint('Counter: '+sxModeLabel(next));break;}
+   case 'zero':SX.undoStart=sxCountStart();SX.undoUntil=Date.now()+8000;sxSetPref({countStart:new Date().toISOString(),mode:'count'});SX.tab='count';SX.sig='';sxRenderHud();sxRenderPanel(true);sxHint('Count restarted at 0');break;
+   case 'zero-undo':sxSetPref({countStart:SX.undoStart||''});SX.undoStart=null;SX.undoUntil=0;SX.sig='';sxRenderHud();sxRenderPanel(true);sxHint('Count restored');break;
+   case 'target':sxTargetModal();break;
+   case 'target-set':sxSetPref({target:+b.dataset.n||0});closeModal();SX.sig='';sxRenderHud();sxRenderPanel(true);break;
+   case 'target-custom':{const n=Math.round(+$('sxTargetInput').value);if(!(n>=1&&n<=999))throw new Error('Enter a target between 1 and 999.');sxSetPref({target:n});closeModal();SX.sig='';sxRenderHud();sxRenderPanel(true);break;}
+   case 'del':sxAskDelete(b.dataset.id);break;
+   case 'del-last':if(SX.lastSavedId)sxAskDelete(SX.lastSavedId);break;
+   case 'del-yes':await sxDelete();break;
+   case 'del-no':SX.confirmDel='';sxRenderPanel(true);sxRenderAlerts();break;
+   case 'miss-x':sxSetPref({missed:(sxPref().missed||[]).filter(m=>(m.asset||m.serial)!==b.dataset.k)});SX.sig='';sxRenderPanel(true);break;
   }
  }catch(err){error(err);}
 },true);
-document.addEventListener('change',e=>{if(e.target.matches('[data-sx-change="pair-off"]')&&e.target.checked){sxSetPref({pairCheck:'off'});SX.sig='';const p=SX.pending;if(p){SX.approved=p.key;SX.pending=null;acceptBatch([],p.source==='photo'?'photo':'camera').then(()=>render()).catch(error);}}});
 document.addEventListener('input',e=>{if(e.target.id==='sxSearch'){SX.query=e.target.value;sxRenderPanel(true);}});
-setInterval(()=>{if(workflow==='stock'&&$('sxHud')&&!$('sxHud').hidden)sxRenderHud();},700);
+setInterval(()=>{if(workflow==='stock'&&$('sxHud')&&!$('sxHud').hidden){sxRenderHud();$('camera')?.classList.toggle('sx-ok',SX.okUntil>Date.now());}},500);
 
 initial();window.SN.ready=load();
 </script></body></html>
