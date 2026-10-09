@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.17</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.19</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -253,7 +253,7 @@ body.dialog-open{overflow:hidden}
 .camera .adapter-chip.shp-chip.done{background:rgba(0,83,67,.94);border-color:#75e1bd}
 .shp-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.08em;font-weight:800;color:#e3d6ff}
 .shp-ok{color:#9ff3cf}
-.shp-row{display:grid;grid-template-columns:18px 64px minmax(0,1fr) 30px;gap:6px;align-items:center;padding:6px 7px;border-radius:9px;background:#ffffff12;border:1px solid transparent;font-size:11px}
+.shp-row{width:100%;min-height:44px;text-align:left;color:#fff;cursor:pointer;font:inherit;display:grid;grid-template-columns:18px 64px minmax(0,1fr) 24px;gap:6px;align-items:center;padding:6px 7px;border-radius:9px;background:#ffffff12;border:1px solid transparent;font-size:11px}
 .shp-row b{font-size:15px;overflow-wrap:anywhere;color:#fff}
 .shp-row.on{border-color:#ffd978;background:#ffd97824;animation:shpPulse 1.2s ease-in-out infinite}
 .shp-row.on b{color:#ffe7a3;font-size:13px}
@@ -264,6 +264,9 @@ body.dialog-open{overflow:hidden}
 .shp-hint{font-size:11px;color:#ffe08a;font-weight:700;text-align:center}
 .shp-tools{display:flex;gap:6px;justify-content:flex-end}
 @keyframes shpPulse{50%{background:#ffd9783d}}
+.shp-act{font-size:16px;text-align:center;color:#e9e1ff}
+.shp-row.on .shp-act{color:#ffd978}
+.camera .adapter-chip.shp-chip .shp-row{border:1px solid #ffffff22}
 
 </style></head><body><div id="app"></div><script>/* Shared label validation, independent of camera and dashboards. */
 function createLabelCore(){
@@ -2859,7 +2862,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.09-r3.9.17';
+const BUILD='build 2026.10.09-r3.9.19';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -3513,7 +3516,7 @@ async function runExport(share=false){
  try{await markExport(p,method);}catch(e){error(new Error('The file was created, but its export log could not be saved. Keep the file and back up the scanner. '+e.message));return;}
  closeModal();if(p.kind==='session'&&p.close&&p.scopeId===S.activeSessionId&&receipt)resetCapture(false);render();toast(shared?'Shared via the phone. Confirm import in Operational separately.':'JSON created. Import it in '+(p.kind==='session'?'Operational':'Admin → Stock')+'.');
 }
-function sessionCSV(){const b=SC.session(S);if(!b)throw new Error('Choose a session.');const rows=SC.sessionRows(S);download('session-'+safeFilename(b.label)+'.csv',csv(['Session','Action','Actual date','User','MUDID','Asset tag','Serial','Part number','Warranty','Record ID','Task ID','Engineer','Adapter QR','Adapter exception','Shipment confirmation date','Actual dispatch date','Shipping tracking','Return tracking'],rows.map(t=>[b.label,t.kind,t.date,t.user.name,t.user.mudid,t.device.asset,t.device.serial,t.device.part,t.device.warr,t.id,t.user.taskId,t.engineer,t.powerAdapter?.qr||'',t.adapterSkipReason||'',t.shipment?.confirmedDate||'',t.shipment?t.date:'',t.shipment?.shippingTracking||'',t.shipment?.returnTracking||''])),'text/csv;charset=utf-8');}
+function sessionCSV(){const b=SC.session(S);if(!b)throw new Error('Choose a session.');const rows=SC.sessionRows(S);download('session-'+safeFilename(b.label)+'.csv',csv(['Session','Action','Actual date','User','MUDID','Asset tag','Serial','Part number','Warranty','Record ID','Task ID','Engineer','Adapter QR','Adapter exception','Shipment confirmation date','Actual dispatch date','Shipping tracking','Return tracking'],rows.map(t=>[b.label,t.kind,t.date,t.user.name,t.user.mudid,t.device.asset,t.device.serial,t.device.part,t.device.warr,t.id,t.user.taskId,t.engineer,t.powerAdapter?.qr||'',t.adapterSkipReason||'',t.shipment?.confirmedDate||'',t.shipment?t.date:'',shpDash(t.shipment?.shippingTracking),shpDash(t.shipment?.returnTracking)])),'text/csv;charset=utf-8');}
 function inventoryCSV(){download('scanner-stock-'+TRP.day()+'.csv',csv(['Asset tag','Serial','Part number','Warranty','Storage column','Status','Assigned user','MUDID','Source'],SC.inventory(S).map(r=>[r.asset,r.serial,r.part,r.warr,r.column||r.box||'',r.availability.ok?'Available':r.availability.code,r.availability.user?.name||'',r.availability.user?.mudid||'',r.origin])),'text/csv;charset=utf-8');}
 function stockDetail(k){
  const r=SC.inventory(S).find(x=>SC.key(x)===k);if(!r)throw new Error('Stock PC not found.');const local=S.records.find(x=>SC.key(x)===k),receipts=S.transactions.filter(t=>t.kind==='delivery'&&SC.key(t.device)===k),deletion=local?ManagementCore.inspect(S,'stock',local.id):null;
@@ -4144,9 +4147,10 @@ function shpValue(c){
  if(LabelCore.classify(t).kind!=='ignored')return null;
  const m=/^([A-D])(\d{6,20})([A-D])$/.exec(t),digits=m?m[2]:/^\d+$/.test(t)?t:'';
  if(digits.length<10||digits.length>14)return null;
+ if(digits.length===12&&Number(digits.slice(0,11))%7!==Number(digits[11]))return null;
  return {value:digits,format:m||String(c?.format||'').toUpperCase()==='CODABAR'?'NW-7':String(c?.format||'').replace('_',' ')||'barcode',c};
 }
-const shpFmt=v=>String(v||'').replace(/(\d{4})(?=\d)/g,'$1-');
+const shpFmt=v=>shpDash(v);
 function shpStep(){try{return workflow==='delivery'&&recipient?.method==='ship'&&!receipt&&!saving&&readiness().code==='shipment-tracking';}catch{return false;}}
 function shpActive(){return workflow==='delivery'&&recipient?.method==='ship'&&!receipt;}
 function shpSync(){
@@ -4178,6 +4182,7 @@ acceptBatch=async function(raw,source='camera'){
   else{shpHint('Two parcel labels in view · show one label');return {ignored:true};}
  }
  const v=vals[0],now=Date.now();
+ if(v.value.length!==12){const prev=SHP.seen||{};if(prev.v!==v.value||now-prev.t>2500){SHP.seen={v:v.value,t:now};return {ignored:true,confirming:true};}}
  if(v.value===SHP.ship||v.value===SHP.ret){
   const which=v.value===SHP.ship?'SHIPPING':'RETURN';
   if(now-(SHP.at[v.value]||0)>2500)shpHint('This label is already the '+which+' label · read the other one');
@@ -4194,7 +4199,7 @@ acceptBatch=async function(raw,source='camera'){
 function shpChip(){
  const chip=$('cameraShipment');if(!chip||chip.hidden||!shpActive())return;
  shpSync();
- const step=shpStep()||shipmentDraft.reviewed,row=(slot,label,val)=>{const on=SHP.next===slot&&step;return `<div class="shp-row ${val?'ok':''} ${on?'on':''}"><span class="shp-n">${slot==='ship'?'①':'②'}</span><span class="shp-l">${label}</span><b class="mono">${val?esc(shpFmt(val)):on?'Read now…':'—'}</b>${val?`<button type="button" data-shp="reread" data-slot="${slot}" title="Read again">↻</button>`:''}</div>`;};
+ const step=true,row=(slot,label,val)=>{const on=SHP.next===slot&&step;return `<button type="button" class="shp-row ${val?'ok':''} ${on?'on':''}" data-shp="pick" data-slot="${slot}"><span class="shp-n">${slot==='ship'?'①':'②'}</span><span class="shp-l">${label}</span><b class="mono">${val?esc(shpFmt(val)):on?(running?'Reading…':'Tap · start camera'):'Tap to read'}</b><span class="shp-act">${val?'↻':on?'●':'›'}</span></button>`;};
  const hint=Date.now()-SHP.hintAt<3500?SHP.hint:'';
  chip.className='adapter-chip shp-chip'+(SHP.ship&&SHP.ret?' done':'');
  chip.innerHTML=`<div class="shp-head"><span>PARCEL LABELS</span>${SHP.ship&&SHP.ret?'<span class="shp-ok">✓ both read</span>':step?'<span>'+(SHP.next==='ret'?'2 / 2':'1 / 2')+'</span>':'<span>after PC + adapter</span>'}</div>${row('ship','SHIPPING',SHP.ship)}${row('ret','RETURN',SHP.ret)}${hint?`<div class="shp-hint">${esc(hint)}</div>`:''}<div class="shp-tools">${SHP.ship&&SHP.ret?'<button type="button" data-shp="swap">⇄ Swap</button>':''}<button type="button" data-action="shipment-details">⌨ Type</button></div>`;
@@ -4208,11 +4213,33 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('[data-shp]');if(!b)return;e.preventDefault();e.stopPropagation();
  try{
   if(receipt||saving)throw new Error('This shipment is already saved.');shpSync();
-  if(b.dataset.shp==='reread'){if(b.dataset.slot==='ship'){SHP.ship='';SHP.next='ship';}else{SHP.ret='';SHP.next='ret';}shpStore();}
+  if(b.dataset.shp==='pick'||b.dataset.shp==='reread'){const slot=b.dataset.slot;if(slot==='ship')SHP.ship='';else SHP.ret='';SHP.next=slot;SHP.seen=null;shpStore();shpHint(slot==='ship'?'Read the SHIPPING label now':'Read the RETURN label now');shpWake();}
   if(b.dataset.shp==='swap'){[SHP.ship,SHP.ret]=[SHP.ret,SHP.ship];shpStore();shpHint('Swapped · check both numbers');}
  }catch(err){error(err);}
 },true);
 document.addEventListener('change',e=>{if(['shipmentOutbound','shipmentInbound'].includes(e.target.id)){SHP.key='';}});
+
+function shpWake(){try{if(!shpStep()||running||starting||photoBusy||saving)return;if(adapterUI?.isOpen?.())return;if(cameraMinimized)expandCamera().then(()=>{if(!running&&!starting)return startCamera();}).catch(()=>{});else startCamera().catch(error);}catch{}}
+let shpWasStep=false;
+const shpBaseRender2=renderCapture;
+renderCapture=function(...args){const out=shpBaseRender2.apply(this,args);try{const st=shpStep();if(st&&!shpWasStep&&$('modal').hidden)setTimeout(shpWake,350);shpWasStep=st;}catch{}return out;};
+let shpFrame=0;
+const shpBaseDecode=decodeCanvas;
+decodeCanvas=async function(canvas,deep=false,hints=[]){
+ const base=await shpBaseDecode(canvas,deep,hints);
+ if(deep||!shpStep())return base;
+ if((++shpFrame)%3)return base;
+ try{const image=canvas.getContext('2d',{willReadFrequently:true}).getImageData(0,0,canvas.width,canvas.height);
+  const extra=await offlineDecode(image,{axes:[0,1],slopes:[0,.03,-.03,.07,-.07],ratios:[.42,.56,.7],step:4,reverse:true,minObservations:2});
+  const m=new Map(base.map(c=>[c.text,c]));for(const c of sxAnnotate(extra,canvas))if(!m.has(c.text))m.set(c.text,c);return [...m.values()];
+ }catch{return base;}
+};
+/* Typed tracking: same normalisation as the camera (a…a start/stop letters, spaces and hyphens removed). */
+const shpNorm=v=>{let t=String(v??'').trim().normalize('NFKC').replace(/[\s\-‐-―−]/g,'');const m=/^([A-Da-d])(\d{6,20})([A-Da-d])$/.exec(t);return m?m[2]:t;};
+const shpBaseApply=applyShipmentDetails;
+applyShipmentDetails=function(data,...rest){return shpBaseApply.call(this,{...data,shippingTracking:shpNorm(data?.shippingTracking),returnTracking:shpNorm(data?.returnTracking)},...rest);};
+/* Display / CSV format for 12-digit tracking: 1111-1111-1111. Stored values stay digits only (search and Operational matching). */
+function shpDash(v){const t=String(v||'');return /^\d{12}$/.test(t)?t.replace(/^(\d{4})(\d{4})(\d{4})$/,'$1-$2-$3'):t;}
 
 initial();window.SN.ready=load();
 </script></body></html>
