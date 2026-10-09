@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.16</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.17</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -248,6 +248,22 @@ body.dialog-open{overflow:hidden}
 .sx-countbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}.sx-countbtns{display:flex;gap:6px}
 .sx-target-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.sx-target-grid .btn{min-height:48px;font-size:18px;font-weight:800}
 @media(min-width:700px){.sx-row{grid-template-columns:50px 1fr 1fr 60px minmax(0,1fr) 34px}.sx-row .sx-col{grid-column:5;grid-row:1}.sx-row .sx-x{grid-column:6;grid-row:1}}
+/* r3.9.17 parcel labels */
+.camera .adapter-chip.shp-chip{display:grid;gap:5px;padding:9px 10px;background:rgba(56,30,110,.93);border:1px solid #bd9cff;border-radius:12px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+.camera .adapter-chip.shp-chip.done{background:rgba(0,83,67,.94);border-color:#75e1bd}
+.shp-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.08em;font-weight:800;color:#e3d6ff}
+.shp-ok{color:#9ff3cf}
+.shp-row{display:grid;grid-template-columns:18px 64px minmax(0,1fr) 30px;gap:6px;align-items:center;padding:6px 7px;border-radius:9px;background:#ffffff12;border:1px solid transparent;font-size:11px}
+.shp-row b{font-size:15px;overflow-wrap:anywhere;color:#fff}
+.shp-row.on{border-color:#ffd978;background:#ffd97824;animation:shpPulse 1.2s ease-in-out infinite}
+.shp-row.on b{color:#ffe7a3;font-size:13px}
+.shp-row.ok .shp-n{color:#9ff3cf}
+.shp-l{font-weight:800;font-size:10px;letter-spacing:.04em;color:#e9e1ff}
+.shp-row button,.shp-tools button{border:1px solid #ffffff55;background:#ffffff1a;color:#fff;border-radius:7px;min-height:28px;font-size:12px;padding:0 8px}
+.camera .adapter-chip.shp-chip button{float:none;margin:0}
+.shp-hint{font-size:11px;color:#ffe08a;font-weight:700;text-align:center}
+.shp-tools{display:flex;gap:6px;justify-content:flex-end}
+@keyframes shpPulse{50%{background:#ffd9783d}}
 
 </style></head><body><div id="app"></div><script>/* Shared label validation, independent of camera and dashboards. */
 function createLabelCore(){
@@ -2271,6 +2287,29 @@ function fit128(r,k,idx){
  for(let i=0;i<p.length;i++){const e=Math.abs(r[k+i]/unit-p[i]);if(e>1.02)return 9;err+=e;}
  return err/modules;
 }
+const PCB={"0000011":"0","0000110":"1","0001001":"2","1100000":"3","0010010":"4","1000010":"5","0100001":"6","0100100":"7","0110000":"8","1001000":"9","0001100":"-","0011000":"$","1000101":":","1010001":"/","1010100":".","0010101":"+","0011010":"A","0101001":"B","0001011":"C","0001110":"D"};
+function charCB(r,k){
+ if(k+7>r.length)return null;
+ const v=r.slice(k,k+7),sort=v.slice().sort((a,b)=>a-b);
+ const r2=sort[5]/sort[4],r3=sort[4]/sort[3],three=r3>r2,cut=three?(sort[3]+sort[4])/2:(sort[4]+sort[5])/2;
+ if(Math.max(r2,r3)<1.45)return null;
+ const nar=three?sort.slice(0,4):sort.slice(0,5),wid=three?sort.slice(4):sort.slice(5);
+ const narrow=nar.reduce((a,b)=>a+b)/nar.length,wide=wid.reduce((a,b)=>a+b)/wid.length;
+ if(wide/narrow<1.7||wide/narrow>4.2||nar[nar.length-1]>narrow*1.6||nar[0]<narrow*.45||wid[wid.length-1]>wide*1.5)return null;
+ const ch=PCB[v.map(x=>x>cut?'1':'0').join('')];
+ return ch?{ch,narrow,width:v.reduce((a,b)=>a+b)}:null;
+}
+function readCodabar(r,start){
+ const s=charCB(r,start);if(!s||!'ABCD'.includes(s.ch))return null;
+ let k=start+8,body='';
+ for(let z=0;z<40&&k+7<=r.length;z++,k+=8){
+  if(r[k-1]>s.narrow*3.2)return null;
+  const c=charCB(r,k);if(!c||c.width<s.width*.6||c.width>s.width*1.5)return null;
+  if('ABCD'.includes(c.ch))return body.length>=4?{text:s.ch+body+c.ch,format:'CODABAR',end:k+7}:null;
+  body+=c.ch;
+ }
+ return null;
+}
 function read128(r,k){
  let best=9,start=-1;for(let i=103;i<=105;i++){const v=fit128(r,k,i);if(v<best){best=v;start=i;}}
  if(best>.22)return null;
@@ -2314,7 +2353,7 @@ function decodeLine(line,ratio){
   if(!colors[i])continue;
   // Quiet zone avoids treating text strokes or the middle of a barcode as a start.
   if(i>0&&runs[i-1]<runs[i]*2.1)continue;
-  const z=read39(runs,i)||read128(runs,i);
+  const z=read39(runs,i)||read128(runs,i)||readCodabar(runs,i);
   if(z){out.push({...z,x:starts[i],x2:starts[z.end]??len});i=z.end-1;}
  }
  return out;
@@ -2820,7 +2859,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.09-r3.9.16';
+const BUILD='build 2026.10.09-r3.9.17';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -3271,7 +3310,7 @@ function renderCameraButtons(){if(!$('control-start'))return;const ready=loaded&
 let decodeWorker=null,workerURL='',workerSeq=0,workerFailed=false,native=null,nativeInit=false;const workerRequests=new Map();
 function bootWorker(){if(decodeWorker||workerFailed)return;try{const source='('+createLinearReader.toString()+')';workerURL=URL.createObjectURL(new Blob([`const reader=${source}();self.onmessage=e=>{try{const {id,image,opt}=e.data;self.postMessage({id,result:reader.decode(image,opt)});}catch(error){self.postMessage({id:e.data.id,error:error.message});}};`],{type:'text/javascript'}));decodeWorker=new Worker(workerURL);decodeWorker.onmessage=e=>{const p=workerRequests.get(e.data.id);if(!p)return;workerRequests.delete(e.data.id);clearTimeout(p.timer);e.data.error?p.reject(new Error(e.data.error)):p.resolve(e.data.result);};decodeWorker.onerror=()=>{workerFailed=true;decodeWorker?.terminate();decodeWorker=null;for(const p of workerRequests.values()){clearTimeout(p.timer);p.reject(new Error('Image worker was blocked. Retry: the built-in reader will run locally.'));}workerRequests.clear();};}catch{workerFailed=true;}}
 async function offlineDecode(image,opt){bootWorker();if(!decodeWorker){await new Promise(r=>setTimeout(r,0));return createLinearReader().decode(image,opt);}const id=++workerSeq;return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{workerRequests.delete(id);decodeWorker?.terminate();decodeWorker=null;workerFailed=true;reject(new Error('Label analysis timed out. Use a closer, sharper photo and retry.'));},45000);workerRequests.set(id,{resolve,reject,timer});decodeWorker.postMessage({id,image:{width:image.width,height:image.height,data:image.data},opt});});}
-async function nativeDecode(canvas){if(!nativeInit){nativeInit=true;if('BarcodeDetector' in window){try{const formats=await BarcodeDetector.getSupportedFormats();const use=['code_39','code_128'].filter(x=>formats.includes(x));if(use.length)native=new BarcodeDetector({formats:use});}catch{}}}if(!native)return [];try{return (await native.detect(canvas)).map(x=>({text:x.rawValue,format:x.format.toUpperCase(),observations:1,bb:x.boundingBox?{x:x.boundingBox.x,y:x.boundingBox.y,width:x.boundingBox.width,height:x.boundingBox.height}:null}));}catch{return [];}}
+async function nativeDecode(canvas){if(!nativeInit){nativeInit=true;if('BarcodeDetector' in window){try{const formats=await BarcodeDetector.getSupportedFormats();const use=['code_39','code_128','codabar'].filter(x=>formats.includes(x));if(use.length)native=new BarcodeDetector({formats:use});}catch{}}}if(!native)return [];try{return (await native.detect(canvas)).map(x=>({text:x.rawValue,format:x.format.toUpperCase(),observations:1,bb:x.boundingBox?{x:x.boundingBox.x,y:x.boundingBox.y,width:x.boundingBox.width,height:x.boundingBox.height}:null}));}catch{return [];}}
 
 let qrNative=null,qrNativeTried=false,qrAdvancedPromise=null,userQRAutoEnhancedTried=false;
 let userQRDiagnostic={message:'',tone:'',at:0},userQRWaitingSince=0;
@@ -4094,6 +4133,86 @@ document.addEventListener('click',async e=>{
 },true);
 document.addEventListener('input',e=>{if(e.target.id==='sxSearch'){SX.query=e.target.value;sxRenderPanel(true);}});
 setInterval(()=>{if(workflow==='stock'&&$('sxHud')&&!$('sxHud').hidden){sxRenderHud();$('camera')?.classList.toggle('sx-ok',SX.okUntil>Date.now());}},500);
+
+/* r3.9.17 — Shipment labels by camera. After the Shipment QR, PC and adapter, the camera reads the parcel labels:
+   1st tracking label = SHIPPING (new PC), 2nd different label = RETURN (old PC). NW-7 / Codabar start-stop letters are removed;
+   only 10–14 digit numbers are accepted, so short sorting / branch codes on the same label are ignored.
+   Values go into the existing shipment draft (same validation, same receipt format). Typing below the camera still works. */
+const SHP={key:'',ship:'',ret:'',next:'ship',at:{},hint:'',hintAt:0};
+function shpValue(c){
+ const t=codeString(c).toUpperCase().replace(/\s+/g,'');if(!t||/^TRU[12]:/.test(t))return null;
+ if(LabelCore.classify(t).kind!=='ignored')return null;
+ const m=/^([A-D])(\d{6,20})([A-D])$/.exec(t),digits=m?m[2]:/^\d+$/.test(t)?t:'';
+ if(digits.length<10||digits.length>14)return null;
+ return {value:digits,format:m||String(c?.format||'').toUpperCase()==='CODABAR'?'NW-7':String(c?.format||'').replace('_',' ')||'barcode',c};
+}
+const shpFmt=v=>String(v||'').replace(/(\d{4})(?=\d)/g,'$1-');
+function shpStep(){try{return workflow==='delivery'&&recipient?.method==='ship'&&!receipt&&!saving&&readiness().code==='shipment-tracking';}catch{return false;}}
+function shpActive(){return workflow==='delivery'&&recipient?.method==='ship'&&!receipt;}
+function shpSync(){
+ const k=recipient?(recipient.taskId+'|'+recipient.shipmentConfirmation?.id):'';
+ if(k!==SHP.key){SHP.key=k;SHP.ship=shipmentDraft.shippingTracking||'';SHP.ret=shipmentDraft.returnTracking||'';SHP.next=!SHP.ship?'ship':!SHP.ret?'ret':'done';SHP.at={};}
+ if(shipmentDraft.reviewed&&(shipmentDraft.shippingTracking!==SHP.ship||shipmentDraft.returnTracking!==SHP.ret)){SHP.ship=shipmentDraft.shippingTracking;SHP.ret=shipmentDraft.returnTracking;SHP.next='done';}
+}
+function shpStore(){
+ const both=SHP.ship&&SHP.ret;
+ if(both){applyShipmentDetails({shippingTracking:SHP.ship,returnTracking:SHP.ret});}
+ else{shipmentDraft={shippingTracking:SHP.ship,returnTracking:SHP.ret,reviewed:false};identityChecked=false;}
+ if($('shipmentOutbound'))$('shipmentOutbound').value=SHP.ship;if($('shipmentInbound'))$('shipmentInbound').value=SHP.ret;
+ renderCapture();
+}
+function shpHint(t){SHP.hint=t;SHP.hintAt=Date.now();renderCapture();}
+const shpBaseAccept=acceptBatch;
+acceptBatch=async function(raw,source='camera'){
+ if(!Array.isArray(raw)||!shpActive())return shpBaseAccept(raw,source);
+ shpSync();
+ const found=raw.map(shpValue).filter(Boolean);
+ if(!found.length)return shpBaseAccept(raw,source);
+ const rest=raw.filter(c=>!found.some(f=>f.c===c));
+ if(!shpStep()){shpHint(adapterDraft.powerAdapter||adapterDraft.adapterSkipReason?'Finish the PC reading first':'Read the power adapter first, then the parcel labels');return rest.length?shpBaseAccept(rest,source):{ignored:true};}
+ let vals=[...new Map(found.map(f=>[f.value,f])).values()];
+ if(vals.length>1){
+  const unknown=vals.filter(v=>v.value!==SHP.ship&&v.value!==SHP.ret);
+  if(unknown.length===1)vals=unknown;
+  else if(unknown.length>1&&unknown.every(v=>Number.isFinite(v.c?.cx))){const d=v=>Math.hypot(v.c.cx-.5,v.c.cy-.5),s=unknown.slice().sort((a,b)=>d(a)-d(b));if(d(s[1])>d(s[0])*1.5+.03)vals=[s[0]];else{shpHint('Two parcel labels in view · show one label');return {ignored:true};}}
+  else{shpHint('Two parcel labels in view · show one label');return {ignored:true};}
+ }
+ const v=vals[0],now=Date.now();
+ if(v.value===SHP.ship||v.value===SHP.ret){
+  const which=v.value===SHP.ship?'SHIPPING':'RETURN';
+  if(now-(SHP.at[v.value]||0)>2500)shpHint('This label is already the '+which+' label · read the other one');
+  SHP.at[v.value]=now;return {ignored:true};
+ }
+ if(SHP.next==='done')return {ignored:true};
+ if(SHP.next==='ship'){SHP.ship=v.value;SHP.next=SHP.ret?'done':'ret';}else{SHP.ret=v.value;SHP.next=SHP.ship?'done':'ship';}
+ SHP.at[v.value]=now;SHP.hint='';
+ if(navigator.vibrate)navigator.vibrate(60);
+ shpStore();
+ try{if(SHP.next==='done'){sxBeep('ok');}else sxBeep('tick');}catch{}
+ return {tracking:v.value};
+};
+function shpChip(){
+ const chip=$('cameraShipment');if(!chip||chip.hidden||!shpActive())return;
+ shpSync();
+ const step=shpStep()||shipmentDraft.reviewed,row=(slot,label,val)=>{const on=SHP.next===slot&&step;return `<div class="shp-row ${val?'ok':''} ${on?'on':''}"><span class="shp-n">${slot==='ship'?'①':'②'}</span><span class="shp-l">${label}</span><b class="mono">${val?esc(shpFmt(val)):on?'Read now…':'—'}</b>${val?`<button type="button" data-shp="reread" data-slot="${slot}" title="Read again">↻</button>`:''}</div>`;};
+ const hint=Date.now()-SHP.hintAt<3500?SHP.hint:'';
+ chip.className='adapter-chip shp-chip'+(SHP.ship&&SHP.ret?' done':'');
+ chip.innerHTML=`<div class="shp-head"><span>PARCEL LABELS</span>${SHP.ship&&SHP.ret?'<span class="shp-ok">✓ both read</span>':step?'<span>'+(SHP.next==='ret'?'2 / 2':'1 / 2')+'</span>':'<span>after PC + adapter</span>'}</div>${row('ship','SHIPPING',SHP.ship)}${row('ret','RETURN',SHP.ret)}${hint?`<div class="shp-hint">${esc(hint)}</div>`:''}<div class="shp-tools">${SHP.ship&&SHP.ret?'<button type="button" data-shp="swap">⇄ Swap</button>':''}<button type="button" data-action="shipment-details">⌨ Type</button></div>`;
+ if(shpStep()){setText('stepText',SHP.next==='ret'?'Shipment · read RETURN label (2/2)':'Shipment · read SHIPPING label (1/2)');setText('instructionSub','Parcel label barcode · one label at a time');}
+}
+const shpBaseRenderCapture=renderCapture;
+renderCapture=function(...args){const out=shpBaseRenderCapture.apply(this,args);try{shpChip();}catch(e){console.warn('shipment labels',e);}return out;};
+const shpBaseResetDraft=resetShipmentDraft;
+resetShipmentDraft=function(...args){const out=shpBaseResetDraft.apply(this,args);SHP.key='';return out;};
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-shp]');if(!b)return;e.preventDefault();e.stopPropagation();
+ try{
+  if(receipt||saving)throw new Error('This shipment is already saved.');shpSync();
+  if(b.dataset.shp==='reread'){if(b.dataset.slot==='ship'){SHP.ship='';SHP.next='ship';}else{SHP.ret='';SHP.next='ret';}shpStore();}
+  if(b.dataset.shp==='swap'){[SHP.ship,SHP.ret]=[SHP.ret,SHP.ship];shpStore();shpHint('Swapped · check both numbers');}
+ }catch(err){error(err);}
+},true);
+document.addEventListener('change',e=>{if(['shipmentOutbound','shipmentInbound'].includes(e.target.id)){SHP.key='';}});
 
 initial();window.SN.ready=load();
 </script></body></html>
