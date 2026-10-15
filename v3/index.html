@@ -2887,7 +2887,7 @@ const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
 const BUILD='build 2026.10.15-r3.9.25';
-const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable',DB_VERSION=1;
+const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
 const fmt=t=>t?new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tokyo',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t))+' JST':'Never';
