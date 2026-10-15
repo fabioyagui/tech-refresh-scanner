@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.25</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.26</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -291,6 +291,8 @@ body.dialog-open{overflow:hidden}
 #lgGuide .lg-reset{pointer-events:auto;font:inherit;font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid #ffffff88;background:#0006;color:#fff}
 .camera.lg-on .camera-instruction{display:none}
 #lgGuide .lg-cap.lg-row{bottom:auto;top:calc(100% - 23.5% - 34px);flex-wrap:nowrap;font-size:12px}
+#lgGuide .lg-side{position:absolute;right:4%;display:flex;flex-direction:column;align-items:flex-end;gap:6px;color:#fff;text-shadow:0 1px 4px #000;font-size:12px;white-space:nowrap}
+#lgGuide .lg-t span{top:-19px}
 
 </style></head><body><div id="app"></div><script>/* Shared label validation, independent of camera and dashboards. */
 function createLabelCore(){
@@ -2886,7 +2888,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.15-r3.9.25';
+const BUILD='build 2026.10.15-r3.9.26';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -4348,7 +4350,7 @@ function lgTpl(){try{const t=JSON.parse(localStorage.getItem(LG_KEY)||'null');re
    The guide then shows three target boxes at exactly that position / distance. Later full reads refine it. */
 function lgLearn(sizes){
  const pick=ks=>{const c=sizes.filter(x=>ks.includes(x.k)&&Number.isFinite(x.x)&&Number.isFinite(x.y));return c.length?c.sort((a,b)=>b.f-a.f)[0]:null;};
- const A=pick(['asset']),Sr=pick(['serial','combined']),P=pick(['part','combined']);if(!A||!Sr||!P)return;
+ const A=pick(['asset']),Sr=pick(['serial'])||pick(['combined']),P=pick(['part'])||pick(['combined']);if(!A||!Sr||!P)return;
  const old=lgTpl(),mix=(o,n)=>o?{x:o.x*.6+n.x*.4,y:o.y*.6+n.y*.4,f:o.f*.6+n.f*.4}:{x:n.x,y:n.y,f:n.f};
  const t={asset:mix(old?.asset,A),serial:mix(old?.serial,Sr),part:mix(old?.part,P),n:(old?.n||0)+1,at:new Date().toISOString()};
  try{localStorage.setItem(LG_KEY,JSON.stringify(t));}catch{}if(!old)try{toast('Guide saved · the 3 barcode positions from this reading will be shown for the next boxes');}catch{}
@@ -4370,6 +4372,12 @@ function lgStage(){
   const r=analysis().record||{};if(r.asset&&r.serial&&r.part)return '';
   if(!r.serial||!r.part)return 'label';return 'asset';}catch{return '';}
 }
+function lgFree(){
+ try{const cam=$('camera').getBoundingClientRect(),H=cam.height||1;let t=.17,b=.78;
+  for(const el of [$('sxHud'),document.querySelector('#camera .camera-status')]){if(!el||el.hidden)continue;const r=el.getBoundingClientRect();if(r.height&&r.bottom>cam.top&&r.bottom<cam.top+H*.5)t=Math.max(t,(r.bottom-cam.top)/H+.03);}
+  const v=$('cameraValidation');if(v&&!v.hidden){const r=v.getBoundingClientRect();if(r.height&&r.top>cam.top+H*.5)b=Math.min(b,(r.top-cam.top)/H-.01);}
+  return {t,b};}catch{return {t:.17,b:.78};}
+}
 function lgEnsure(){let g=$('lgGuide');if(!g){const cam=$('camera');if(!cam)return null;g=document.createElement('div');g.id='lgGuide';g.setAttribute('aria-hidden','true');cam.appendChild(g);}return g;}
 function lgPaint(){
  const g=lgEnsure();if(!g)return;const st=lgStage();
@@ -4387,12 +4395,21 @@ function lgPaint(){
  const dist=st==='label'?'about 15–20 cm':'about 8–12 cm';
  const T=lgTpl();
  if(st==='label'){
-  let chip2='';if(fresh){const pool=LG.last.filter(x=>x.k!=='ignored');if(T&&pool.length){const ref={asset:T.asset.f,serial:T.serial.f,combined:T.serial.f,part:T.part.f},rs=pool.map(x=>ref[x.k]?x.f/ref[x.k]:null).filter(Boolean);if(rs.length){const q=rs.reduce((a,b)=>a+b,0)/rs.length;chip2=q<.8?['far','▲ Move closer']:q>1.25?['near','▼ A little farther']:['ok','✓ Good distance'];}}else if(pool.length)chip2=chip;}
-  const box=(z,name,ok,cls)=>{const w=Math.min(.94,Math.max(.16,z.f+.06)),h=.075;return `<div class="lg-t ${cls} ${ok?'ok':''}" style="left:${((z.x-w/2)*100).toFixed(1)}%;top:${((z.y-h/2)*100).toFixed(1)}%;width:${(w*100).toFixed(1)}%;height:${(h*100).toFixed(1)}%"><span>${ok?'✓ ':''}${name}</span></div>`;};
-  const D=T||{serial:{x:.18+.21,y:.24,f:.42},part:{x:.18+.29,y:.36,f:.58},asset:{x:.18+.17,y:.66,f:.34}}; /* left-aligned like the Lenovo box label */
+  const fr=lgFree();
+  // Relative layout anchored on the Asset No. barcode: left edges and vertical offsets from the asset.
+  const rel=(z,a)=>({dl:(z.x-z.f/2)-(a.x-a.f/2),dy:z.y-a.y,f:z.f});
+  const L=T?{asset:{dl:0,dy:0,f:T.asset.f},serial:rel(T.serial,T.asset),part:rel(T.part,T.asset)}
+           :{asset:{dl:0,dy:0,f:.19},serial:{dl:0,dy:-.31,f:.21},part:{dl:0,dy:-.46,f:.27}}; /* measured on a Lenovo box label, slightly farther */
+  const merged=Math.abs(L.serial.dy-L.part.dy)<.05&&Math.abs(L.serial.dl-L.part.dl)<.05;
+  const minDy=Math.min(0,L.serial.dy,L.part.dy),ay=fr.b-.07,room=ay-(fr.t+.07),sc=minDy<0?Math.min(1,room/(-minDy)):1;
+  const baseLeft=T?Math.min(.5,Math.max(.06,T.asset.x-T.asset.f/2)):.12;
+  const place=z=>({left:Math.min(.9,Math.max(.03,baseLeft+z.dl*sc)),y:ay+z.dy*sc,f:Math.max(.12,z.f*sc)});
+  const box=(z,name,ok,cls)=>{const p=place(z),w=Math.min(.94-p.left,p.f+.05),h=.06;return `<div class="lg-t ${cls} ${ok?'ok':''}" style="left:${(p.left*100).toFixed(1)}%;top:${((p.y-h/2)*100).toFixed(1)}%;width:${(w*100).toFixed(1)}%;height:${(h*100).toFixed(1)}%"><span>${ok?'✓ ':''}${name}</span></div>`;};
+  let chip2='';if(fresh){const pool=LG.last.filter(x=>x.k!=='ignored');if(pool.length){const ref={asset:L.asset.f*sc,serial:L.serial.f*sc,combined:L.serial.f*sc,part:L.part.f*sc},rs=pool.map(x=>ref[x.k]?x.f/ref[x.k]:null).filter(Boolean);if(rs.length){const q=rs.reduce((a,b)=>a+b,0)/rs.length;chip2=q<.8?['far','▲ Move closer']:q>1.25?['near','▼ A little farther']:['ok','✓ Good distance'];}}}
   g.className='lg-label lg-tpl'+(T?'':' lg-generic');
-  g.innerHTML=box(D.serial,'SN',!!r.serial,'s')+box(D.part,'MTM / Part',!!r.part,'p')+box(D.asset,'Asset No.',!!r.asset,'a')+`<div class="lg-cap lg-row" style="${(()=>{const ys=[D.serial.y,D.part.y,D.asset.y].sort((a,b)=>a-b),low=ys[2]+.0375;if(low<=.68)return '';let best=null;for(let k=0;k<2;k++){const g0=ys[k]+.0375,g1=ys[k+1]-.0375-.035;if(g1-g0>.06&&(!best||g1-g0>best[1]-best[0]))best=[g0,g1];}return best?'top:'+(((best[0]+best[1])/2)*100-2.5).toFixed(1)+'%':'';})()}">${chip2?'':`<span>${T?'📏 same distance as your saved reading':'📏 about 15–20 cm'}</span>`}${chip2?`<em class="lg-chip ${chip2[0]}">${chip2[1]}</em>`:''}${T?'<button type="button" class="lg-reset" data-lg-reset="1">Reset guide</button>':''}</div>`;
-  try{setText('stepText',T?'STOCK · Fit the 3 barcodes in the 3 boxes':'STOCK · SN + MTM at the top, Asset No. lower');}catch{}
+  g.innerHTML=(merged?box(L.serial,'SN + MTM',!!(r.serial&&r.part),'s'):box(L.part,'MTM / Part',!!r.part,'p')+box(L.serial,'SN',!!r.serial,'s'))+box(L.asset,'Asset No.',!!r.asset,'a')
+   +`<div class="lg-side" style="top:${((ay-.13)*100).toFixed(1)}%">${chip2?`<em class="lg-chip ${chip2[0]}">${chip2[1]}</em>`:`<span>${T?'📏 saved distance':'📏 ~15–20 cm'}</span>`}${T?'<button type="button" class="lg-reset" data-lg-reset="1">Reset guide</button>':''}</div>`;
+  try{setText('stepText',T?'STOCK · Fit the 3 barcodes in the 3 boxes':'STOCK · Asset No. in its box, SN + MTM above');}catch{}
   return;
  }
  g.innerHTML=`<div class="lg-box"><i class="lg-c tl"></i><i class="lg-c tr"></i><i class="lg-c bl"></i><i class="lg-c br"></i>${st==='asset'?'<i class="lg-tick l"></i><i class="lg-tick r"></i>':''}</div><div class="lg-cap"><b>${title}</b><span>📏 ${dist}${st==='asset'?' · the bars must reach both ticks':''}</span>${chip?`<em class="lg-chip ${chip[0]}">${chip[1]}</em>`:''}</div>`;
