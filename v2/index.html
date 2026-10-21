@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.19</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.31</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -267,6 +267,35 @@ body.dialog-open{overflow:hidden}
 .shp-act{font-size:16px;text-align:center;color:#e9e1ff}
 .shp-row.on .shp-act{color:#ffd978}
 .camera .adapter-chip.shp-chip .shp-row{border:1px solid #ffffff22}
+.camera.lg-on .aim{display:none}
+#lgGuide{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden;border-radius:inherit}
+#lgGuide .lg-box{position:absolute;left:7%;right:7%;top:19%;bottom:31%;border:2px dashed #ffffffb3;border-radius:14px;box-shadow:0 0 0 2000px #0000002e}
+#lgGuide.lg-asset .lg-box{left:13%;right:13%;bottom:auto;top:44%;height:74px;transform:translateY(-50%);border-color:#ffd166;border-radius:10px;box-shadow:0 0 0 2000px #00000052}
+#lgGuide .lg-c{position:absolute;width:22px;height:22px;border:4px solid #fff;border-radius:3px}
+#lgGuide.lg-asset .lg-c{border-color:#ffd166}
+#lgGuide .lg-c.tl{left:-4px;top:-4px;border-right:0;border-bottom:0}#lgGuide .lg-c.tr{right:-4px;top:-4px;border-left:0;border-bottom:0}
+#lgGuide .lg-c.bl{left:-4px;bottom:-4px;border-right:0;border-top:0}#lgGuide .lg-c.br{right:-4px;bottom:-4px;border-left:0;border-top:0}
+#lgGuide .lg-tick{position:absolute;top:-14px;bottom:-14px;width:0;border-left:3px solid #ffd166}
+#lgGuide .lg-tick.l{left:9%}#lgGuide .lg-tick.r{right:9%}
+#lgGuide .lg-cap{position:absolute;left:7%;right:7%;bottom:23%;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;justify-content:center;text-align:center;color:#fff;text-shadow:0 1px 4px #000;font-size:13px}
+#lgGuide.lg-asset .lg-cap{top:calc(44% + 52px);bottom:auto}
+#lgGuide .lg-cap b{width:100%;font-size:14px}
+#lgGuide .lg-cap span{opacity:.92}
+#lgGuide .lg-chip{font-style:normal;font-weight:800;padding:3px 10px;border-radius:999px;text-shadow:none;font-size:13px}
+#lgGuide .lg-chip.far{background:#ffd166;color:#3a2a00}#lgGuide .lg-chip.near{background:#ff9f7a;color:#3a1200}#lgGuide .lg-chip.ok{background:#2ecc8f;color:#00321e}
+#lgGuide .lg-t{position:absolute;border:2px dashed #ffffffcc;border-radius:8px;box-shadow:0 0 0 1px #0004}
+#lgGuide .lg-t.a{border-color:#ffd166}#lgGuide .lg-t.ok{border-style:solid;border-color:#2ecc8f;background:#2ecc8f22}
+#lgGuide .lg-t span{position:absolute;left:6px;top:-20px;font-size:12px;font-weight:800;color:#fff;text-shadow:0 1px 3px #000;white-space:nowrap}
+#lgGuide .lg-t.a span{color:#ffd166}#lgGuide .lg-t.ok span{color:#7dffc8}
+#lgGuide.lg-generic .lg-t{opacity:.8}
+#lgGuide .lg-reset{pointer-events:auto;font:inherit;font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid #ffffff88;background:#0006;color:#fff}
+.camera.lg-on .camera-instruction{display:none}
+#lgGuide .lg-cap.lg-row{bottom:auto;top:calc(100% - 23.5% - 34px);flex-wrap:nowrap;font-size:12px}
+#lgGuide .lg-side{position:absolute;right:4%;display:flex;flex-direction:column;align-items:flex-end;gap:6px;color:#fff;text-shadow:0 1px 4px #000;font-size:12px;white-space:nowrap}
+#lgGuide .lg-t span{top:-19px}
+#lgGuide.lg-tpl .lg-t span{left:calc(100% + 8px);top:50%;transform:translateY(-50%)}
+#lgGuide .lg-roi{position:absolute;border:1.5px solid #ffffff59;border-radius:12px;box-shadow:0 0 0 3000px #00000047}
+#lgGuide .lg-roi em{position:absolute;right:8px;bottom:6px;font-style:normal;font-size:10.5px;color:#ffffffb3;text-shadow:0 1px 3px #000}
 
 </style></head><body><div id="app"></div><script>/* Shared label validation, independent of camera and dashboards. */
 function createLabelCore(){
@@ -2473,7 +2502,8 @@ function createScannerCore(L, W, P) {
   if(!asset||!serial)return {ok:false,code:'pending',message:'Read asset tag and serial number.'};
   const local=s.records.filter(r=>r.kind==='stock'&&(norm(r.asset)===asset||norm(r.serial)===serial));
   const remote=(s.reference?.units||[]).filter(r=>norm(r.asset)===asset||norm(r.serial)===serial);
-  if([...local,...remote].some(r=>key(r)!==k)||local.length>1||remote.length>1)return {ok:false,code:'identity-conflict',message:'Asset and serial do not identify one unique stock PC. Check the label and the Admin stock.'};
+  {const bad=[...local,...remote].filter(r=>key(r)!==k);/* r3.9.30: exact duplicates of the same PC are not a conflict; the message names the stock record that disagrees */
+  if(bad.length||new Set(local.map(key)).size>1||new Set(remote.map(key)).size>1)return {ok:false,code:'identity-conflict',message:'Asset and serial do not identify one unique stock PC. PC read: '+asset+' · '+serial+'.'+(bad.length?' Stock has: '+bad.map(r=>(local.includes(r)?'this phone intake ':'Admin stock ')+(r.asset||'—')+' · '+(r.serial||'—')).join(' / ')+'.':'')+' Check the PC label; if the label is right, correct the stock record.'};}
   const entries=s.transactions.filter(t=>t.kind==='delivery'&&(norm(t.device.asset)===asset||norm(t.device.serial)===serial));
   const owners=new Map(entries.map(t=>[ownerKey(t.user),t]));
   if(owners.size>1)return {ok:false,code:'legacy-conflict',owners:[...owners.values()].map(t=>t.user),message:'Conflicting previous deliveries. Reconcile in Admin; do not delete records to release this PC.'};
@@ -2862,7 +2892,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.09-r3.9.19';
+const BUILD='build 2026.10.21-r3.9.31';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -4240,6 +4270,168 @@ const shpBaseApply=applyShipmentDetails;
 applyShipmentDetails=function(data,...rest){return shpBaseApply.call(this,{...data,shippingTracking:shpNorm(data?.shippingTracking),returnTracking:shpNorm(data?.returnTracking)},...rest);};
 /* Display / CSV format for 12-digit tracking: 1111-1111-1111. Stored values stay digits only (search and Operational matching). */
 function shpDash(v){const t=String(v||'');return /^\d{12}$/.test(t)?t.replace(/^(\d{4})(\d{4})(\d{4})$/,'$1-$2-$3'):t;}
+
+/* r3.9.20 — Delete a test that the normal cleanup protects (real user, exported, older build).
+   Manage → Test / cleanup: every protected receipt or intake now has "Delete wrong / test record…".
+   Same safety steps as the normal cleanup (backup download, reason, type DELETE) and it is logged.
+   It removes the record only from THIS phone; anything already sent to Operational / Admin stays there. */
+let fdelRequest=null;
+const FDEL_TYPES={receipt:'Handover / return receipts',stock:'Stock intake records',column:'Columns',session:'Empty sessions'};
+function fdelWhen(r){return String(r?.at||r?.createdAt||r?.savedAt||r?.date||'').slice(0,16).replace('T',' ');}
+const fdelBaseItems=managerItems;
+managerItems=function(...a){const rows=fdelBaseItems.apply(this,a);if(managementTab!=='cleanup')return rows;
+ const q=managementQuery.trim().toLowerCase(),list=(cleanupType==='stock'?S.records.filter(r=>r.kind==='stock'):cleanupType==='receipt'?S.transactions:[]);
+ const all=ManagementCore.candidates(S,cleanupType).map(r=>{const x=list.find(y=>y.id===r.id)||r.record||{};return {type:'cleanup',id:r.id,r,text:[r.label,r.reason,fdelWhen(x),x.user?.mudid,x.user?.name,x.device?.serial,x.device?.asset,x.asset,x.serial,x.engineer].join(' ')};});
+ return all.filter(r=>!q||r.text.toLowerCase().includes(q)).sort((a,b)=>String(fdelWhen((list.find(y=>y.id===b.id))||{})).localeCompare(String(fdelWhen((list.find(y=>y.id===a.id))||{}))));};
+const fdelBaseRows=renderManagerRows;
+renderManagerRows=function(...a){const out=fdelBaseRows.apply(this,a);try{
+ if(managementTab==='cleanup'){
+  const sel=$('cleanupType');if(sel)for(const o of sel.options)if(FDEL_TYPES[o.value])o.textContent=FDEL_TYPES[o.value];
+  if(['receipt','stock'].includes(cleanupType))document.querySelectorAll('#manageRows [data-cleanup-id]').forEach(cb=>{if(!cb.disabled)return;const art=cb.closest('.manager-item, article, div');if(!art||art.querySelector('[data-fdel]'))return;
+   const id=cb.dataset.cleanupId,x=(cleanupType==='stock'?S.records:S.transactions).find(r=>r.id===id),when=fdelWhen(x);
+   const d=document.createElement('div');d.className='tools fdel-tools';d.innerHTML=(when?`<span class="small muted">${esc(when)}</span>`:'')+`<button type="button" class="btn small danger" data-fdel="${esc(cleanupType)}" data-id="${esc(id)}">Delete wrong / test record…</button>`;art.appendChild(d);});
+ }
+ if(managementTab==='columns')document.querySelectorAll('#manageRows [data-action="manage-column-detail"]').forEach(v=>{const art=v.closest('.manager-item');const id=v.dataset.id;if(!art||art.querySelector('[data-fdel],[data-type="column"][data-action="cleanup-one"]'))return;v.parentElement.insertAdjacentHTML('beforeend',`<button type="button" class="btn small danger" data-fdel="column" data-id="${esc(id)}">🗑 Delete test column…</button>`);});
+ if(managementTab==='cleanup'&&cleanupType==='column')document.querySelectorAll('#manageRows [data-cleanup-id]').forEach(cb=>{if(!cb.disabled)return;const art=cb.closest('.manager-item, article, div');if(!art||art.querySelector('[data-fdel]'))return;art.insertAdjacentHTML('beforeend',`<div class="tools fdel-tools"><button type="button" class="btn small danger" data-fdel="column" data-id="${esc(cb.dataset.cleanupId)}">Delete test column (with its PCs)…</button></div>`);});
+ if(managementTab==='devices')document.querySelectorAll('#manageRows .protected-tag').forEach(tag=>{const art=tag.closest('.manager-item');const key=art?.querySelector('[data-key]')?.dataset.key;const txt=art?.textContent||'';const r=S.records.find(x=>x.kind==='stock'&&SC.key(x)===key)||S.records.find(x=>x.kind==='stock'&&x.asset&&x.serial&&txt.includes(x.asset)&&txt.includes(x.serial));if(!r||art.querySelector('[data-fdel]'))return;tag.insertAdjacentHTML('afterend',`<button type="button" class="btn small danger" data-fdel="stock" data-id="${esc(r.id)}">Delete wrong / test record…</button>`);});
+}catch(e){console.warn('force cleanup',e);}return out;};
+function fdelCheck(type,id){
+ if(type==='column'){const b=SC.column(S,id);if(!b)throw new Error('Column not found.');const pcs=SC.columnRows(S,id),used=pcs.map(r=>({r,t:S.transactions.find(t=>SC.norm(t.device?.asset)===SC.norm(r.asset)||SC.norm(t.device?.serial)===SC.norm(r.serial))})).filter(x=>x.t);
+  const warn=used.length?used.length+' PC(s) in this column were already handed over / shipped ('+used.slice(0,3).map(x=>x.r.asset+' → '+(x.t.user?.name||x.t.user?.mudid)).join(', ')+'). The handover / shipment receipts are kept; only the intake readings are removed.':'';
+  return {r:b,pcs,label:b.label,kind:'Column',warn};}
+ if(type==='receipt'){const r=S.transactions.find(t=>t.id===id);if(!r)throw new Error('Receipt not found.');return {r,label:(r.user?.name||r.user?.mudid||'User')+' · '+(r.user?.mudid||'')+' · '+(r.device?.asset||''),kind:r.shipment?'Shipment':r.kind==='delivery'?'Handover':'HP return'};}
+ const r=S.records.find(x=>x.id===id&&x.kind==='stock');if(!r)throw new Error('Intake record not found.');
+ const ref=S.transactions.find(t=>SC.norm(t.device?.asset)===SC.norm(r.asset)||SC.norm(t.device?.serial)===SC.norm(r.serial));
+ const warn=ref?'A handover / shipment receipt uses this asset or serial ('+(ref.user?.name||ref.user?.mudid)+' · '+(ref.device?.asset||'')+' · '+(ref.device?.serial||'')+'). The receipt is kept; only this intake reading is removed.':'';
+ return {r,label:r.asset+' · '+r.serial,kind:'Stock intake',warn};
+}
+async function fdelOpen(type,id){
+ if(typeof saving!=='undefined'&&saving)throw new Error('Wait for saving to finish.');
+ const c=fdelCheck(type,id),why=type==='column'?'The whole column and the '+c.pcs.length+' PC(s) scanned into it will be removed from this phone\'s stock.':ManagementCore.inspect(S,type,id).reason,x=c.r;
+ if(type==='column'&&typeof CAP!=='undefined'&&id===S.activeId&&CAP.hasData()&&!completionVisible)throw new Error('This is the current column and a capture is unfinished. Clear it first (Back to scan → Cancel), then delete.');
+ const rows=type==='column'?[['Column',x.label],['PCs inside',String(c.pcs.length)],['Created',fdelWhen(x)||'—'],['Exported',(x.exports||[]).length?(x.exports.length+' time(s)'):'No'],['Status',x.closedAt?'Intake finished':'Open'+(x.id===S.activeId?' · current column':'')]].concat(c.pcs.slice(0,40).map((r,k)=>['PC '+(k+1),r.asset+' · '+r.serial])).concat(c.pcs.length>40?[['…','+'+(c.pcs.length-40)+' more']]:[]):type==='receipt'?[['Type',c.kind],['User',(x.user?.name||'')+' · '+(x.user?.mudid||'')],['PC',(x.device?.asset||'')+' · '+(x.device?.serial||'')],['Date',x.date||fdelWhen(x)],['Engineer',x.engineer||'—'],x.powerAdapter?['Adapter',x.powerAdapter]:null,x.shipment?['Tracking',(x.shipment.shippingTracking||'')+' / '+(x.shipment.returnTracking||'')]:null].filter(Boolean):[['PC',x.asset],['Serial',x.serial],['Part',x.part||'—'],['Column',SC.column(S,x.boxId)?.label||'—'],['Saved',fdelWhen(x)]];
+ modal('Delete record · '+c.kind,`<div class="notice bad"><b>${type==='column'?'Delete this record column?':'This record is normally protected.'}</b><p class="small">${esc(why||'')}</p></div>
+ ${c.warn?`<div class="notice warn"><b>⚠ Check before deleting:</b> ${esc(c.warn)}</div>`:''}<div class="cleanup-review">${rows.map(([k,v])=>`<div class="row between"><span class="small muted">${esc(k)}</span><b class="mono small">${esc(v)}</b></div>`).join('')}</div>
+ <p class="small">Only delete it if it was a <b>test</b> or a <b>wrong reading</b> (e.g. asset and serial from different boxes). It is removed from <b>this phone only</b>. If it was already exported / sent, it stays in Operational and Admin — correct it there (e.g. Admin release).${x.powerAdapter?' The power adapter in this receipt becomes free on this phone.':''}</p>
+ <div class="field"><label for="fdelReason">Reason · required</label><input id="fdelReason" maxlength="500" placeholder="Wrong reading: asset from another box"></div>
+ <div class="tools"><button type="button" class="btn" data-fdel-backup="1">Download backup · optional</button></div><p class="small muted" id="fdelBackupState">Recommended, not required (it can be restored later in Manage → Import / restore).</p>
+ <div class="field"><label for="fdelPhrase">Type DELETE to confirm</label><input id="fdelPhrase" class="cleanup-phrase" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>`,
+ btn('Keep','manage-return')+`<button type="button" class="btn danger" id="fdelCommit" data-fdel-commit="1" disabled>Delete this record</button>`);
+ fdelRequest={type,id,revision:diskRevision,backup:false};
+}
+function fdelUpdate(){const b=$('fdelCommit');if(!b||!fdelRequest)return;b.disabled=!($('fdelPhrase').value.trim().toUpperCase()==='DELETE'&&$('fdelReason').value.trim().length>=3);}
+async function fdelCommit(){
+ const p=fdelRequest;if(!p)return;if($('fdelPhrase').value.trim().toUpperCase()!=='DELETE')throw new Error('Type DELETE to confirm.');
+ if(p.revision!==diskRevision)throw new Error('The scanner data changed. Open it again.');
+ const reason=$('fdelReason').value.trim();
+ await commit(s=>{
+  if(p.type==='receipt'){const r=s.transactions.find(t=>t.id===p.id);if(!r)throw new Error('Receipt not found.');s.transactions=s.transactions.filter(t=>t.id!==p.id);for(const b of s.sessions)b.recordIds=(b.recordIds||[]).filter(id=>id!==p.id);SC.event(s,'test-cleanup-forced',{typeOfRecord:'receipt',reason,count:1,removed:[SC.clone(r)]});}
+  else if(p.type==='column'){const b=s.boxes.find(x=>x.id===p.id);if(!b)throw new Error('Column not found.');const pcs=s.records.filter(r=>r.kind==='stock'&&r.boxId===p.id);
+   const ids=new Set(pcs.map(r=>r.id));s.records=s.records.filter(r=>!ids.has(r.id));s.boxes=s.boxes.filter(x=>x.id!==p.id);if(s.activeId===p.id)s.activeId=(s.boxes.filter(x=>!x.closedAt).at(-1)||s.boxes.at(-1))?.id||'';
+   SC.event(s,'test-cleanup-forced',{typeOfRecord:'column',reason,count:1+pcs.length,removed:[SC.clone(b),...pcs.map(r=>SC.clone(r))]});}
+  else{const r=s.records.find(x=>x.id===p.id);if(!r)throw new Error('Intake record not found.');s.records=s.records.filter(x=>x.id!==p.id);for(const b of s.boxes)if(Array.isArray(b.recordIds))b.recordIds=b.recordIds.filter(id=>id!==p.id);SC.event(s,'test-cleanup-forced',{typeOfRecord:'stock',reason,count:1,removed:[SC.clone(r)]});}
+ });
+ if(p.type==='receipt'&&receipt&&receipt.id===p.id)resetCapture(false);
+ if(p.type==='stock'&&lastStock&&lastStock.id===p.id){lastStock=null;if(completionVisible)resetCapture(true);}
+ if(p.type==='column'){if(lastStock&&!S.records.some(r=>r.id===lastStock.id)){lastStock=null;}if(workflow==='stock')resetCapture(true);}
+ fdelRequest=null;cleanupSelected.clear();render();renderManager();toast((p.type==='column'?'Test column deleted':'Record deleted')+' from this phone. The backup you downloaded keeps a copy.'+(p.type==='stock'?' You can now read the box again.':''));
+}
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-fdel],[data-fdel-backup],[data-fdel-commit]');if(!b)return;e.preventDefault();e.stopPropagation();try{
+ if(b.dataset.fdel)return await fdelOpen(b.dataset.fdel,b.dataset.id);
+ if(b.dataset.fdelBackup){backup();if(fdelRequest)fdelRequest.backup=true;const st=$('fdelBackupState');if(st)st.textContent='✓ Backup downloaded. Now type the reason and DELETE.';fdelUpdate();return;}
+ if(b.dataset.fdelCommit)return await fdelCommit();
+}catch(err){error(err);}},true);
+document.addEventListener('input',e=>{if(['fdelPhrase','fdelReason'].includes(e.target.id))fdelUpdate();});
+
+/* r3.9.23 — Reading guide for stock intake. A dashed target on the camera shows where the barcodes should be and
+   roughly how far the phone should be: ① whole Lenovo label (SN + MTM) from ~15–20 cm, then ② the small
+   "Asset No." barcode filling a narrow band from ~8–12 cm. A distance chip uses the size of the barcodes
+   actually decoded (share of the frame width) to say "move closer" / "good" / "too close". */
+const LG={last:null,at:0},LG_KEY='trs-lg-template';
+/* r3.9.29 — Reading area: in stock intake only barcodes whose centre is inside this frame are used, so a neighbouring
+   box label (left / right) is ignored. Also a short pause after each saved PC so the next box is not taken in the same second. */
+const LG_ROI={x0:.07,x1:.62,y0:.18,y1:.80};let lgSaveAt=0,lgLastId='';
+const lgInRoi=c=>!(Number.isFinite(c?.cx)&&Number.isFinite(c?.cy))||(c.cx>=LG_ROI.x0&&c.cx<=LG_ROI.x1&&c.cy>=LG_ROI.y0&&c.cy<=LG_ROI.y1);
+const lgBaseAccept=acceptBatch;
+acceptBatch=async function(raw,source='camera'){
+ try{if(typeof workflow!=='undefined'&&workflow==='stock'&&source==='camera'&&Array.isArray(raw)&&!receipt){
+  if(Date.now()-lgSaveAt<900)return {ignored:true,cooldown:true};
+  const keep=raw.filter(lgInRoi);if(!keep.length)return {ignored:true,outside:true};raw=keep;}}catch{}
+ return lgBaseAccept.call(this,raw,source);
+};
+function lgTpl(){try{const t=JSON.parse(localStorage.getItem(LG_KEY)||'null');return t&&t.asset&&t.serial&&t.part?t:null;}catch{return null;}}
+/* When asset + serial + part are decoded in ONE camera frame, remember where each barcode was and how wide.
+   The guide then shows three target boxes at exactly that position / distance. Later full reads refine it. */
+function lgLearn(sizes){
+ const pick=ks=>{const c=sizes.filter(x=>ks.includes(x.k)&&Number.isFinite(x.x)&&Number.isFinite(x.y));return c.length?c.sort((a,b)=>b.f-a.f)[0]:null;};
+ const A=pick(['asset']),Sr=pick(['serial'])||pick(['combined']),P=pick(['part'])||pick(['combined']);if(!A||!Sr||!P)return;
+ const old=lgTpl(),mix=(o,n)=>o?{x:o.x*.6+n.x*.4,y:o.y*.6+n.y*.4,f:o.f*.6+n.f*.4}:{x:n.x,y:n.y,f:n.f};
+ const t={asset:mix(old?.asset,A),serial:mix(old?.serial,Sr),part:mix(old?.part,P),n:(old?.n||0)+1,at:new Date().toISOString()};
+ try{localStorage.setItem(LG_KEY,JSON.stringify(t));}catch{}if(!old)try{toast('Guide saved · the 3 barcode positions from this reading will be shown for the next boxes');}catch{}
+}
+function lgWidth(c,canvas){
+ const W=canvas?.width||1,H=canvas?.height||1;
+ if(c?.bb&&Number.isFinite(c.bb.width))return c.bb.width/W;
+ if(Number.isFinite(c?.x)&&Number.isFinite(c?.x2))return Math.abs(c.x2-c.x)/(c.axis?H:W);
+ return NaN;
+}
+const lgBaseAnnotate=sxAnnotate;
+sxAnnotate=function(list,canvas){const out=lgBaseAnnotate(list,canvas);try{
+ if(typeof workflow!=='undefined'&&workflow==='stock'&&Array.isArray(out)&&out.length){
+  const sizes=out.map(c=>({k:LabelCore.classify(codeString(c)).kind,f:lgWidth(c,canvas),x:c.cx,y:c.cy})).filter(x=>Number.isFinite(x.f)&&x.f>0&&x.k!=='ignored');
+  if(sizes.length){LG.last=sizes;LG.at=Date.now();lgPaint();}
+ }}catch{}return out;};
+function lgStage(){
+ try{if(workflow!=='stock'||receipt||completionVisible||cameraMinimized||!running)return '';
+  const r=analysis().record||{};if(r.asset&&r.serial&&r.part)return '';
+  return 'label';}catch{return '';}
+}
+function lgFree(){
+ try{const cam=$('camera').getBoundingClientRect(),H=cam.height||1;let t=.17,b=.78;
+  for(const el of [$('sxHud'),document.querySelector('#camera .camera-status')]){if(!el||el.hidden)continue;const r=el.getBoundingClientRect();if(r.height&&r.bottom>cam.top&&r.bottom<cam.top+H*.5)t=Math.max(t,(r.bottom-cam.top)/H+.03);}
+  const v=$('cameraValidation');if(v&&!v.hidden){const r=v.getBoundingClientRect();if(r.height&&r.top>cam.top+H*.5)b=Math.min(b,(r.top-cam.top)/H-.01);}
+  return {t,b};}catch{return {t:.17,b:.78};}
+}
+function lgEnsure(){let g=$('lgGuide');if(!g){const cam=$('camera');if(!cam)return null;g=document.createElement('div');g.id='lgGuide';g.setAttribute('aria-hidden','true');cam.appendChild(g);}return g;}
+function lgPaint(){
+ const g=lgEnsure();if(!g)return;const st=lgStage();
+ $('camera')?.classList.toggle('lg-on',!!st);
+ if(!st){g.hidden=true;g.className='';return;}
+ g.hidden=false;g.className='lg-'+st;
+ const r=(()=>{try{return analysis().record||{};}catch{return {};}})();
+ // Distance chip from the most recent decode (≤1.6 s old). The asset step targets the small Asset No. barcode.
+ let chip='';const fresh=LG.last&&Date.now()-LG.at<1600;
+ if(fresh){const own=LG.last.filter(x=>st==='asset'?x.k==='asset':x.k==='serial'||x.k==='combined'||x.k==='part'),pool=own.length?own:LG.last,f=Math.max(...pool.map(x=>x.f));
+  const lo=st==='asset'?.42:.2,hi=.92;
+  chip=f<lo?['far','▲ Move closer']:f>hi?['near','▼ A little farther']:['ok','✓ Good distance'];}
+ else if(st==='asset'&&r.serial)chip=['far','▲ Move closer to “Asset No.”'];
+ const title=st==='label'?'① Lenovo label · SN + MTM inside the frame':'② “Asset No.” barcode · fill the band edge to edge';
+ const dist=st==='label'?'about 15–20 cm':'about 8–12 cm';
+ const T=null; /* r3.9.27: fixed guide — positions never move (easier to aim) */
+ if(st==='label'){
+  const fr=lgFree();
+  // Relative layout anchored on the Asset No. barcode: left edges and vertical offsets from the asset.
+  const rel=(z,a)=>({dl:(z.x-z.f/2)-(a.x-a.f/2),dy:z.y-a.y,f:z.f});
+  const L=T?{asset:{dl:0,dy:0,f:T.asset.f},serial:rel(T.serial,T.asset),part:rel(T.part,T.asset)}
+           :{asset:{dl:0,dy:0,f:.148},serial:{dl:-.013,dy:-.278,f:.166},part:{dl:-.016,dy:-.413,f:.24}}; /* r3.9.29: measured on the user's screenshots taken right after correct registrations (T14 Gen 7 box) */
+  const merged=Math.abs(L.serial.dy-L.part.dy)<.05&&Math.abs(L.serial.dl-L.part.dl)<.05;
+  const ay=.673,sc=1; /* fixed: same place on every box, independent of panels above */
+  const baseLeft=.196;
+  const place=z=>({left:Math.min(.9,Math.max(.03,baseLeft+z.dl*sc)),y:ay+z.dy*sc,f:z.f*sc});
+  const box=(z,name,ok,cls)=>{const p=place(z),w=Math.min(.94-p.left,p.f+.03),h=.045;return `<div class="lg-t ${cls} ${ok?'ok':''}" style="left:${(p.left*100).toFixed(1)}%;top:${((p.y-h/2)*100).toFixed(1)}%;width:${(w*100).toFixed(1)}%;height:${(h*100).toFixed(1)}%"><span>${ok?'✓ ':''}${name}</span></div>`;};
+  let chip2='';if(fresh){const pool=LG.last.filter(x=>x.k!=='ignored');if(pool.length){const ref={asset:L.asset.f*sc,serial:L.serial.f*sc,combined:L.serial.f*sc,part:L.part.f*sc},rs=pool.map(x=>ref[x.k]?x.f/ref[x.k]:null).filter(Boolean);if(rs.length){const q=rs.reduce((a,b)=>a+b,0)/rs.length;chip2=q<.8?['far','▲ Move closer']:q>1.25?['near','▼ A little farther']:['ok','✓ Good distance'];}}}
+  g.className='lg-label lg-tpl'+(T?'':' lg-generic');
+  g.innerHTML=`<div class="lg-roi" style="left:${LG_ROI.x0*100}%;top:${LG_ROI.y0*100}%;width:${(LG_ROI.x1-LG_ROI.x0)*100}%;height:${(LG_ROI.y1-LG_ROI.y0)*100}%"><em>only this area is read</em></div>`+(merged?box(L.serial,'SN + MTM',!!(r.serial&&r.part),'s'):box(L.part,'MTM / Part',!!r.part,'p')+box(L.serial,'SN',!!r.serial,'s'))+box(L.asset,'Asset No.',!!r.asset,'a')
+   +`<div class="lg-side" style="top:${((ay-.16)*100).toFixed(1)}%">${chip2?`<em class="lg-chip ${chip2[0]}">${chip2[1]}</em>`:`<span>📏 ~15–20 cm</span>`}${T?'<button type="button" class="lg-reset" data-lg-reset="1">Reset guide</button>':''}</div>`;
+  try{setText('stepText','STOCK · Fit the 3 barcodes in the 3 boxes');}catch{}
+  return;
+ }
+ g.innerHTML=`<div class="lg-box"><i class="lg-c tl"></i><i class="lg-c tr"></i><i class="lg-c bl"></i><i class="lg-c br"></i>${st==='asset'?'<i class="lg-tick l"></i><i class="lg-tick r"></i>':''}</div><div class="lg-cap"><b>${title}</b><span>📏 ${dist}${st==='asset'?' · the bars must reach both ticks':''}</span>${chip?`<em class="lg-chip ${chip[0]}">${chip[1]}</em>`:''}</div>`;
+}
+const lgBaseRender=renderCapture;
+renderCapture=function(...a){const out=lgBaseRender.apply(this,a);try{if(lastStock?.id&&lastStock.id!==lgLastId){lgLastId=lastStock.id;lgSaveAt=Date.now();}}catch{}try{lgPaint();}catch(e){console.warn('guide',e);}return out;};
+setInterval(()=>{try{if($('lgGuide')&&!$('lgGuide').hidden)lgPaint();}catch{}},700);
+document.addEventListener('click',e=>{if(!e.target.closest('[data-lg-reset]'))return;e.preventDefault();e.stopPropagation();try{localStorage.removeItem(LG_KEY);}catch{}try{toast('Guide reset · it will be learned again from the next complete reading');}catch{}lgPaint();},true);
 
 initial();window.SN.ready=load();
 </script></body></html>
