@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.32</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.33</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -2900,7 +2900,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.25-r3.9.32';
+const BUILD='build 2026.10.26-r3.9.33';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -4463,10 +4463,14 @@ function lotPaint(){const panel=$('inventoryPanel');if(!panel)return;let box=$('
  if(box.innerHTML!==html)box.innerHTML=html;}
 const lotBaseInv=renderInventory;renderInventory=function(...a){const o=lotBaseInv.apply(this,a);try{lotPaint();}catch(e){console.warn('lots',e);}return o;};
 function lotDT(v){const d=v?new Date(v):new Date();const p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes());}
+function lotColOpts(){const by=new Map();for(const r of S.records.filter(r=>r.kind==='stock')){const k=r.boxId||r.box||'';const x=by.get(k)||{label:r.box||k,n:0,first:''};x.n++;const t=String(r.scannedAt||'');if(t&&(!x.first||t<x.first))x.first=t;by.set(k,x);}
+ return [...by.values()].filter(x=>x.first).sort((a,b)=>b.first.localeCompare(a.first)).map(x=>`<option value="${esc(x.first)}">${esc(x.label)} · ${x.n} PCs · first read ${esc(lotFmt(x.first))}</option>`).join('');}
 function lotNewModal(){const n=lotList().length+1;
  modal('Start new lot',`<p class="small">From the start time below, every new stock intake reading is counted in this lot. PCs already registered keep their lot.</p>
  <div class="field"><label for="lotName">Name</label><input id="lotName" value="Lot ${n}" maxlength="40"></div>
+ <div class="field"><label for="lotCol">Start from a column (optional)</label><select id="lotCol"><option value="">— now —</option>${lotColOpts()}</select></div>
  <div class="field"><label for="lotStart">Starts at</label><input id="lotStart" type="datetime-local" value="${lotDT()}"></div>
+ <p class="small muted">Choosing a column sets the start to the first PC read in it, so that column and everything read after it count in the new lot.</p>
  <p class="small muted">Tip: use a name like “Lot ${n} · ${new Date().toLocaleString('en',{month:'short'})}”.</p>`,
  `<button type="button" class="btn" data-lot="close">Cancel</button><button type="button" class="btn primary" data-lot="save-new">Start lot</button>`);}
 function lotEditModal(){const l=lotList();
@@ -4478,13 +4482,15 @@ document.addEventListener('click',async e=>{const b=e.target.closest?.('[data-lo
  if(a==='new')return lotNewModal();
  if(a==='edit')return lotEditModal();
  if(a==='close')return closeModal();
- if(a==='save-new'){const name=($('lotName').value||'').trim()||'Lot';const st=$('lotStart').value?new Date($('lotStart').value).toISOString():new Date().toISOString();
+ if(a==='save-new'){const name=($('lotName').value||'').trim()||'Lot';const el=$('lotStart'),st=el.dataset.exact&&el.value===lotDT(el.dataset.exact)?el.dataset.exact:(el.value?new Date(el.value).toISOString():new Date().toISOString());
   await commit(s=>{const l=Array.isArray(s.settings.lots)?s.settings.lots:[];l.push({id:'lot-'+Date.now(),name,start:st});s.settings.lots=l;});closeModal();renderInventory();if(typeof toast==='function')toast('📦 '+name+' started');return;}
  if(a==='del'){b.closest('.lot-edit')?.remove();return;}
  if(a==='save-edit'){const rows=[...document.querySelectorAll('.lot-edit')].map(d=>{const id=d.dataset.lotId,name=(d.querySelector('[data-lot-f="name"]')?.value||'').trim(),si=d.querySelector('[data-lot-f="start"]');return {id,name:name||'Lot',start:si?(si.value?new Date(si.value).toISOString():''):''};});
   await commit(s=>{s.settings.lots=rows.map((x,k)=>k===0&&x.id==='lot-1'?{...x,start:''}:x);});closeModal();renderInventory();return;}
 }catch(err){try{$('modalError').textContent=err.message;}catch{alert(err.message);}}},true);
 setTimeout(()=>{try{lotPaint();}catch{}},1500);
+
+window.addEventListener('change',e=>{if(e.target.id!=='lotCol')return;const v=e.target.value,st=$('lotStart');if(st){st.value=v?lotDT(v):lotDT();st.dataset.exact=v||'';}},true);
 
 initial();window.SN.ready=load();
 </script></body></html>
