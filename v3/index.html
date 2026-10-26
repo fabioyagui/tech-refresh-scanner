@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.33</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 3.9.34</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -296,6 +296,14 @@ body.dialog-open{overflow:hidden}
 #lgGuide.lg-tpl .lg-t span{left:calc(100% + 8px);top:50%;transform:translateY(-50%)}
 #lgGuide .lg-roi{position:absolute;border:1.5px solid #ffffff59;border-radius:12px;box-shadow:0 0 0 3000px #00000047}
 #lgGuide .lg-roi em{position:absolute;right:8px;bottom:6px;font-style:normal;font-size:10.5px;color:#ffffffb3;text-shadow:0 1px 3px #000}
+
+#lgGuide .lg-reset.on{background:#2563ebcc;border-color:#93c5fd}
+#lgGuide .lg-hit{position:absolute;border:2px solid #ff3b7f;background:#ff3b7f22;border-radius:4px}
+#lgGuide .lg-hit.k-asset{border-color:#ffd166;background:#ffd16622}#lgGuide .lg-hit.k-serial{border-color:#4dd0ff;background:#4dd0ff22}#lgGuide .lg-hit.k-part{border-color:#7dffc8;background:#7dffc822}
+#lgGuide .lg-test-panel{position:absolute;left:3%;right:3%;bottom:3%;padding:6px 8px;border-radius:8px;background:#000b;color:#fff;font:11px/1.35 ui-monospace,Menlo,monospace;pointer-events:none}
+#lgGuide .lg-test-panel b{color:#ffd166}#lgGuide .lg-test-meta{opacity:.7;margin-top:2px}
+#lgGuide.lg-flip.lg-tpl .lg-t span{left:auto;right:calc(100% + 8px)}
+#lgGuide.lg-flip .lg-side{right:auto;left:4%;align-items:flex-start}
 .lot-panel{margin:10px 0;padding:10px 12px;border:1px solid var(--line,#dbe3ee);border-radius:12px;background:var(--panel,#fff)}
 .lot-table{display:flex;flex-direction:column;gap:4px;margin:8px 0}
 .lot-row{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(100,116,139,.08)}
@@ -2900,7 +2908,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.10.26-r3.9.33';
+const BUILD='build 2026.10.27-r3.9.34';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -4359,9 +4367,14 @@ const LG={last:null,at:0},LG_KEY='trs-lg-template';
 /* r3.9.29 — Reading area: in stock intake only barcodes whose centre is inside this frame are used, so a neighbouring
    box label (left / right) is ignored. Also a short pause after each saved PC so the next box is not taken in the same second. */
 const LG_ROI={x0:.07,x1:.62,y0:.18,y1:.80};let lgSaveAt=0,lgLastId='';
-const lgInRoi=c=>!(Number.isFinite(c?.cx)&&Number.isFinite(c?.cy))||(c.cx>=LG_ROI.x0&&c.cx<=LG_ROI.x1&&c.cy>=LG_ROI.y0&&c.cy<=LG_ROI.y1);
+/* r3.9.34 — ⟲ 180°: the whole guide (targets + reading area) is turned upside down for boxes facing the other way.
+   🧪 Test: temporary mode — barcodes are read and drawn on the camera with their position / size, but NOTHING is saved. */
+let LG_FLIP=(()=>{try{return localStorage.getItem('trs-lg-flip')==='1';}catch{return false;}})(),LG_TEST=false;
+function lgRoi(){return LG_FLIP?{x0:1-LG_ROI.x1,x1:1-LG_ROI.x0,y0:1-LG_ROI.y1,y1:1-LG_ROI.y0}:LG_ROI;}
+const lgInRoi=c=>{const R=lgRoi();return !(Number.isFinite(c?.cx)&&Number.isFinite(c?.cy))||(c.cx>=R.x0&&c.cx<=R.x1&&c.cy>=R.y0&&c.cy<=R.y1);};
 const lgBaseAccept=acceptBatch;
 acceptBatch=async function(raw,source='camera'){
+ if(LG_TEST&&source==='camera'&&typeof workflow!=='undefined'&&workflow==='stock')return {ignored:true,test:true};
  try{if(typeof workflow!=='undefined'&&workflow==='stock'&&source==='camera'&&Array.isArray(raw)&&!receipt){
   if(Date.now()-lgSaveAt<900)return {ignored:true,cooldown:true};
   const keep=raw.filter(lgInRoi);if(!keep.length)return {ignored:true,outside:true};raw=keep;}}catch{}
@@ -4386,7 +4399,7 @@ function lgWidth(c,canvas){
 const lgBaseAnnotate=sxAnnotate;
 sxAnnotate=function(list,canvas){const out=lgBaseAnnotate(list,canvas);try{
  if(typeof workflow!=='undefined'&&workflow==='stock'&&Array.isArray(out)&&out.length){
-  const sizes=out.map(c=>({k:LabelCore.classify(codeString(c)).kind,f:lgWidth(c,canvas),x:c.cx,y:c.cy})).filter(x=>Number.isFinite(x.f)&&x.f>0&&x.k!=='ignored');
+  const sizes=out.map(c=>({k:LabelCore.classify(codeString(c)).kind,f:lgWidth(c,canvas),x:c.cx,y:c.cy,t:String(codeString(c)||'').slice(0,24)})).filter(x=>Number.isFinite(x.f)&&x.f>0&&x.k!=='ignored');
   if(sizes.length){LG.last=sizes;LG.at=Date.now();lgPaint();}
  }}catch{}return out;};
 function lgStage(){
@@ -4426,12 +4439,12 @@ function lgPaint(){
   const ay=.673,sc=1; /* fixed: same place on every box, independent of panels above */
   const baseLeft=.196;
   const place=z=>({left:Math.min(.9,Math.max(.03,baseLeft+z.dl*sc)),y:ay+z.dy*sc,f:z.f*sc});
-  const box=(z,name,ok,cls)=>{const p=place(z),w=Math.min(.94-p.left,p.f+.03),h=.045;return `<div class="lg-t ${cls} ${ok?'ok':''}" style="left:${(p.left*100).toFixed(1)}%;top:${((p.y-h/2)*100).toFixed(1)}%;width:${(w*100).toFixed(1)}%;height:${(h*100).toFixed(1)}%"><span>${ok?'✓ ':''}${name}</span></div>`;};
+  const box=(z,name,ok,cls)=>{const p=place(z),w=Math.min(.94-p.left,p.f+.03),h=.045;let BL=p.left,BT=p.y-h/2;if(LG_FLIP){BL=1-BL-w;BT=1-BT-h;}return `<div class="lg-t ${cls} ${ok?'ok':''}" style="left:${(BL*100).toFixed(1)}%;top:${(BT*100).toFixed(1)}%;width:${(w*100).toFixed(1)}%;height:${(h*100).toFixed(1)}%"><span>${ok?'✓ ':''}${name}</span></div>`;};
   let chip2='';if(fresh){const pool=LG.last.filter(x=>x.k!=='ignored');if(pool.length){const ref={asset:L.asset.f*sc,serial:L.serial.f*sc,combined:L.serial.f*sc,part:L.part.f*sc},rs=pool.map(x=>ref[x.k]?x.f/ref[x.k]:null).filter(Boolean);if(rs.length){const q=rs.reduce((a,b)=>a+b,0)/rs.length;chip2=q<.8?['far','▲ Move closer']:q>1.25?['near','▼ A little farther']:['ok','✓ Good distance'];}}}
-  g.className='lg-label lg-tpl'+(T?'':' lg-generic');
-  g.innerHTML=`<div class="lg-roi" style="left:${LG_ROI.x0*100}%;top:${LG_ROI.y0*100}%;width:${(LG_ROI.x1-LG_ROI.x0)*100}%;height:${(LG_ROI.y1-LG_ROI.y0)*100}%"><em>only this area is read</em></div>`+(merged?box(L.serial,'SN + MTM',!!(r.serial&&r.part),'s'):box(L.part,'MTM / Part',!!r.part,'p')+box(L.serial,'SN',!!r.serial,'s'))+box(L.asset,'Asset No.',!!r.asset,'a')
-   +`<div class="lg-side" style="top:${((ay-.16)*100).toFixed(1)}%">${chip2?`<em class="lg-chip ${chip2[0]}">${chip2[1]}</em>`:`<span>📏 ~15–20 cm</span>`}${T?'<button type="button" class="lg-reset" data-lg-reset="1">Reset guide</button>':''}</div>`;
-  try{setText('stepText','STOCK · Fit the 3 barcodes in the 3 boxes');}catch{}
+  g.className='lg-label lg-tpl'+(T?'':' lg-generic')+(LG_FLIP?' lg-flip':'');
+  const R=lgRoi();g.innerHTML=`<div class="lg-roi" style="left:${R.x0*100}%;top:${R.y0*100}%;width:${(R.x1-R.x0)*100}%;height:${(R.y1-R.y0)*100}%"><em>${LG_TEST?'🧪 TEST · nothing is saved':'only this area is read'}${LG_FLIP?' · ⟲ 180°':''}</em></div>`+lgTestMarks()+(merged?box(L.serial,'SN + MTM',!!(r.serial&&r.part),'s'):box(L.part,'MTM / Part',!!r.part,'p')+box(L.serial,'SN',!!r.serial,'s'))+box(L.asset,'Asset No.',!!r.asset,'a')
+   +`<div class="lg-side" style="top:${((LG_FLIP?.06:ay-.16)*100).toFixed(1)}%">${chip2?`<em class="lg-chip ${chip2[0]}">${chip2[1]}</em>`:`<span>📏 ~15–20 cm</span>`}${T?'<button type="button" class="lg-reset" data-lg-reset="1">Reset guide</button>':''}<button type="button" class="lg-reset ${LG_FLIP?'on':''}" data-lg-flip="1">⟲ 180°${LG_FLIP?' ON':''}</button><button type="button" class="lg-reset ${LG_TEST?'on':''}" data-lg-test="1">🧪 Test${LG_TEST?' ON':''}</button></div>`;
+  try{setText('stepText',LG_TEST?'🧪 TEST MODE · readings are shown, nothing is saved':'STOCK · Fit the 3 barcodes in the 3 boxes');}catch{}
   return;
  }
  g.innerHTML=`<div class="lg-box"><i class="lg-c tl"></i><i class="lg-c tr"></i><i class="lg-c bl"></i><i class="lg-c br"></i>${st==='asset'?'<i class="lg-tick l"></i><i class="lg-tick r"></i>':''}</div><div class="lg-cap"><b>${title}</b><span>📏 ${dist}${st==='asset'?' · the bars must reach both ticks':''}</span>${chip?`<em class="lg-chip ${chip[0]}">${chip[1]}</em>`:''}</div>`;
@@ -4440,6 +4453,16 @@ const lgBaseRender=renderCapture;
 renderCapture=function(...a){const out=lgBaseRender.apply(this,a);try{if(lastStock?.id&&lastStock.id!==lgLastId){lgLastId=lastStock.id;lgSaveAt=Date.now();}}catch{}try{lgPaint();}catch(e){console.warn('guide',e);}return out;};
 setInterval(()=>{try{if($('lgGuide')&&!$('lgGuide').hidden)lgPaint();}catch{}},700);
 document.addEventListener('click',e=>{if(!e.target.closest('[data-lg-reset]'))return;e.preventDefault();e.stopPropagation();try{localStorage.removeItem(LG_KEY);}catch{}try{toast('Guide reset · it will be learned again from the next complete reading');}catch{}lgPaint();},true);
+
+/* Test-mode marks: every barcode decoded in the last 3 s, drawn where it was seen, with its kind, width and centre. */
+function lgTestMarks(){if(!LG_TEST||!LG.last||Date.now()-LG.at>3000)return LG_TEST?'<div class="lg-test-panel">🧪 TEST · point at a box — readings appear here (not saved)</div>':'';
+ const rows=LG.last.filter(x=>Number.isFinite(x.x)&&Number.isFinite(x.y));
+ const marks=rows.map(x=>{const w=Math.max(.04,x.f),h=.035;return `<div class="lg-hit k-${x.k}" style="left:${((x.x-w/2)*100).toFixed(1)}%;top:${((x.y-h/2)*100).toFixed(1)}%;width:${(w*100).toFixed(1)}%;height:${(h*100).toFixed(1)}%"></div>`;}).join('');
+ return marks+`<div class="lg-test-panel"><b>🧪 TEST · not saved</b>${rows.map(x=>`<div><b>${esc(x.k)}</b> ${esc(x.t||'')} · w ${(x.f*100).toFixed(1)}% · x ${(x.x*100).toFixed(1)} · y ${(x.y*100).toFixed(1)}</div>`).join('')}<div class="lg-test-meta">${LG_FLIP?'180° ON · ':''}screenshot this and send it</div></div>`;}
+document.addEventListener('click',e=>{const f=e.target.closest('[data-lg-flip],[data-lg-test]');if(!f)return;e.preventDefault();e.stopPropagation();
+ if(f.dataset.lgFlip){LG_FLIP=!LG_FLIP;try{localStorage.setItem('trs-lg-flip',LG_FLIP?'1':'0');}catch{}try{toast(LG_FLIP?'Guide turned 180° · for boxes facing the other way':'Guide back to normal');}catch{}}
+ if(f.dataset.lgTest){LG_TEST=!LG_TEST;try{toast(LG_TEST?'🧪 Test mode ON · nothing will be saved':'Test mode OFF · readings are saved again');}catch{}}
+ lgPaint();},true);
 
 /* r3.9.32 — Delivery lots (batches) for stock intake. The scanner keeps one running total, but each delivery from Lenovo
    (e.g. 547 PCs in September, 500 in October, 500 in November) can be counted separately: "Start new lot" opens the
