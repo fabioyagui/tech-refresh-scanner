@@ -3,54 +3,71 @@
 <title>PC Transfer List</title>
 <meta name="theme-color" content="#0f2a4a">
 <style>
-:root{--bg:#eef2f7;--card:#fff;--ink:#0f1b2d;--muted:#5b6b80;--line:#d8e0ea;--blue:#1d4ed8;--green:#0f8a5f;--red:#c0362c;--amber:#b7791f}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131c2e;--ink:#e6edf7;--muted:#93a3ba;--line:#26324a;--blue:#60a5fa;--green:#34d399;--red:#f87171;--amber:#fbbf24}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:12px 16px 40px}
-h1{font-size:19px;margin:4px 0 2px}.sub{color:var(--muted);font-size:12.5px;margin-bottom:10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.sp{flex:1}
-label{font-size:11.5px;color:var(--muted);display:block;margin-bottom:2px}
-input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:100%}
-.btn{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 12px;cursor:pointer}
-.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.go{background:var(--green);border-color:var(--green);color:#fff}.btn.danger{color:var(--red);border-color:var(--red)}.btn.small{padding:5px 9px;font-size:13px}
-.btn:disabled{opacity:.45}
-.cam{position:relative;background:#000;border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+:root{--bg:#eef2f7;--card:#fff;--ink:#0f1b2d;--muted:#5b6b80;--line:#dbe3ee;--soft:#f4f7fb;--blue:#1d4ed8;--green:#0f8a5f;--red:#c0362c;--amber:#b7791f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131c2e;--ink:#e6edf7;--muted:#93a3ba;--line:#26324a;--soft:#0f1829;--blue:#60a5fa;--green:#34d399;--red:#f87171;--amber:#fbbf24}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:max(12px,env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom))}
+.top{display:flex;align-items:center;gap:10px;margin:2px 0 12px}.top h1{font-size:20px;margin:0;flex:1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.ttl{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+label{font-size:12px;color:var(--muted);display:block;margin:0 0 4px}
+input,textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-width:0;display:block;-webkit-appearance:none;appearance:none}
+input[type=date]{min-height:44px;text-align:left}
+input[type=checkbox]{width:20px;height:20px;padding:0;-webkit-appearance:auto;appearance:auto;flex:none}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.btn{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:11px 14px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.go{background:var(--green);border-color:var(--green);color:#fff}.btn.danger{color:var(--red);border-color:color-mix(in srgb,var(--red) 50%,transparent)}
+.btn.small{padding:6px 10px;min-height:34px;font-size:13px;border-radius:10px}.btn.block{width:100%}.btn:disabled{opacity:.45}
+.summary{display:flex;align-items:center;gap:10px}.summary .info{flex:1;min-width:0}.summary .info b{font-size:16px}.summary .info div{color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.count{min-width:64px;text-align:center;background:var(--soft);border-radius:12px;padding:6px 8px}.count b{display:block;font-size:26px;line-height:1.1}.count span{font-size:11px;color:var(--muted)}
+details.edit summary{list-style:none;cursor:pointer;color:var(--blue);font-weight:600;font-size:14px;margin-top:10px}details.edit summary::-webkit-details-marker{display:none}
+details.edit[open] summary{margin-bottom:10px}
+.cam{position:relative;background:#0b1220;border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:12px}
 .cam video{width:100%;height:100%;object-fit:cover;display:block}
-.cam .aim{position:absolute;left:8%;right:8%;top:38%;height:24%;border:2px dashed #ffffffb0;border-radius:10px;pointer-events:none}
-.cam .msg{position:absolute;left:8px;right:8px;bottom:8px;color:#fff;font-size:12.5px;text-shadow:0 1px 3px #000}
-.slots{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.slot input{font:600 16px ui-monospace,Menlo,monospace;letter-spacing:.02em}
-.slot.ok input{border-color:var(--green);background:color-mix(in srgb,var(--green) 12%,transparent)}
-.other{margin-top:8px;font-size:13px;color:var(--amber)}
-.list{max-height:none}
-.it{display:grid;grid-template-columns:30px 1fr 1fr 28px;gap:6px;align-items:center;padding:7px 2px;border-bottom:1px solid var(--line);font:14px ui-monospace,Menlo,monospace}
-.it .n{color:var(--muted);font-size:12px}.it .x{border:0;background:none;color:var(--red);font-size:18px;cursor:pointer}
-.big{font-size:28px;font-weight:800}
-.toast{position:fixed;left:16px;right:16px;bottom:16px;background:#0f1b2d;color:#fff;padding:10px 14px;border-radius:12px;font-size:14px;z-index:9;opacity:0;transition:opacity .2s;pointer-events:none}
+.cam .aim{position:absolute;left:8%;right:8%;top:36%;height:28%;border:2px dashed #ffffffc0;border-radius:10px;pointer-events:none;box-shadow:0 0 0 2000px #00000040}
+.cam .msg{position:absolute;left:10px;right:10px;bottom:10px;color:#fff;font-size:13px;text-shadow:0 1px 3px #000;text-align:center}
+.slot{background:var(--soft);border:1.5px solid var(--line);border-radius:12px;padding:8px 10px}
+.slot label{margin:0}.slot input{border:0;background:transparent;padding:4px 0 0;font:700 18px ui-monospace,Menlo,monospace;letter-spacing:.02em}
+.slot.ok{border-color:var(--green);background:color-mix(in srgb,var(--green) 10%,var(--soft))}.slot.ok label::after{content:" ✓";color:var(--green);font-weight:700}
+.opts{display:flex;align-items:center;gap:10px;margin:12px 0}.opts label{margin:0;font-size:14px;color:var(--ink);display:flex;gap:8px;align-items:center;flex:1}
+.other{font-size:13px;color:var(--amber);margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.it{display:grid;grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) 32px;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font:14px ui-monospace,Menlo,monospace}
+.it.head{font:700 11px -apple-system,sans-serif;color:var(--muted);letter-spacing:.04em;padding-top:0}
+.it .n{color:var(--muted);font-size:12px}.it .x{border:0;background:none;color:var(--red);font-size:20px;cursor:pointer;padding:0}
+.empty{color:var(--muted);font-size:14px;margin:4px 0}
+.hist .h{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.hist .h .acts{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--blue) 14%,transparent);color:var(--blue);font-weight:700;white-space:nowrap}
+.bar{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;z-index:5}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));background:#0f1b2d;color:#fff;padding:11px 14px;border-radius:12px;font-size:14px;z-index:9;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.show{opacity:1}.toast.bad{background:#7f1d1d}
-.hist .h{display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.tag{font-size:11.5px;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--blue) 14%,transparent);color:var(--blue);font-weight:700}
-.flash{animation:fl .5s}@keyframes fl{0%{background:color-mix(in srgb,var(--green) 40%,transparent)}100%{background:transparent}}
+.flash{animation:fl .6s}@keyframes fl{0%{background:color-mix(in srgb,var(--green) 35%,transparent)}100%{background:transparent}}
+.note{color:var(--muted);font-size:12.5px;margin:0 0 12px}
 </style></head><body>
-<h1>📦 PC Transfer List</h1>
-<div class="sub">Scan Asset Tag + Serial of each PC you send (e.g. HP G11 → Imaichi) and export the list. Stand-alone: nothing goes to the Admin / Operational dashboards. Data stays on this phone.</div>
+<div class="top"><h1>📦 PC Transfer List</h1></div>
+<p class="note">Asset Tag + Serial of each PC you send. Stand-alone list — not imported into Admin / Operational. Saved on this phone.</p>
 
 <div class="card" id="listCard"></div>
 
 <div class="card">
- <div class="row"><b>Scanner</b><span class="sp"></span><button class="btn small" id="camBtn">▶ Start camera</button></div>
- <div class="cam" id="cam" hidden><video id="video" playsinline muted></video><div class="aim"></div><div class="msg" id="camMsg">Aim at the Asset Tag barcode, then the Serial barcode.</div></div>
- <div class="slots">
-  <div class="slot" id="sA"><label>Asset Tag</label><input id="inA" autocomplete="off" autocapitalize="characters" placeholder="24H18431"></div>
-  <div class="slot" id="sS"><label>Serial Number</label><input id="inS" autocomplete="off" autocapitalize="characters" placeholder="5CG4425RS2"></div>
+ <div class="ttl">Scan</div>
+ <div class="cam" id="cam" hidden><video id="video" playsinline muted></video><div class="aim"></div><div class="msg" id="camMsg">Asset Tag barcode, then Serial barcode</div></div>
+ <button class="btn primary block" id="camBtn">▶ Start camera</button>
+ <div class="grid2" style="margin-top:12px">
+  <div class="slot" id="sA"><label for="inA">Asset Tag</label><input id="inA" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="24H18431"></div>
+  <div class="slot" id="sS"><label for="inS">Serial Number</label><input id="inS" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="5CG4425RS2"></div>
  </div>
  <div class="other" id="other"></div>
- <div class="row" style="margin-top:10px"><label style="display:flex;gap:6px;align-items:center;margin:0;font-size:13px;color:var(--ink)"><input type="checkbox" id="auto" style="width:auto" checked> Add automatically when both are read</label><span class="sp"></span><button class="btn small" id="clearBtn">Clear</button><button class="btn go" id="addBtn">＋ Add PC</button></div>
+ <div class="opts"><label><input type="checkbox" id="auto" checked> Add automatically</label></div>
+ <div class="grid2"><button class="btn" id="clearBtn">Clear</button><button class="btn go" id="addBtn">＋ Add PC</button></div>
 </div>
 
-<div class="card"><div class="row"><b>PCs in this list</b><span class="sp"></span><span class="big" id="count">0</span></div><div class="list" id="items"></div></div>
+<div class="card"><div class="ttl">PCs in this list</div><div id="items"></div></div>
 
-<div class="card hist"><div class="row"><b>Previous lists</b><span class="sp"></span><button class="btn small" id="expAll">Export all (CSV)</button></div><div id="hist"></div></div>
+<div class="card hist"><div class="summary"><div class="ttl" style="flex:1;margin:0">Previous lists</div><button class="btn small" id="expAll">Export all</button></div><div id="hist"></div></div>
+
+<div class="bar"><button class="btn" data-a="copy">Copy</button><button class="btn" data-a="close">Finish</button><button class="btn primary" data-a="csv">⬇ Export CSV</button></div>
 <div class="toast" id="toast"></div>
 
 <script>!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t="undefined"!=typeof globalThis?globalThis:t||self).ZXing={})}(this,(function(t){"use strict";
@@ -79,15 +96,15 @@ let tt;function toast(t,bad){const e=$('toast');e.textContent=t;e.className='toa
 const norm=v=>String(v||'').trim().toUpperCase().replace(/\s+/g,'');
 const isAsset=v=>/^\d{2}[A-Z]\d{5}$/.test(v);             // e.g. 24H18431
 const isSerial=v=>/^[0-9][A-Z]{2}[0-9A-Z]{7}$/.test(v);    // e.g. 5CG4425RS2
-function renderList(){const l=cur();
- $('listCard').innerHTML=`<div class="row"><div><b>Current list</b> <span class="tag">${l.items.length} PC${l.items.length===1?'':'s'}</span></div><span class="sp"></span><button class="btn small" data-a="copy">Copy</button><button class="btn small primary" data-a="csv">Export CSV</button></div>
- <div class="row" style="margin-top:8px"><div style="flex:1;min-width:130px"><label>Send date</label><input type="date" id="fDate" value="${esc(l.date)}"></div><div style="flex:1;min-width:130px"><label>Destination</label><input id="fDest" value="${esc(l.dest)}"></div></div>
- <div style="margin-top:8px"><label>Note (optional)</label><input id="fNote" value="${esc(l.note)}" placeholder="e.g. box 1-3, tracking number…"></div>
- <div class="row" style="margin-top:10px"><span class="sp"></span><button class="btn small" data-a="close">✓ Finish list & start a new one</button></div>`;
- $('count').textContent=l.items.length;
- $('items').innerHTML=l.items.length?`<div class="it" style="font:600 11px sans-serif;color:var(--muted)"><span>#</span><span>ASSET TAG</span><span>SERIAL</span><span></span></div>`+l.items.map((x,k)=>`<div class="it ${k===l.items.length-1&&Date.now()-Date.parse(x.at)<1500?'flash':''}"><span class="n">${k+1}</span><span>${esc(x.asset)}</span><span>${esc(x.serial)}</span><button class="x" data-del="${k}" title="Remove">×</button></div>`).reverse().join(''):'<p class="sub">No PC yet. Start the camera and scan the first label.</p>';
+function renderList(){const l=cur(),n=l.items.length;
+ const keepOpen=document.querySelector('#listCard details')?.open;
+ $('listCard').innerHTML=`<div class="summary"><div class="info"><b>${esc(l.dest||'—')}</b><div>Send date ${esc(l.date)}${l.note?' · '+esc(l.note):''}</div></div><div class="count"><b id="count">${n}</b><span>PC${n===1?'':'s'}</span></div></div>
+ <details class="edit" ${keepOpen?'open':''}><summary>✎ Edit date · destination · note</summary>
+ <div class="grid2"><div><label for="fDate">Send date</label><input type="date" id="fDate" value="${esc(l.date)}"></div><div><label for="fDest">Destination</label><input id="fDest" value="${esc(l.dest)}"></div></div>
+ <div style="margin-top:10px"><label for="fNote">Note</label><input id="fNote" value="${esc(l.note)}" placeholder="boxes, tracking number…"></div></details>`;
+ $('items').innerHTML=n?`<div class="it head"><span>#</span><span>ASSET TAG</span><span>SERIAL</span><span></span></div>`+l.items.map((x,k)=>`<div class="it ${k===n-1&&Date.now()-Date.parse(x.at)<1500?'flash':''}"><span class="n">${k+1}</span><span>${esc(x.asset)}</span><span>${esc(x.serial)}</span><button class="x" data-del="${k}" aria-label="Remove">×</button></div>`).reverse().join(''):'<p class="empty">No PC yet — start the camera and scan the first label.</p>';
  const old=DB.lists.filter(x=>x.closed).sort((a,b)=>(b.date+b.createdAt).localeCompare(a.date+a.createdAt));
- $('hist').innerHTML=old.map(x=>`<div class="h"><div style="flex:1"><b>${esc(x.date)}</b> → ${esc(x.dest)} <span class="tag">${x.items.length} PCs</span>${x.note?`<div class="sub" style="margin:2px 0 0">${esc(x.note)}</div>`:''}</div><button class="btn small" data-h="csv" data-id="${x.id}">CSV</button><button class="btn small" data-h="copy" data-id="${x.id}">Copy</button><button class="btn small" data-h="open" data-id="${x.id}">Reopen</button><button class="btn small danger" data-h="del" data-id="${x.id}">Delete</button></div>`).join('')||'<p class="sub">Finished lists appear here.</p>';}
+ $('hist').innerHTML=old.map(x=>`<div class="h"><div><b>${esc(x.date)}</b> → ${esc(x.dest)}${x.note?`<div class="note" style="margin:2px 0 0">${esc(x.note)}</div>`:''}</div><span class="tag">${x.items.length} PCs</span><div class="acts"><button class="btn small" data-h="csv" data-id="${x.id}">⬇ CSV</button><button class="btn small" data-h="copy" data-id="${x.id}">Copy</button><button class="btn small" data-h="open" data-id="${x.id}">Reopen</button><button class="btn small danger" data-h="del" data-id="${x.id}">Delete</button></div></div>`).join('')||'<p class="empty">Finished lists appear here.</p>';}
 function slots(){const a=norm($('inA').value),s=norm($('inS').value);$('sA').classList.toggle('ok',isAsset(a));$('sS').classList.toggle('ok',isSerial(s));}
 function add(fromScan){const a=norm($('inA').value),s=norm($('inS').value);if(!a||!s){toast('Asset Tag and Serial are both needed',true);return false;}
  const l=cur();const dup=l.items.find(x=>x.asset===a||x.serial===s);if(dup){toast('Already in this list: '+dup.asset+' · '+dup.serial,true);clearSlots();return false;}
@@ -97,7 +114,7 @@ function csvRows(lists){const head=['Send date','Destination','#','Asset Tag','S
 function downloadCSV(name,lists){const txt='﻿'+csvRows(lists).map(r=>r.map(v=>{v=String(v??'');return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}).join(',')).join('\r\n');const b=new Blob([txt],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);}
 async function copyList(l){const t=csvRows([l]).map(r=>r.join('\t')).join('\n');try{await navigator.clipboard.writeText(t);toast(l.items.length+' PCs copied · paste in Excel');}catch{toast('Copy not allowed here — use Export CSV',true);}}
 const fileName=l=>`PC-transfer-${(l.dest||'list').replace(/[^\w-]+/g,'_')}-${l.date}.csv`;
-document.addEventListener('input',e=>{const l=cur();if(e.target.id==='fDate')l.date=e.target.value;if(e.target.id==='fDest')l.dest=e.target.value;if(e.target.id==='fNote')l.note=e.target.value;if(['fDate','fDest','fNote'].includes(e.target.id))save();if(e.target.id==='inA'||e.target.id==='inS')slots();});
+document.addEventListener('input',e=>{const l=cur();if(e.target.id==='fDate')l.date=e.target.value;if(e.target.id==='fDest')l.dest=e.target.value;if(e.target.id==='fNote')l.note=e.target.value;if(['fDate','fDest','fNote'].includes(e.target.id)){save();const i=document.querySelector('#listCard .info');if(i)i.innerHTML=`<b>${esc(l.dest||'—')}</b><div>Send date ${esc(l.date)}${l.note?' · '+esc(l.note):''}</div>`;}if(e.target.id==='inA'||e.target.id==='inS')slots();});
 document.addEventListener('click',async e=>{const t=e.target.closest('button');if(!t)return;
  if(t.dataset.a==='csv'){const l=cur();if(!l.items.length)return toast('The list is empty',true);downloadCSV(fileName(l),[l]);}
  if(t.dataset.a==='copy'){const l=cur();if(!l.items.length)return toast('The list is empty',true);copyList(l);}
@@ -119,7 +136,7 @@ function onCode(text){text=norm(text);const now=Date.now();if(now-lastAdd<1200)r
  const l=cur();if(l.items.some(x=>x.asset===text||x.serial===text)){$('camMsg').textContent='Already in the list: '+text;return;}
  if(isAsset(text)){if(norm($('inA').value)!==text){$('inA').value=text;if(norm($('inS').value)&&!isSerial(norm($('inS').value)))$('inS').value='';}$('camMsg').textContent='Asset ✓ '+text+(norm($('inS').value)?'':' · now the Serial');}
  else if(isSerial(text)){$('inS').value=text;$('camMsg').textContent='Serial ✓ '+text+(norm($('inA').value)?'':' · now the Asset Tag');}
- else{$('other').innerHTML=`Other code read: <b>${esc(text)}</b> <button class="btn small" data-use="a" data-v="${esc(text)}">use as Asset</button> <button class="btn small" data-use="s" data-v="${esc(text)}">use as Serial</button>`;return;}
+ else{$('other').innerHTML=`Other code: <b>${esc(text)}</b> <button class="btn small" data-use="a" data-v="${esc(text)}">use as Asset</button> <button class="btn small" data-use="s" data-v="${esc(text)}">use as Serial</button>`;return;}
  try{navigator.vibrate?.(25);}catch{}slots();tryAuto();}
 let stream=null,loopT=0;const cv=document.createElement('canvas'),cx=cv.getContext('2d',{willReadFrequently:true});
 const HINTS=(()=>{const h=new Map();h.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[ZXing.BarcodeFormat.CODE_128,ZXing.BarcodeFormat.CODE_39,ZXing.BarcodeFormat.CODE_93,ZXing.BarcodeFormat.CODABAR,ZXing.BarcodeFormat.ITF]);h.set(ZXing.DecodeHintType.TRY_HARDER,true);return h;})();
@@ -134,8 +151,8 @@ function scanFrame(){if(!running)return;const v=$('video');if(v.readyState>=2&&v
  loopT=setTimeout(scanFrame,120);}
 async function startCam(){if(running)return stopCam();
  try{stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}});}catch(e){toast('Camera not available: '+e.message,true);return;}
- const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';try{await v.play();}catch{}scanFrame();}
-function stopCam(){running=false;clearTimeout(loopT);try{stream?.getTracks().forEach(t=>t.stop());}catch{}stream=null;$('cam').hidden=true;$('camBtn').textContent='▶ Start camera';}
+ const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';$('camBtn').classList.remove('primary');try{await v.play();}catch{}scanFrame();}
+function stopCam(){running=false;clearTimeout(loopT);try{stream?.getTracks().forEach(t=>t.stop());}catch{}stream=null;$('cam').hidden=true;$('camBtn').textContent='▶ Start camera';$('camBtn').classList.add('primary');}
 $('camBtn').onclick=startCam;
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)stopCam();});
 renderList();slots();
