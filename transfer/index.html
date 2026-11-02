@@ -154,6 +154,8 @@ async function startCam(){if(running)return stopCam();
  const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';$('camBtn').classList.remove('primary');try{await v.play();}catch{}scanFrame();}
 function stopCam(){running=false;clearTimeout(loopT);try{stream?.getTracks().forEach(t=>t.stop());}catch{}stream=null;$('cam').hidden=true;$('camBtn').textContent='▶ Start camera';$('camBtn').classList.add('primary');}
 $('camBtn').onclick=startCam;
+/* opened from the Scanner's Imaichi button: start the camera at once, and show a way back */
+{const q=new URLSearchParams(location.search);if(q.get('from')){const t=document.querySelector('.top');if(t)t.insertAdjacentHTML('afterbegin','<a href="../'+encodeURIComponent(q.get('from'))+'/" style="font-size:13px;font-weight:600;text-decoration:none;margin-right:10px">← Scanner</a>');}if(q.get('cam')==='1')setTimeout(()=>{try{startCam();}catch(e){}},350);}
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)stopCam();});
 renderList();slots();
 </script></body></html>
