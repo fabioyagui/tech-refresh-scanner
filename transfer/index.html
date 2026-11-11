@@ -91,11 +91,11 @@ const IMODE=new URLSearchParams(location.search).get('mode')==='intune',KEY=IMOD
 const stamp=v=>{const d=new Date(v),p=n=>String(n).padStart(2,'0');return isNaN(d)?'':d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());};
 let DB;try{DB=JSON.parse(localStorage.getItem(KEY)||'null');}catch{}if(!DB||!Array.isArray(DB.lists))DB={lists:[],current:''};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){toast('Could not save on this phone: '+e.message,true);}}
-function cur(){let l=DB.lists.find(x=>x.id===DB.current&&!x.closed);if(!l){l={id:'L'+Date.now(),date:today(),dest:IMODE?'Intune':'Imaichi',note:'',items:[],createdAt:new Date().toISOString()};DB.lists.push(l);DB.current=l.id;save();}return l;}
+function cur(){let l=DB.lists.find(x=>x.id===DB.current&&!x.closed);if(IMODE&&l&&l.date!==today()){if(l.items.length){l.closed=true;l.closedAt=new Date().toISOString();}else l.date=today();save();if(l.closed)l=null;}if(!l){l={id:'L'+Date.now(),date:today(),dest:IMODE?'Intune':'Imaichi',note:'',items:[],createdAt:new Date().toISOString()};DB.lists.push(l);DB.current=l.id;save();}return l;}
 let tt;function toast(t,bad){const e=$('toast');e.textContent=t;e.className='toast show'+(bad?' bad':'');clearTimeout(tt);tt=setTimeout(()=>e.className='toast',2200);}
 const norm=v=>String(v||'').trim().toUpperCase().replace(/\s+/g,'');
 const isAsset=v=>/^\d{2}[A-Z]\d{5}$/.test(v);             // e.g. 24H18431
-const isSerial=v=>/^[0-9][A-Z]{2}[0-9A-Z]{7}$/.test(v);    // e.g. 5CG4425RS2
+const isSerial=v=>IMODE?/^[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(v):/^[0-9][A-Z]{2}[0-9A-Z]{7}$/.test(v);    // HP e.g. 5CG4425RS2 · Intune mode: Lenovo e.g. PF6HGBLT
 function renderList(){const l=cur(),n=l.items.length;
  const keepOpen=document.querySelector('#listCard details')?.open;
  $('listCard').innerHTML=`<div class="summary"><div class="info"><b>${esc(l.dest||'—')}</b><div>Send date ${esc(l.date)}${l.note?' · '+esc(l.note):''}</div></div><div class="count"><b id="count">${n}</b><span>PC${n===1?'':'s'}</span></div></div>
@@ -137,7 +137,7 @@ $('expAll').onclick=()=>{const all=DB.lists.filter(l=>l.items.length);if(!all.le
 /* ---------- camera ---------- */
 let running=false,lastAdd=0,lastText='',lastAt=0,autoT=0;
 function tryAuto(){clearTimeout(autoT);if(!$('auto').checked)return;const a=norm($('inA').value),s=norm($('inS').value);if(isAsset(a)&&isSerial(s))autoT=setTimeout(()=>add(true),450);}
-function onCode(text){text=norm(text);const now=Date.now();if(now-lastAdd<1200)return;if(text===lastText&&now-lastAt<1500)return;lastText=text;lastAt=now;
+function onCode(text){text=norm(text);if(IMODE){if(/^1S[0-9A-Z]{10,}$/.test(text))text=text.slice(-8);else if(/^S[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(text))text=text.slice(1);}const now=Date.now();if(now-lastAdd<1200)return;if(text===lastText&&now-lastAt<1500)return;lastText=text;lastAt=now;
  const l=cur();if(l.items.some(x=>x.asset===text||x.serial===text)){$('camMsg').textContent='Already in the list: '+text;return;}
  if(isAsset(text)){if(norm($('inA').value)!==text){$('inA').value=text;if(norm($('inS').value)&&!isSerial(norm($('inS').value)))$('inS').value='';}$('camMsg').textContent='Asset ✓ '+text+(norm($('inS').value)?'':' · now the Serial');}
  else if(isSerial(text)){$('inS').value=text;$('camMsg').textContent='Serial ✓ '+text+(norm($('inA').value)?'':' · now the Asset Tag');}
@@ -163,4 +163,4 @@ $('camBtn').onclick=startCam;
 {const q=new URLSearchParams(location.search);if(q.get('from')){const t=document.querySelector('.top');if(t)t.insertAdjacentHTML('afterbegin','<a href="../'+encodeURIComponent(q.get('from'))+'/" style="font-size:13px;font-weight:600;text-decoration:none;margin-right:10px">← Scanner</a>');}if(q.get('cam')==='1')setTimeout(()=>{try{startCam();}catch(e){}},350);}
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)stopCam();});
 renderList();slots();
-</script><script>if(new URLSearchParams(location.search).get('mode')==='intune'){document.title='Intune quick scan';const h=document.querySelector('h1');if(h)h.textContent='🧩 Intune quick scan';h?.insertAdjacentHTML('afterend','<p style="margin:4px 0 0;font-size:13px;opacity:.75">Quick scan for Intune prep only — no stock, no assignment. Export, then load the file in Admin → 🧩 Intune prep.</p>');}</script></body></html>
+</script><script>if(new URLSearchParams(location.search).get('mode')==='intune'){document.title='Intune quick scan';const h=document.querySelector('h1');if(h)h.textContent='🧩 Intune quick scan';h?.insertAdjacentHTML('afterend','<p style="margin:4px 0 0;font-size:13px;opacity:.75">Lenovo quick scan for Intune prep only — no stock, no assignment. One list per day (a new day starts a new list). Export, then load the file in Admin → 🧩 Intune prep.</p>');const a=document.getElementById('inA'),b=document.getElementById('inS');if(a)a.placeholder='26L16531';if(b)b.placeholder='PF6HGBLT';const fix=()=>{for(const el of document.querySelectorAll('label[for="fDate"]'))if(el.textContent!=='Scan day')el.textContent='Scan day';for(const el of document.querySelectorAll('.summary .info div'))if(el.textContent.includes('Send date'))el.textContent=el.textContent.replace('Send date','Scan day');};fix();new MutationObserver(fix).observe(document.body,{childList:true,subtree:true});}</script></body></html>
