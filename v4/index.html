@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 4.0.1</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tech Refresh · Scanner 4.0.2</title><style>:root{--bg:#edf2fd;--ink:#13223d;--muted:#536582;--line:#d5e0ef;--card:#fff;--flow:#4154ce;--soft:#edf0ff;--success:#087458;--bad:#ac2539;--good:#e2f8ef;--radius:19px;font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color-scheme:light}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#e5ecff,#f6f8fc 65%);color:var(--ink)}body[data-flow=delivery]{--flow:#00795b;--soft:#e0f7ed}body[data-flow=user-return]{--flow:#7534c6;--soft:#f3eaff}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible{outline:3px solid #738ce5;outline-offset:3px}input:focus,select:focus{outline:2px solid #879def;outline-offset:1px}input,select{min-width:0;border:1px solid #c6d3e5;border-radius:10px;padding:11px;color:var(--ink);background:#fff}input[type=checkbox]{width:20px;height:20px;accent-color:var(--flow);flex:0 0 20px}input[type=range]{padding:0}textarea{font:inherit;width:100%;border:1px solid var(--line);padding:10px;border-radius:9px;resize:vertical}h1,h2,h3,p{margin:0}h1{font-size:19px}h2{font-size:18px}h3{font-size:16px}small,.small{font-size:12px}.muted{color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.hidden,[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 header{background:#ffffffdc;border-bottom:1px solid var(--line);padding:14px 18px}.top{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{display:flex;align-items:center;gap:10px}.brand-icon{display:grid;place-items:center;background:#162842;color:white;width:38px;height:38px;border-radius:12px}.build{font:10px ui-monospace,monospace;color:#536582;text-align:right}.shell{max-width:860px;margin:auto;padding:16px 14px 60px;--camera-height:clamp(470px,70svh,650px)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.spacer{flex:1}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:14px;box-shadow:0 3px 10px #15264306}.btn{border:1px solid #c6d4e7;border-radius:11px;padding:10px 13px;background:white;color:var(--ink);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}.btn.primary{background:var(--flow);border-color:var(--flow);color:white}.btn.danger{color:#a62638;border-color:#efc5cc;background:#fff4f5}.btn.small{padding:7px 10px;font-size:12px}.btn.wide{width:100%}.notice{padding:12px 14px;border-radius:12px;background:#f0f4fb;border:1px solid var(--line);font-size:13px;margin-bottom:12px;overflow-wrap:anywhere}.notice.warn{background:#fff5dc;border-color:#f2d589;color:#715017}.notice.bad{background:#fff0f1;border-color:#edb6bd;color:#982838}.notice.good{background:#e2f8ef;border-color:#ace2cc;color:#095e48}.pill{border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;display:inline-block;background:#edf1f8;color:#4b5d7c}.pill.good{background:#d6f5e7;color:#07624a}.pill.bad{background:#fce3e7;color:#a01c34}.pill.warn{background:#fff1c7;color:#78510a}.label{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -2735,7 +2735,7 @@ function createScannerManagementCore(C) {
   if(type==='receipt'){
    r=s.transactions.find(t=>t.id===id);if(!r)return {ok:false,type,id,label:id,reason:'Receipt not found.'};
    container=s.sessions.find(b=>b.recordIds.includes(id));
-   if(!r.user.demo)reason='Real-user receipt protected. Deleting it must not release a delivered PC or undo an external import.';
+   if(!r.user.demo)reason='Real-user receipt. Deleting it frees the PC on this phone only; it does not undo an import already made in Operational / Admin.';
    else if(r.powerAdapter)reason='This simulation receipt has adapter history. Use an explicit Admin adapter change; cleanup cannot release an adapter.';
    else if(!container||container.legacy)reason='Earlier receipt: its export history is unknown.';
    else if(hasExport(container,id))reason='This simulation receipt was exported. Reconcile it in the simulation dashboards first.';
@@ -2916,7 +2916,7 @@ const SC=createScannerCore(LabelCore,WarrantyPolicy,TRP);
 const StockImportCore=createScannerStockImportCore(SC,LabelCore,WarrantyPolicy);
 
 'use strict';
-const BUILD='build 2026.11.12-r4.0.1';
+const BUILD='build 2026.11.13-r4.0.2';
 const OLD_KEY='techRefresh.v3.scanner.devices',DB_NAME='techRefresh.scanner.durable.v2',DB_VERSION=1;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=SC.clone,uid=SC.id;
@@ -4334,9 +4334,9 @@ async function fdelOpen(type,id){
  const c=fdelCheck(type,id),why=type==='column'?'The whole column and the '+c.pcs.length+' PC(s) scanned into it will be removed from this phone\'s stock.':ManagementCore.inspect(S,type,id).reason,x=c.r;
  if(type==='column'&&typeof CAP!=='undefined'&&id===S.activeId&&CAP.hasData()&&!completionVisible)throw new Error('This is the current column and a capture is unfinished. Clear it first (Back to scan → Cancel), then delete.');
  const rows=type==='column'?[['Column',x.label],['PCs inside',String(c.pcs.length)],['Created',fdelWhen(x)||'—'],['Exported',(x.exports||[]).length?(x.exports.length+' time(s)'):'No'],['Status',x.closedAt?'Intake finished':'Open'+(x.id===S.activeId?' · current column':'')]].concat(c.pcs.slice(0,40).map((r,k)=>['PC '+(k+1),r.asset+' · '+r.serial])).concat(c.pcs.length>40?[['…','+'+(c.pcs.length-40)+' more']]:[]):type==='receipt'?[['Type',c.kind],['User',(x.user?.name||'')+' · '+(x.user?.mudid||'')],['PC',(x.device?.asset||'')+' · '+(x.device?.serial||'')],['Date',x.date||fdelWhen(x)],['Engineer',x.engineer||'—'],x.powerAdapter?['Adapter',x.powerAdapter]:null,x.shipment?['Tracking',(x.shipment.shippingTracking||'')+' / '+(x.shipment.returnTracking||'')]:null].filter(Boolean):[['PC',x.asset],['Serial',x.serial],['Part',x.part||'—'],['Column',SC.column(S,x.boxId)?.label||'—'],['Saved',fdelWhen(x)]];
- modal('Delete record · '+c.kind,`<div class="notice bad"><b>${type==='column'?'Delete this record column?':'This record is normally protected.'}</b><p class="small">${esc(why||'')}</p></div>
+ modal('Delete record · '+c.kind,`<div class="notice bad"><b>${type==='column'?'Delete this record column?':'You are deleting a real record.'}</b><p class="small">${esc(why||'')}</p></div>
  ${c.warn?`<div class="notice warn"><b>⚠ Check before deleting:</b> ${esc(c.warn)}</div>`:''}<div class="cleanup-review">${rows.map(([k,v])=>`<div class="row between"><span class="small muted">${esc(k)}</span><b class="mono small">${esc(v)}</b></div>`).join('')}</div>
- <p class="small">Only delete it if it was a <b>test</b> or a <b>wrong reading</b> (e.g. asset and serial from different boxes). It is removed from <b>this phone only</b>. If it was already exported / sent, it stays in Operational and Admin — correct it there (e.g. Admin release).${x.powerAdapter?' The power adapter in this receipt becomes free on this phone.':''}</p>
+ <p class="small">Delete it if it was a <b>test</b>, a <b>wrong reading</b> (e.g. asset and serial from different boxes) or a <b>handover that was taken back</b> (PC not ready). It is removed from <b>this phone only</b>. If it was already exported / sent, it stays in Operational and Admin — correct it there (e.g. Admin release).${x.powerAdapter?' The power adapter in this receipt becomes free on this phone.':''}</p>
  <div class="field"><label for="fdelReason">Reason · required</label><input id="fdelReason" maxlength="500" placeholder="Wrong reading: asset from another box"></div>
  <div class="tools"><button type="button" class="btn" data-fdel-backup="1">Download backup · optional</button></div><p class="small muted" id="fdelBackupState">Recommended, not required (it can be restored later in Manage → Import / restore).</p>
  <div class="field"><label for="fdelPhrase">Type DELETE to confirm</label><input id="fdelPhrase" class="cleanup-phrase" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>`,
@@ -4526,6 +4526,35 @@ window.addEventListener('change',e=>{if(e.target.id!=='lotCol')return;const v=e.
 /* r3.9.36 — Imaichi button (next to Location): opens the PC transfer list for Imaichi with the camera on. */
 document.addEventListener('click',e=>{const b=e.target.closest?.('[data-imaichi]');if(!b)return;e.preventDefault();e.stopPropagation();
  const dir=(location.pathname.match(/\/(v\d+)\/?(?:index\.html)?$/)||[])[1]||'';location.href='../transfer/?'+(b.dataset.imaichi==='intune'?'mode=intune&':'')+'cam=1'+(dir?'&from='+dir:'');},true);
+
+/* r4.0.2 — Undo a real handover from where you see it (warning instead of a hard lock).
+   Manage → Devices, the Stock PC details and Sessions → View records now show "Undo handover…" for every
+   receipt that holds a PC. It opens the existing guarded delete (reason + type DELETE, logged, backup optional).
+   Removes the receipt from THIS phone only; the PC becomes available here again. */
+function uhReceiptsFor(key){
+ const row=SC.inventory(S).find(x=>SC.key(x)===key);
+ return S.transactions.filter(t=>t.device&&(SC.key(t.device)===key||(row&&(SC.norm(t.device.asset)===SC.norm(row.asset)||SC.norm(t.device.serial)===SC.norm(row.serial)))))
+  .sort((a,b)=>String(fdelWhen(b)).localeCompare(String(fdelWhen(a))));
+}
+function uhButton(t,small=true){const kind=t.shipment?'shipment':t.kind==='delivery'?'handover':'HP return';return `<button type="button" class="btn ${small?'small ':''}danger" data-fdel="receipt" data-id="${esc(t.id)}">Undo ${kind} · ${esc(t.user?.name||t.user?.mudid||'user')}…</button>`;}
+const uhBaseRows=renderManagerRows;
+renderManagerRows=function(...a){const out=uhBaseRows.apply(this,a);try{
+ if(managementTab==='devices')document.querySelectorAll('#manageRows .manager-item').forEach(art=>{
+  const key=art.querySelector('[data-key]')?.dataset.key;if(!key||art.querySelector('[data-fdel="receipt"]'))return;
+  const list=uhReceiptsFor(key);if(!list.length)return;const tools=art.querySelector('.tools');if(!tools)return;
+  tools.insertAdjacentHTML('beforeend',list.slice(0,3).map(t=>uhButton(t)).join(''));
+  const tag=art.querySelector('.protected-tag');if(tag)tag.textContent='Assigned · can be undone';});
+}catch(e){console.warn('undo handover',e);}return out;};
+const uhBaseDetail=stockDetail;
+stockDetail=function(k){const out=uhBaseDetail.apply(this,arguments);try{
+ const list=uhReceiptsFor(k),host=$('modalContent');
+ if(list.length&&host&&!host.querySelector('[data-fdel="receipt"]'))host.insertAdjacentHTML('beforeend',`<div class="notice warn" style="margin-top:12px"><b>Handover has to be undone?</b><p class="small">If the PC was taken back (not ready, wrong PC), delete the receipt here. The PC becomes available again on this phone. If the record was already sent to Operational / Admin, correct it there too.</p><div class="tools">${list.map(t=>uhButton(t,false)).join('')}</div></div>`);
+}catch(e){console.warn('undo handover',e);}return out;};
+const uhBaseSession=manageSessionDetail;
+manageSessionDetail=function(id){const out=uhBaseSession.apply(this,arguments);try{
+ const rows=SC.sessionRows(S,id).slice().reverse();
+ document.querySelectorAll('#modalContent .manager-item').forEach((art,i)=>{const t=rows[i],tag=art.querySelector('.protected-tag');if(!t||!tag||art.querySelector('[data-fdel]'))return;tag.outerHTML=uhButton(t);});
+}catch(e){console.warn('undo handover',e);}return out;};
 
 initial();window.SN.ready=load();
 </script></body></html>
