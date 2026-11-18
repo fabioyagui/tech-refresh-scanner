@@ -179,4 +179,7 @@ if(SM){try{const card=document.getElementById('camBtn')?.closest('section,.card,
  inp.addEventListener('input',()=>{DB.place=inp.value.trim();save();paint();});
  document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-place]');if(!b)return;DB.place=b.dataset.place;inp.value=DB.place;save();paint();toast('📍 '+DB.place);});
  new MutationObserver(()=>{clearTimeout(paint.t);paint.t=setTimeout(paint,60);}).observe(document.getElementById('items'),{childList:true});paint();}catch(e){console.warn('place',e);}}
-}</script></body></html>
+}</script><script>/* Version label — bump TBUILD on every change to this file so the phone shows what is loaded. */
+const TBUILD='build 2026.11.18-t1.3';
+(()=>{try{const h=document.querySelector('h1');const s=document.createElement('div');s.id='tBuild';s.textContent=TBUILD;s.style.cssText='font:600 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3px;opacity:.65;text-align:right;margin:0 0 6px;white-space:nowrap';const box=h&&h.parentNode&&h.parentNode!==document.body?h.parentNode:h;(box&&box.parentNode?box.parentNode:document.body).insertBefore(s,box||document.body.firstChild);}catch(e){}})();
+</script></body></html>
