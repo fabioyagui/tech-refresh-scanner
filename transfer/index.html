@@ -144,8 +144,12 @@ let running=false,lastAdd=0,lastText='',lastAt=0,autoT=0;
 /* 2026-11-18: stock check can run on the box label alone — the serial is enough for Admin to match the PC */
 /* t1.5: the boxes carry BOTH labels (Asset No. sticker + Lenovo serial), so both are asked for by default; serial-only is opt-in */
 const serialOnly=()=>SMODE&&DB.serialOnly===true;
-function tryAuto(){clearTimeout(autoT);if(!$('auto').checked)return;const a=norm($('inA').value),s=norm($('inS').value);if((isAsset(a)||serialOnly())&&isSerial(s))autoT=setTimeout(()=>add(true),isAsset(a)?450:900);}
-function onCode(text){text=norm(text);DG.raw++;DG.last=String(text).slice(0,14);if(IMODE){if(/^1S[0-9A-Z]{10,}$/.test(text))text=text.slice(-8);else if(/^S[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(text))text=text.slice(1);}const now=Date.now();if(now-lastAdd<1200)return;if(text===lastText&&now-lastAt<1500)return;lastText=text;lastAt=now;
+/* t1.12: the timer used to restart on every camera frame, so the PC was only added once the camera stopped reading it. Now a scanned, complete pair is added at once in stock check, and elsewhere the timer is not restarted for the same pair. */
+let autoKey='';function tryAuto(fromScan){if(!$('auto').checked){clearTimeout(autoT);autoKey='';return;}const a=norm($('inA').value),s=norm($('inS').value);
+ if(!((isAsset(a)||serialOnly())&&isSerial(s))){clearTimeout(autoT);autoKey='';return;}
+ if(fromScan===true&&SMODE&&isAsset(a)){clearTimeout(autoT);autoKey='';add(true);return;}
+ const k=a+'|'+s;if(fromScan===true&&k===autoKey)return;autoKey=k;clearTimeout(autoT);autoT=setTimeout(()=>{autoKey='';add(true);},isAsset(a)?450:900);}
+function onCode(text){text=norm(text);DG.raw++;DG.last=String(text).slice(0,14);if(IMODE){if(/^1S[0-9A-Z]{10,}$/.test(text))text=text.slice(-8);else if(/^S[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(text))text=text.slice(1);}const now=Date.now();if(now-lastAdd<(SMODE?150:1200))return;if(text===lastText&&now-lastAt<1500)return;lastText=text;lastAt=now;
  const l=cur(),dupAt=l.items.findIndex(x=>x.asset===text||x.serial===text);if(dupAt>=0){const d=l.items[dupAt];if(justAdded&&now-justAdded.at<8000&&(text===justAdded.a||text===justAdded.s))return;
   if(!d.asset&&isSerial(text)&&SMODE&&!serialOnly()){camSay('#'+(dupAt+1)+' '+d.serial+' has no Asset Tag yet — scan its Asset Tag label','dup');return;}
   camSay('✓ Already checked · #'+(dupAt+1)+' '+[d.asset,d.serial].filter(Boolean).join(' · ')+(d.place?' · 📍 '+d.place:'')+' — next PC','dup');return;}
@@ -154,7 +158,7 @@ function onCode(text){text=norm(text);DG.raw++;DG.last=String(text).slice(0,14);
  if(isAsset(text)){if(norm($('inA').value)!==text){$('inA').value=text;if(norm($('inS').value)&&!isSerial(norm($('inS').value)))$('inS').value='';}$('camMsg').textContent='Asset ✓ '+text+(norm($('inS').value)?'':' · now the Serial');}
  else if(isSerial(text)){$('inS').value=text;$('camMsg').textContent='Serial ✓ '+text+(norm($('inA').value)||serialOnly()?'':' · now the Asset Tag');}
  else{$('other').innerHTML=`Other code: <b>${esc(text)}</b> <button class="btn small" data-use="a" data-v="${esc(text)}">use as Asset</button> <button class="btn small" data-use="s" data-v="${esc(text)}">use as Serial</button>`;return;}
- try{navigator.vibrate?.(25);}catch{}slots();tryAuto();}
+ try{navigator.vibrate?.(25);}catch{}slots();tryAuto(true);}
 let stream=null,loopT=0;const cv=document.createElement('canvas'),cx=cv.getContext('2d',{willReadFrequently:true});
 const HINTS=(()=>{const h=new Map();h.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[ZXing.BarcodeFormat.CODE_128,ZXing.BarcodeFormat.CODE_39,ZXing.BarcodeFormat.CODE_93,ZXing.BarcodeFormat.CODABAR,ZXing.BarcodeFormat.ITF]);h.set(ZXing.DecodeHintType.TRY_HARDER,true);return h;})();
 const MR=new ZXing.MultiFormatReader();MR.setHints(HINTS);
@@ -164,13 +168,15 @@ const MR=new ZXing.MultiFormatReader();MR.setHints(HINTS);
    strongly coloured pixels (the red box) treated as white, and a code is accepted once it was seen twice. */
 const SR=(()=>{const h=new Map();h.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[ZXing.BarcodeFormat.CODE_128]);const r=new ZXing.MultiFormatReader();r.setHints(h);return r;})();
 const ST_STARTS=[0,.3,.12,.42,.06,.36,.18,.48,.24,.54];let stK=0,stGood=-1;const stSeen=new Map();
-function stockScan(v){const W=v.videoWidth,H=v.videoHeight,n=8,found=[];
+const PR=(()=>{const h=new Map();h.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[ZXing.BarcodeFormat.CODE_39,ZXing.BarcodeFormat.CODE_128]);const r=new ZXing.MultiFormatReader();r.setHints(h);return r;})();
+function stockScan(v){const t0=performance.now(),W=v.videoWidth,H=v.videoHeight,n=8,found=[];
  /* t1.10: the label on the PC itself is Code 39 (the box label is Code 128). Read the whole width in horizontal strips with the all-format reader,
     so the Asset Tag and the Serial that sit one above the other are both picked up in the same frame. */
  {const m=10,scale=Math.min(1,1400/W);for(let i=0;i<m*2-1;i++){const sy=i*H/(m*2),sh=H/m;cv.width=Math.round(W*scale);cv.height=Math.max(8,Math.round(sh*scale));cx.drawImage(v,0,sy,W,sh,0,0,cv.width,cv.height);
-   try{const r=MR.decodeWithState(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(cv))));if(r)found.push(norm(r.getText()));}catch(e){}MR.reset();}}
+   try{const r=PR.decodeWithState(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(cv))));if(r)found.push(norm(r.getText()));}catch(e){}PR.reset();}}
+ const quick=found.some(t=>isAsset(t)||isSerial(t)||/^1S[0-9A-Z]{10,}$/.test(t)||/^S[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(t));
  const starts=[ST_STARTS[stK++%ST_STARTS.length]];if(stGood>=0&&stGood!==starts[0])starts.unshift(stGood);
- for(const s of starts){const sx=W*s,sw=W-sx,scale=Math.min(1,1400/sw);let hit=false;
+ if(!quick)for(const s of starts){const sx=W*s,sw=W-sx,scale=Math.min(1,1400/sw);let hit=false;
   for(let i=0;i<n*2-1;i++){const sy=i*H/(n*2),sh=H/n;cv.width=Math.round(sw*scale);cv.height=Math.max(8,Math.round(sh*scale));cx.drawImage(v,sx,sy,sw,sh,0,0,cv.width,cv.height);
    try{const d=cx.getImageData(0,0,cv.width,cv.height),p=d.data;for(let q=0;q<p.length;q+=4){const a=p[q],b=p[q+1],c=p[q+2],mx=a>b?(a>c?a:c):(b>c?b:c),mn=a<b?(a<c?a:c):(b<c?b:c);const g=(mx>70&&(mx-mn)>mx*.35)?255:(a*77+b*150+c*29)>>8;p[q]=p[q+1]=p[q+2]=g;}cx.putImageData(d,0,0);
     const r=SR.decodeWithState(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(cv))));if(r){found.push(norm(r.getText()));hit=true;}}catch(e){}
@@ -180,7 +186,8 @@ function stockScan(v){const W=v.videoWidth,H=v.videoHeight,n=8,found=[];
  const serialOf=t=>/^1S[0-9A-Z]{10,}$/.test(t)?t.slice(-8):/^S[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(t)?t.slice(1):isSerial(t)?t:'';
  const ok=new Set();for(const t of found){const key=isAsset(t)?'A:'+t:serialOf(t)?'S:'+serialOf(t):'';if(!key)continue;const o=stSeen.get(key)||{n:0,t:now,raw:t};o.n++;o.t=now;stSeen.set(key,o);if(o.n>=2)ok.add(key);}
  const keys=[...ok].sort();   /* 'A:' before 'S:' so an asset tag is in place before the serial adds the PC */
- for(const key of keys){stSeen.delete(key);onCode(key.slice(2));}}
+ for(const key of keys){stSeen.delete(key);onCode(key.slice(2));}
+ DG.ms=Math.round(performance.now()-t0);}
 function scanFrame(){if(!running)return;DG.frames++;const v=$('video');if(SMODE&&v.readyState>=2&&v.videoWidth){try{stockScan(v);}catch(e){DG.err='scan: '+e.message;}loopT=setTimeout(scanFrame,50);return;}
  if(v.readyState>=2&&v.videoWidth){
   /* decode the band under the dashed frame (centre 84% width, 24% height), then the full frame every 3rd pass */
@@ -195,7 +202,7 @@ async function startCam(){if(running)return stopCam();
  const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';$('camBtn').classList.remove('primary');try{await v.play();}catch(e){DG.err='play: '+e.message;}torchUI();DG.frames=0;DG.raw=0;DG.err=DG.err&&DG.err.startsWith('camera')?'':DG.err;try{const t=stream.getVideoTracks()[0],c=t.getCapabilities?.()||{};DG.light=('torch' in c)?(c.torch?'yes':'no'):'unknown';DG.label=(t.label||'').slice(0,24);}catch{}clearInterval(DG.iv);DG.iv=setInterval(diag,700);diag();scanFrame();}
 /* t1.8: one status line under the camera, so a screenshot shows what the camera is doing */
 const DG={frames:0,raw:0,last:'',err:'',light:'',label:'',iv:0};
-function diag(){const e=$('camDiag');if(!e)return;const v=$('video');e.textContent=TBUILD.replace('build ','')+(running?' · cam '+(v.videoWidth||0)+'×'+(v.videoHeight||0)+' · frames '+DG.frames+' · codes '+DG.raw+(DG.last?' · last '+DG.last:'')+' · light '+DG.light+(DG.label?' · '+DG.label:''):' · camera off')+(DG.err?' · ERR '+DG.err:'');}
+function diag(){const e=$('camDiag');if(!e)return;const v=$('video');e.textContent=TBUILD.replace('build ','')+(running?' · cam '+(v.videoWidth||0)+'×'+(v.videoHeight||0)+' · frames '+DG.frames+(DG.ms?' · '+DG.ms+'ms':'')+' · codes '+DG.raw+(DG.last?' · last '+DG.last:'')+' · light '+DG.light+(DG.label?' · '+DG.label:''):' · camera off')+(DG.err?' · ERR '+DG.err:'');}
 window.addEventListener('error',e=>{DG.err=String(e.message||e).slice(0,120);diag();});window.addEventListener('unhandledrejection',e=>{DG.err=String(e.reason?.message||e.reason).slice(0,120);diag();});
 /* t1.6: flashlight (torch) of the back camera. Not every phone / browser allows it: the button says so instead of failing silently. */
 let torchOn=false;
@@ -224,6 +231,6 @@ if(SM){try{const card=document.getElementById('camBtn')?.closest('section,.card,
  document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-place]');if(!b)return;DB.place=b.dataset.place;inp.value=DB.place;save();paint();toast('📍 '+DB.place);});
  new MutationObserver(()=>{clearTimeout(paint.t);paint.t=setTimeout(paint,60);}).observe(document.getElementById('items'),{childList:true});paint();}catch(e){console.warn('place',e);}}
 }</script><script>/* Version label — bump TBUILD on every change to this file so the phone shows what is loaded. */
-const TBUILD='build 2026.11.20-t1.11';
+const TBUILD='build 2026.11.20-t1.12';
 (()=>{try{const h=document.querySelector('h1');const s=document.createElement('div');s.id='tBuild';s.textContent=TBUILD;s.style.cssText='font:700 13px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3px;text-align:right;margin:0 0 6px;white-space:nowrap;color:#0e7a4b';const box=h&&h.parentNode&&h.parentNode!==document.body?h.parentNode:h;(box&&box.parentNode?box.parentNode:document.body).insertBefore(s,box||document.body.firstChild);}catch(e){}})();
 </script></body></html>
