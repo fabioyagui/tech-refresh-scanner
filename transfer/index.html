@@ -55,6 +55,7 @@ details.edit[open] summary{margin-bottom:10px}
  <div class="ttl">Scan</div>
  <div class="cam" id="cam" hidden><video id="video" playsinline muted></video><div class="aim"></div><button type="button" class="torch" id="torchBtn" aria-pressed="false">🔦 Light</button><div class="msg" id="camMsg">Asset Tag barcode, then Serial barcode</div></div>
  <button class="btn primary block" id="camBtn">▶ Start camera</button>
+ <div id="camDiag" style="font:11px/1.4 ui-monospace,Menlo,monospace;color:#6b7280;margin:6px 2px 0;word-break:break-all"></div>
  <div class="grid2" style="margin-top:12px">
   <div class="slot" id="sA"><label for="inA">Asset Tag</label><input id="inA" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="24H18431"></div>
   <div class="slot" id="sS"><label for="inS">Serial Number</label><input id="inS" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="5CG4425RS2"></div>
@@ -144,7 +145,7 @@ let running=false,lastAdd=0,lastText='',lastAt=0,autoT=0;
 /* t1.5: the boxes carry BOTH labels (Asset No. sticker + Lenovo serial), so both are asked for by default; serial-only is opt-in */
 const serialOnly=()=>SMODE&&DB.serialOnly===true;
 function tryAuto(){clearTimeout(autoT);if(!$('auto').checked)return;const a=norm($('inA').value),s=norm($('inS').value);if((isAsset(a)||serialOnly())&&isSerial(s))autoT=setTimeout(()=>add(true),isAsset(a)?450:900);}
-function onCode(text){text=norm(text);if(IMODE){if(/^1S[0-9A-Z]{10,}$/.test(text))text=text.slice(-8);else if(/^S[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(text))text=text.slice(1);}const now=Date.now();if(now-lastAdd<1200)return;if(text===lastText&&now-lastAt<1500)return;lastText=text;lastAt=now;
+function onCode(text){text=norm(text);DG.raw++;DG.last=String(text).slice(0,14);if(IMODE){if(/^1S[0-9A-Z]{10,}$/.test(text))text=text.slice(-8);else if(/^S[A-Z][A-Z0-9][0-9A-Z]{6}$/.test(text))text=text.slice(1);}const now=Date.now();if(now-lastAdd<1200)return;if(text===lastText&&now-lastAt<1500)return;lastText=text;lastAt=now;
  const l=cur(),dupAt=l.items.findIndex(x=>x.asset===text||x.serial===text);if(dupAt>=0){const d=l.items[dupAt];if(justAdded&&now-justAdded.at<8000&&(text===justAdded.a||text===justAdded.s))return;
   if(!d.asset&&isSerial(text)&&SMODE&&!serialOnly()){camSay('#'+(dupAt+1)+' '+d.serial+' has no Asset Tag yet — scan its Asset Tag label','dup');return;}
   camSay('✓ Already checked · #'+(dupAt+1)+' '+[d.asset,d.serial].filter(Boolean).join(' · ')+(d.place?' · 📍 '+d.place:'')+' — next PC','dup');return;}
@@ -176,7 +177,7 @@ function stockScan(v){const W=v.videoWidth,H=v.videoHeight,n=8,found=[];
  const ok=new Set();for(const t of found){const key=isAsset(t)?'A:'+t:serialOf(t)?'S:'+serialOf(t):'';if(!key)continue;const o=stSeen.get(key)||{n:0,t:now,raw:t};o.n++;o.t=now;stSeen.set(key,o);if(o.n>=2)ok.add(key);}
  const keys=[...ok].sort();   /* 'A:' before 'S:' so an asset tag is in place before the serial adds the PC */
  for(const key of keys){stSeen.delete(key);onCode(key.slice(2));}}
-function scanFrame(){if(!running)return;const v=$('video');if(SMODE&&v.readyState>=2&&v.videoWidth){try{stockScan(v);}catch(e){}loopT=setTimeout(scanFrame,50);return;}
+function scanFrame(){if(!running)return;DG.frames++;const v=$('video');if(SMODE&&v.readyState>=2&&v.videoWidth){try{stockScan(v);}catch(e){}loopT=setTimeout(scanFrame,50);return;}
  if(v.readyState>=2&&v.videoWidth){
   /* decode the band under the dashed frame (centre 84% width, 24% height), then the full frame every 3rd pass */
   const W=v.videoWidth,H=v.videoHeight;scanFrame.k=(scanFrame.k||0)+1;const full=scanFrame.k%3===0;
@@ -186,16 +187,20 @@ function scanFrame(){if(!running)return;const v=$('video');if(SMODE&&v.readyStat
   MR.reset();}
  loopT=setTimeout(scanFrame,120);}
 async function startCam(){if(running)return stopCam();
- try{stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}});}catch(e){toast('Camera not available: '+e.message,true);return;}
- const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';$('camBtn').classList.remove('primary');try{await v.play();}catch{}torchUI();scanFrame();}
+ try{stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}});}catch(e){toast('Camera not available: '+e.message,true);DG.err='camera: '+(e.name||'')+' '+e.message;diag();return;}
+ const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';$('camBtn').classList.remove('primary');try{await v.play();}catch(e){DG.err='play: '+e.message;}torchUI();DG.frames=0;DG.raw=0;DG.err=DG.err&&DG.err.startsWith('camera')?'':DG.err;try{const t=stream.getVideoTracks()[0],c=t.getCapabilities?.()||{};DG.light=('torch' in c)?(c.torch?'yes':'no'):'unknown';DG.label=(t.label||'').slice(0,24);}catch{}clearInterval(DG.iv);DG.iv=setInterval(diag,700);diag();scanFrame();}
+/* t1.8: one status line under the camera, so a screenshot shows what the camera is doing */
+const DG={frames:0,raw:0,last:'',err:'',light:'',label:'',iv:0};
+function diag(){const e=$('camDiag');if(!e)return;const v=$('video');e.textContent=TBUILD.replace('build ','')+(running?' · cam '+(v.videoWidth||0)+'×'+(v.videoHeight||0)+' · frames '+DG.frames+' · codes '+DG.raw+(DG.last?' · last '+DG.last:'')+' · light '+DG.light+(DG.label?' · '+DG.label:''):' · camera off')+(DG.err?' · ERR '+DG.err:'');}
+window.addEventListener('error',e=>{DG.err=String(e.message||e).slice(0,120);diag();});window.addEventListener('unhandledrejection',e=>{DG.err=String(e.reason?.message||e.reason).slice(0,120);diag();});
 /* t1.6: flashlight (torch) of the back camera. Not every phone / browser allows it: the button says so instead of failing silently. */
 let torchOn=false;
 function torchUI(){const b=$('torchBtn');if(!b)return;b.classList.toggle('on',torchOn);b.setAttribute('aria-pressed',torchOn?'true':'false');b.textContent=torchOn?'🔦 Light ON':'🔦 Light';}
 async function setTorch(on){const t=stream?.getVideoTracks?.()[0];if(!t){torchOn=false;return torchUI();}
  try{await t.applyConstraints({advanced:[{torch:on}]});const st=t.getSettings?.()||{};if(on&&st.torch===false)throw new Error('not supported');torchOn=on;}
- catch(e){torchOn=false;if(on)toast('This phone / browser does not let a web page turn on the flashlight.',true);}
+ catch(e){torchOn=false;if(on)DG.err='light: '+(e.name||'')+' '+(e.message||'');if(on)toast('This phone / browser does not let a web page turn on the flashlight.',true);}
  torchUI();}
-function stopCam(){running=false;torchOn=false;torchUI();clearTimeout(loopT);try{stream?.getTracks().forEach(t=>t.stop());}catch{}stream=null;$('cam').hidden=true;$('camBtn').textContent='▶ Start camera';$('camBtn').classList.add('primary');}
+function stopCam(){running=false;torchOn=false;torchUI();clearInterval(DG.iv);setTimeout(diag,0);clearTimeout(loopT);try{stream?.getTracks().forEach(t=>t.stop());}catch{}stream=null;$('cam').hidden=true;$('camBtn').textContent='▶ Start camera';$('camBtn').classList.add('primary');}
 $('camBtn').onclick=startCam;$('torchBtn').onclick=()=>setTorch(!torchOn);
 /* opened from the Scanner's Imaichi button: start the camera at once, and show a way back */
 {const q=new URLSearchParams(location.search);if(q.get('from')){const t=document.querySelector('.top');if(t)t.insertAdjacentHTML('afterbegin','<a href="../'+encodeURIComponent(q.get('from'))+'/" style="font-size:13px;font-weight:600;text-decoration:none;margin-right:10px">← Scanner</a>');}if(q.get('cam')==='1')setTimeout(()=>{try{startCam();}catch(e){}},350);}
@@ -215,6 +220,6 @@ if(SM){try{const card=document.getElementById('camBtn')?.closest('section,.card,
  document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-place]');if(!b)return;DB.place=b.dataset.place;inp.value=DB.place;save();paint();toast('📍 '+DB.place);});
  new MutationObserver(()=>{clearTimeout(paint.t);paint.t=setTimeout(paint,60);}).observe(document.getElementById('items'),{childList:true});paint();}catch(e){console.warn('place',e);}}
 }</script><script>/* Version label — bump TBUILD on every change to this file so the phone shows what is loaded. */
-const TBUILD='build 2026.11.20-t1.7';
+const TBUILD='build 2026.11.20-t1.8';
 (()=>{try{const h=document.querySelector('h1');const s=document.createElement('div');s.id='tBuild';s.textContent=TBUILD;s.style.cssText='font:600 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3px;opacity:.65;text-align:right;margin:0 0 6px;white-space:nowrap';const box=h&&h.parentNode&&h.parentNode!==document.body?h.parentNode:h;(box&&box.parentNode?box.parentNode:document.body).insertBefore(s,box||document.body.firstChild);}catch(e){}})();
 </script></body></html>
