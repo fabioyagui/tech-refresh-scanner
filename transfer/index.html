@@ -27,7 +27,7 @@ details.edit[open] summary{margin-bottom:10px}
 .cam video{width:100%;height:100%;object-fit:cover;display:block}
 .cam .aim{position:absolute;left:8%;right:8%;top:36%;height:28%;border:2px dashed #ffffffc0;border-radius:10px;pointer-events:none;box-shadow:0 0 0 2000px #00000040}
 .cam .torch{position:absolute;top:10px;right:10px;z-index:2;border:1px solid #ffffff80;background:#0b1220b0;color:#fff;font:600 14px/1 inherit;padding:10px 14px;border-radius:999px}.cam .torch.on{background:#ffd54a;color:#1b1b1b;border-color:#ffd54a}
-.cam .msg{position:absolute;left:10px;right:10px;bottom:10px;color:#fff;font-size:13px;text-shadow:0 1px 3px #000;text-align:center;padding:6px 10px;border-radius:10px}.cam .msg.ok{background:#0e7a4be0;text-shadow:none;font-weight:600}.cam .msg.dup{background:#375a7fe0;text-shadow:none}
+.cam .msg{position:absolute;left:10px;right:10px;bottom:10px;color:#fff;font-size:13px;text-shadow:0 1px 3px #000;text-align:center;padding:6px 10px;border-radius:10px}.cam .msg.ok{background:#0e7a4be0;text-shadow:none;font-weight:600}.cam .msg.dup{background:#ff9f0a;color:#1b1300;text-shadow:none;font-weight:700;font-size:15px;padding:10px 12px;box-shadow:0 0 0 3px #fff}.cam.dupflash .aim{border-color:#ff9f0a;border-style:solid;border-width:4px}
 .slot{background:var(--soft);border:1.5px solid var(--line);border-radius:12px;padding:8px 10px}
 .slot label{margin:0}.slot input{border:0;background:transparent;padding:4px 0 0;font:700 18px ui-monospace,Menlo,monospace;letter-spacing:.02em}
 .slot.ok{border-color:var(--green);background:color-mix(in srgb,var(--green) 10%,var(--soft))}.slot.ok label::after{content:" ✓";color:var(--green);font-weight:700}
@@ -113,7 +113,7 @@ function add(fromScan){const a=norm($('inA').value),s=norm($('inS').value);if(!s
  const l=cur();const dup=l.items.find(x=>(a&&x.asset===a)||x.serial===s);if(dup){toast('Already in this list: '+[dup.asset,dup.serial].filter(Boolean).join(' · '),true);clearSlots();return false;}
  const pl=SMODE?String(DB.place||'').trim():'';l.items.push(pl?{asset:a,serial:s,at:new Date().toISOString(),place:pl}:{asset:a,serial:s,at:new Date().toISOString()});save();clearSlots();renderList();try{navigator.vibrate?.(60);}catch{}toast('✓ Added '+[a,s].filter(Boolean).join(' · ')+(pl?' · 📍 '+pl:'')+' ('+l.items.length+')');lastAdd=Date.now();justAdded={a,s,at:lastAdd};camSay('✓ Added #'+l.items.length+' · '+[a,s].filter(Boolean).join(' · ')+' — next PC','ok');return true;}
 /* t1.7: the camera keeps seeing the PC it has just added — that is not an error, so the ✓ Added message stays; a PC from earlier says 'already checked' with its number and place. */
-let justAdded=null;function camSay(t,cls){const m=$('camMsg');if(!m)return;m.textContent=t;m.className='msg'+(cls?' '+cls:'');}
+let justAdded=null;function camSay(t,cls){const m=$('camMsg');if(!m)return;m.textContent=t;m.className='msg'+(cls?' '+cls:'');$('cam')?.classList.toggle('dupflash',cls==='dup');if(cls==='dup'){try{navigator.vibrate?.([40,60,40]);}catch{}}}
 function clearSlots(){$('inA').value='';$('inS').value='';$('other').innerHTML='';slots();}
 function csvRows(lists){const head=['Send date','Destination','#','Asset Tag','Serial Number','Scanned at','Note'],rows=[];if(SMODE)head.push('Place');for(const l of lists)l.items.forEach((x,k)=>rows.push(SMODE?[l.date,l.dest,k+1,x.asset,x.serial,stamp(x.at),l.note,x.place||'']:[l.date,l.dest,k+1,x.asset,x.serial,stamp(x.at),l.note]));return [head,...rows];}
 /* 2026-11-02: export like the Scanner — phone share sheet (Teams, OneDrive, Mail…) when available, download otherwise */
@@ -149,7 +149,7 @@ function onCode(text){text=norm(text);DG.raw++;DG.last=String(text).slice(0,14);
  const l=cur(),dupAt=l.items.findIndex(x=>x.asset===text||x.serial===text);if(dupAt>=0){const d=l.items[dupAt];if(justAdded&&now-justAdded.at<8000&&(text===justAdded.a||text===justAdded.s))return;
   if(!d.asset&&isSerial(text)&&SMODE&&!serialOnly()){camSay('#'+(dupAt+1)+' '+d.serial+' has no Asset Tag yet — scan its Asset Tag label','dup');return;}
   camSay('✓ Already checked · #'+(dupAt+1)+' '+[d.asset,d.serial].filter(Boolean).join(' · ')+(d.place?' · 📍 '+d.place:'')+' — next PC','dup');return;}
- $('camMsg').className='msg';
+ $('camMsg').className='msg';$('cam')?.classList.remove('dupflash');
  if(isAsset(text)&&SMODE&&!norm($('inS').value)){const last=l.items[l.items.length-1];if(last&&!last.asset&&now-Date.parse(last.at)<20000){last.asset=text;save();renderList();$('camMsg').textContent='Asset ✓ '+text+' → '+last.serial;toast('✓ Asset '+text+' added to '+last.serial);try{navigator.vibrate?.(60);}catch{}lastAdd=now;return;}}
  if(isAsset(text)){if(norm($('inA').value)!==text){$('inA').value=text;if(norm($('inS').value)&&!isSerial(norm($('inS').value)))$('inS').value='';}$('camMsg').textContent='Asset ✓ '+text+(norm($('inS').value)?'':' · now the Serial');}
  else if(isSerial(text)){$('inS').value=text;$('camMsg').textContent='Serial ✓ '+text+(norm($('inA').value)||serialOnly()?'':' · now the Asset Tag');}
@@ -224,6 +224,6 @@ if(SM){try{const card=document.getElementById('camBtn')?.closest('section,.card,
  document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-place]');if(!b)return;DB.place=b.dataset.place;inp.value=DB.place;save();paint();toast('📍 '+DB.place);});
  new MutationObserver(()=>{clearTimeout(paint.t);paint.t=setTimeout(paint,60);}).observe(document.getElementById('items'),{childList:true});paint();}catch(e){console.warn('place',e);}}
 }</script><script>/* Version label — bump TBUILD on every change to this file so the phone shows what is loaded. */
-const TBUILD='build 2026.11.20-t1.10';
+const TBUILD='build 2026.11.20-t1.11';
 (()=>{try{const h=document.querySelector('h1');const s=document.createElement('div');s.id='tBuild';s.textContent=TBUILD;s.style.cssText='font:700 13px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3px;text-align:right;margin:0 0 6px;white-space:nowrap;color:#0e7a4b';const box=h&&h.parentNode&&h.parentNode!==document.body?h.parentNode:h;(box&&box.parentNode?box.parentNode:document.body).insertBefore(s,box||document.body.firstChild);}catch(e){}})();
 </script></body></html>
