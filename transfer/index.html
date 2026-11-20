@@ -27,6 +27,7 @@ details.edit[open] summary{margin-bottom:10px}
 .cam video{width:100%;height:100%;object-fit:cover;display:block}
 .cam .aim{position:absolute;left:8%;right:8%;top:36%;height:28%;border:2px dashed #ffffffc0;border-radius:10px;pointer-events:none;box-shadow:0 0 0 2000px #00000040}
 .cam .torch{position:absolute;top:10px;right:10px;z-index:2;border:1px solid #ffffff80;background:#0b1220b0;color:#fff;font:600 14px/1 inherit;padding:10px 14px;border-radius:999px}.cam .torch.on{background:#ffd54a;color:#1b1b1b;border-color:#ffd54a}
+.cam .place{position:absolute;top:10px;left:10px;z-index:2;max-width:58%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#0b1220b0;color:#fff;font:600 13px/1 inherit;padding:9px 12px;border-radius:999px;border:1px solid #ffffff60}
 .cam .msg{position:absolute;left:10px;right:10px;bottom:10px;color:#fff;font-size:13px;text-shadow:0 1px 3px #000;text-align:center;padding:6px 10px;border-radius:10px}.cam .msg.ok{background:#0e7a4be0;text-shadow:none;font-weight:600}.cam .msg.dup{background:#ff9f0a;color:#1b1300;text-shadow:none;font-weight:700;font-size:15px;padding:10px 12px;box-shadow:0 0 0 3px #fff}.cam.dupflash .aim{border-color:#ff9f0a;border-style:solid;border-width:4px}
 .slot{background:var(--soft);border:1.5px solid var(--line);border-radius:12px;padding:8px 10px}
 .slot label{margin:0}.slot input{border:0;background:transparent;padding:4px 0 0;font:700 18px ui-monospace,Menlo,monospace;letter-spacing:.02em}
@@ -51,9 +52,9 @@ details.edit[open] summary{margin-bottom:10px}
 
 <div class="card" id="listCard"></div>
 
-<div class="card">
+<div class="card" id="scanCard">
  <div class="ttl">Scan</div>
- <div class="cam" id="cam" hidden><video id="video" playsinline muted></video><div class="aim"></div><button type="button" class="torch" id="torchBtn" aria-pressed="false">🔦 Light</button><div class="msg" id="camMsg">Asset Tag barcode, then Serial barcode</div></div>
+ <div class="cam" id="cam" hidden><video id="video" playsinline muted></video><div class="aim"></div><div class="place" id="camPlace" hidden></div><button type="button" class="torch" id="torchBtn" aria-pressed="false">🔦 Light</button><div class="msg" id="camMsg">Asset Tag barcode, then Serial barcode</div></div>
  <button class="btn primary block" id="camBtn">▶ Start camera</button>
  <div id="camDiag" style="font:11px/1.4 ui-monospace,Menlo,monospace;color:#6b7280;margin:6px 2px 0;word-break:break-all"></div>
  <div class="grid2" style="margin-top:12px">
@@ -199,7 +200,7 @@ function scanFrame(){if(!running)return;DG.frames++;const v=$('video');if(SMODE&
  loopT=setTimeout(scanFrame,120);}
 async function startCam(){if(running)return stopCam();
  try{stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}});}catch(e){toast('Camera not available: '+e.message,true);DG.err='camera: '+(e.name||'')+' '+e.message;diag();return;}
- const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';$('camBtn').classList.remove('primary');try{await v.play();}catch(e){DG.err='play: '+e.message;}torchUI();DG.frames=0;DG.raw=0;DG.err=DG.err&&DG.err.startsWith('camera')?'':DG.err;try{const t=stream.getVideoTracks()[0],c=t.getCapabilities?.()||{};DG.light=('torch' in c)?(c.torch?'yes':'no'):'unknown';DG.label=(t.label||'').slice(0,24);}catch{}clearInterval(DG.iv);DG.iv=setInterval(diag,700);diag();scanFrame();}
+ const v=$('video');v.srcObject=stream;$('cam').hidden=false;running=true;$('camBtn').textContent='■ Stop camera';$('camBtn').classList.remove('primary');try{await v.play();}catch(e){DG.err='play: '+e.message;}try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}torchUI();DG.frames=0;DG.raw=0;DG.err=DG.err&&DG.err.startsWith('camera')?'':DG.err;try{const t=stream.getVideoTracks()[0],c=t.getCapabilities?.()||{};DG.light=('torch' in c)?(c.torch?'yes':'no'):'unknown';DG.label=(t.label||'').slice(0,24);}catch{}clearInterval(DG.iv);DG.iv=setInterval(diag,700);diag();scanFrame();}
 /* t1.8: one status line under the camera, so a screenshot shows what the camera is doing */
 const DG={frames:0,raw:0,last:'',err:'',light:'',label:'',iv:0};
 function diag(){const e=$('camDiag');if(!e)return;const v=$('video');e.textContent=TBUILD.replace('build ','')+(running?' · cam '+(v.videoWidth||0)+'×'+(v.videoHeight||0)+' · frames '+DG.frames+(DG.ms?' · '+DG.ms+'ms':'')+' · codes '+DG.raw+(DG.last?' · last '+DG.last:'')+' · light '+DG.light+(DG.label?' · '+DG.label:''):' · camera off')+(DG.err?' · ERR '+DG.err:'');}
@@ -217,20 +218,25 @@ $('camBtn').onclick=startCam;$('torchBtn').onclick=()=>setTorch(!torchOn);
 {const q=new URLSearchParams(location.search);if(q.get('from')){const t=document.querySelector('.top');if(t)t.insertAdjacentHTML('afterbegin','<a href="../'+encodeURIComponent(q.get('from'))+'/" style="font-size:13px;font-weight:600;text-decoration:none;margin-right:10px">← Scanner</a>');}if(q.get('cam')==='1')setTimeout(()=>{try{startCam();}catch(e){}},350);}
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)stopCam();});
 renderList();slots();
+/* t1.13: the camera is the first thing on the page (no scrolling to find it); the intro text and list details come after it */
+try{const sc=$('scanCard'),top=document.querySelector('.top');if(sc&&top)top.insertAdjacentElement('afterend',sc);}catch(e){}
 </script><script>if(['intune','stock'].includes(new URLSearchParams(location.search).get('mode'))){const SM=new URLSearchParams(location.search).get('mode')==='stock';document.title=SM?'Stock check':'Intune quick scan';const h=document.querySelector('h1');if(h)h.textContent=SM?'📋 Physical stock check':'🧩 Intune quick scan';h?.insertAdjacentHTML('afterend',SM?'<p style="margin:4px 0 0;font-size:13px;opacity:.75">Scan every new Lenovo in the room — no stock change, no assignment. The list stays open until you finish it. Export CSV, then load it in Admin → Overview → 📋 Physical stock check.</p>':'<p style="margin:4px 0 0;font-size:13px;opacity:.75">Lenovo quick scan for Intune prep only — no stock, no assignment. One list per day (a new day starts a new list). Export, then load the file in Admin → 🧩 Intune prep.</p>');const a=document.getElementById('inA'),b=document.getElementById('inS');if(a)a.placeholder='26L16531';if(b)b.placeholder='PF6HGBLT';const fix=()=>{for(const el of document.querySelectorAll('label[for="fDate"]'))if(el.textContent!=='Scan day')el.textContent='Scan day';for(const el of document.querySelectorAll('.summary .info div'))if(el.textContent.includes('Send date'))el.textContent=el.textContent.replace('Send date','Scan day');};fix();new MutationObserver(fix).observe(document.body,{childList:true,subtree:true});
 /* 2026-11-18: stock check — name the box / place you are scanning; every PC added carries it and Admin shows it */
 if(SM){try{const card=document.getElementById('camBtn')?.closest('section,.card,div[class]')||document.getElementById('listCard');
  const box=document.createElement('div');box.id='placeCard';box.style.cssText='margin:12px 0;padding:14px 16px;border:1px solid rgba(0,0,0,.1);border-radius:16px;background:#fff';
  box.innerHTML='<label for="fPlace" style="display:block;font-weight:700;margin-bottom:6px">📍 Box / place being scanned</label><input id="fPlace" placeholder="e.g. Shelf A · Box 3 · Cage 2" autocomplete="off" style="width:100%;box-sizing:border-box;padding:12px;font-size:16px;border:1px solid #c9d2e0;border-radius:12px"><div id="placeChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div><label style="display:flex;align-items:center;gap:10px;margin-top:12px;font-weight:600"><input type="checkbox" id="fSerialOnly" style="width:22px;height:22px"> Serial only — add the PC without waiting for the Asset Tag</label><div id="placeInfo" style="margin-top:6px;font-size:13px;opacity:.75"></div>';
- card.parentNode.insertBefore(box,card);
+ card.parentNode.insertBefore(box,card.nextSibling);
  const inp=document.getElementById('fPlace');inp.value=DB.place||'';try{const cm=document.getElementById('camMsg');if(cm)cm.textContent='Scan the Asset No. label and the serial label — any order';}catch(e){}const so=document.getElementById('fSerialOnly');so.checked=DB.serialOnly===true;so.addEventListener('change',()=>{DB.serialOnly=so.checked;save();toast(so.checked?'Serial only: the serial label alone adds the PC':'Asset Tag + Serial: scan both labels, in any order');});
  const paint=()=>{const l=cur(),cnt=new Map();for(const it of l.items){const k=it.place||'';cnt.set(k,(cnt.get(k)||0)+1);}const curP=String(DB.place||'').trim();
   const names=[...cnt.keys()].filter(Boolean);document.getElementById('placeChips').innerHTML=names.map(n=>'<button type="button" class="btn small" data-place="'+esc(n)+'" style="'+(n===curP?'background:#1f2a44;color:#fff;border-color:#1f2a44':'')+'">'+esc(n)+' · '+cnt.get(n)+'</button>').join('');
+  try{const cp=document.getElementById('camPlace');if(cp){cp.hidden=!curP;cp.textContent='📍 '+curP+' · '+(cnt.get(curP)||0);}}catch(e){}
   document.getElementById('placeInfo').textContent=curP?('Next PCs go to “'+curP+'” ('+(cnt.get(curP)||0)+' so far)'):'No place set — PCs are saved without a place'+(cnt.get('')?' ('+cnt.get('')+' so far)':'')+'.';};
  inp.addEventListener('input',()=>{DB.place=inp.value.trim();save();paint();});
  document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-place]');if(!b)return;DB.place=b.dataset.place;inp.value=DB.place;save();paint();toast('📍 '+DB.place);});
  new MutationObserver(()=>{clearTimeout(paint.t);paint.t=setTimeout(paint,60);}).observe(document.getElementById('items'),{childList:true});paint();}catch(e){console.warn('place',e);}}
 }</script><script>/* Version label — bump TBUILD on every change to this file so the phone shows what is loaded. */
-const TBUILD='build 2026.11.20-t1.12';
+const TBUILD='build 2026.11.20-t1.13';
 (()=>{try{const h=document.querySelector('h1');const s=document.createElement('div');s.id='tBuild';s.textContent=TBUILD;s.style.cssText='font:700 13px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3px;text-align:right;margin:0 0 6px;white-space:nowrap;color:#0e7a4b';const box=h&&h.parentNode&&h.parentNode!==document.body?h.parentNode:h;(box&&box.parentNode?box.parentNode:document.body).insertBefore(s,box||document.body.firstChild);}catch(e){}})();
-</script></body></html>
+</script><script>/* t1.13: compact header — the mode description moves below the camera */
+try{const tp=document.querySelector('.top p'),nt=document.querySelector('p.note');if(tp&&nt){nt.textContent=tp.textContent;tp.remove();}const h=document.querySelector('.top h1');if(h)h.style.cssText+=';font-size:18px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis';}catch(e){}</script>
+</body></html>
